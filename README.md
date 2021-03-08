@@ -1,5 +1,5 @@
 ![Intro Image](https://user-images.githubusercontent.com/68941022/110233697-b6bc4a80-7f4b-11eb-82f1-db68eecfe517.png)
-<p align="center"> An Unofficial Microsoft Office Online Desktop Client for Windows 10. Free of Cost.</p>
+<p align="center"> An Unofficial Microsoft Office Online Desktop Client. Free of Cost.</p>
 
 # Introduction
 As we know that Microsoft Office is a paid service, they also have a free Web version at https://office.com.<br> For those people who can't afford Microsoft Office Subscription, or don't want to pay for that, or like the web version of it, Than <b>Microsoft Office - Electron</b> is the app you require. <br><br>

@@ -1,5 +1,5 @@
 ![Intro Image](https://user-images.githubusercontent.com/68941022/110233697-b6bc4a80-7f4b-11eb-82f1-db68eecfe517.png)
-<p align="center"> An Unofficial Microsoft Office Online Desktop Client. Free of Cost.</p>
+<p align="center"> An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of Cost.</p>
 
 # Introduction
 As we know that Microsoft Office is a paid service, they also have a free Web version <a href="https://office.com" target="_blank">here</a><br><br>

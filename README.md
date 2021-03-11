@@ -15,11 +15,9 @@ As we know that Microsoft Office is a paid service, they also have a free Web ve
 
 For those people who can't afford Microsoft Office Subscription, or don't want to pay for that, or like the web version of it, Then **Microsoft Office - Electron** is the app you require.
 
-<br /><br />
-  **Microsoft Office - Electron** is the app in which the Web Version of Microsoft Office is wrapped into a Cross-Platform App with Electron. And all the Services of Microsoft Office will work for free.
-<br /><br />***Do Expect bugs***
+**Microsoft Office - Electron** is the app in which the Web Version of Microsoft Office is wrapped into a Cross-Platform App with Electron. And all the Services of Microsoft Office will work for free.
 
-
+***Do Expect bugs***
 
 # Windows
 

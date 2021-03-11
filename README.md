@@ -4,10 +4,13 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 
 ## Table of contents
 
+<<<<<<< Updated upstream
 1. [Introduction](https://github.com/agam778/Microsoft-Office-Electron/#Introduction)
 2. [Windows](#Windows)
    - [Subsection a](#subsection-a)
 <br />
+=======
+>>>>>>> Stashed changes
 
 # Introduction
 

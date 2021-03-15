@@ -1,5 +1,4 @@
-<p style="text-align: center">
-![Intro Image](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Intro%20Image.png?raw=true)
+<p style="text-align: center"><img src="https://github.com/agam778/Microsoft-Office-Electron/blob/main/Intro%20Image.png?raw=true" alt="Intro Image">
 
 An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of Cost.
 

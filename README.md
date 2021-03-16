@@ -20,3 +20,6 @@ For those people who can't afford Microsoft Office Subscription, or don't want t
 ***Do Expect bugs***
 
 # Windows
+## Preview
+
+![Windows - Preview.png](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Windows%20-%20Preview.png?raw=true)

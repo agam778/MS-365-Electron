@@ -1,6 +1,6 @@
 {
    "name": "microsoft-office-electron",
-   "version": "1.0.0",
+   "version": "0.1.0",
    "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
    "main": "main.js",
    "repository": {
@@ -9,14 +9,13 @@
    },
    "build": {
       "extraFiles": [
-         "updater.html",
-         "update.html",
          "index.html",
-         "updatescript.js",
          "Intro Image.png",
          "Loading.gif",
          "icon.png",
-         "icon.ico"
+         "icon.ico",
+         "license.txt",
+         "icon2.png"
       ],
       "appId": "com.agampreet.microsoft-office-electron",
       "productName": "Microsoft Office - Electron",
@@ -69,10 +68,11 @@
    },
    "license": "MIT",
    "devDependencies": {
-     "electron": "^12.0.0",
-     "electron-builder": "^22.10.5"
+      "electron": "^12.0.0",
+      "electron-builder": "^22.10.5"
    },
    "dependencies": {
+      "about-window": "^1.14.0",
       "electron-updater": "^4.3.8"
    }
 }

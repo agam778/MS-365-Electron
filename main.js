@@ -1,4 +1,6 @@
 const { app, Menu, BrowserWindow } = require('electron')
+const openAboutWindow = require('about-window').default;
+const join = require('path').join;
 const isMac = process.platform === 'darwin'
 
 const template = [
@@ -19,33 +21,30 @@ const template = [
   }] : []),
   // { role: 'fileMenu' }
   {
-    label: 'Application',
+    label: 'Microsoft Office - Electron',
     submenu: [
       {
         label: 'About Microsoft Office - Electron',
-        click: async () => {
-          const { shell } = require('electron')
-          await shell.openExternal('https://github.com/agam778/Microsoft-Office-Electron')
-        }
+          click: () =>
+                       openAboutWindow({
+                           icon_path: 'https://github.com/agam778/Microsoft-Office-Electron/blob/main/icon2.png?raw=true',
+                           product_name: 'Microsoft Office - Electron',
+                           copyright: 'Copyright (c) 2021 Agampreet Singh Bajaj',
+                           package_json_dir: __dirname,
+                           bug_report_url: 'https://github.com/agam778/Microsoft-Office-Electron/issues/',
+                           bug_link_text: 'Report an issue',
+                           adjust_window_size: '2',
+                           show_close_button: 'Close',
+
+                     }),
       },
       {
-        label: 'Check for Updates...',
+        label: 'Learn More',
         click: async () => {
-          const { BrowserWindow } = require('electron')
-          const updatewin = new BrowserWindow({
-            width: 650,
-            height: 600,
-            icon: './icon.ico',
-            webPreferences: {
-              nodeIntegration: true
-            }
-          })
-          updatewin.setMenuBarVisibility(false)
-
-          updatewin.loadURL('file:///updater.html',
-        {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36'});
-        }
-      },
+  const { shell } = require('electron');
+  await shell.openExternal('https://github.com/agam778/Microsoft-Office-Electron');
+}
+},
       {type:'separator'},
       {
         role: 'quit',

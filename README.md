@@ -27,4 +27,4 @@ For those people who can't afford Microsoft Office Subscription, or don't want t
 More Docs Coming Soon. Stay Tuned!
 
 # MIT License
-#### *Disclaimer: Not affiliated with Google*
+#### *Disclaimer: Not affiliated with Microsoft*

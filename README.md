@@ -9,6 +9,8 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 1. [Introduction](#Introduction)
 2. [Windows](#Windows)
     1. [Preview](#windows-preview)
+3. [Linux](#linux)
+    1. [Ubuntu Preview](#ubuntu-preview)
 
 # Introduction
 
@@ -25,7 +27,8 @@ For those people who can't afford Microsoft Office Subscription, or don't want t
 
 ![Windows - Preview.png](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Windows%20-%20Preview.png?raw=true)
 
-More Docs Coming Soon. Stay Tuned!
+# Linux
+## Ubuntu Preview
 
 # MIT License
 #### *Disclaimer: Not affiliated with Microsoft*

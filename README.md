@@ -8,7 +8,7 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 
 1. [Introduction](#Introduction)
 2. [Windows](#Windows)
-    - [Preview](#Windows Preview)
+    1. [Preview](#windows-preview)
 
 # Introduction
 

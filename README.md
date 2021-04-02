@@ -29,6 +29,7 @@ For those people who can't afford Microsoft Office Subscription, or don't want t
 
 # Linux
 ## Ubuntu Preview
+![Ubuntu Preview](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Ubuntu%20Preview.png?raw=true)
 
 # MIT License
 #### *Disclaimer: Not affiliated with Microsoft*

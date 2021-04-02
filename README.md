@@ -22,6 +22,16 @@ For those people who can't afford Microsoft Office Subscription, or don't want t
 
 ***Do Expect bugs***
 
+This is the First Release of Microsoft Office - Electron
+
+Supported Platforms
+1. Windows x64 (EXE File)
+2. Ubuntu/Debian based distributions (DEB File)
+3. Red Hat Linux/Fedora based distributions (RPM File)
+4. All Distributions supporting AppImage (AppImage File)
+
+Arch/Manjaro Linux based distributions and Mac OS is not currently supported.
+
 # Windows
 ## Windows Preview
 

@@ -9,15 +9,15 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 1. [Introduction](#Introduction)
 2. [Windows](#Windows)
     1. [Windows Preview](#windows-preview)
-    2. [Windows Installation Instructions](#windows-installation)
+    2. [Windows Installation](#-windows-installation)
 3. [Linux](#linux)
     1. [Ubuntu Preview](#ubuntu-preview)
     2. [Fedora Preview](#fedora-preview)
-    3. [Linux Installation](#linux-installation)
+    3. [Linux Installation](#-linux-installation)
         1. [Ubuntu/Debain based distribution installation](#ubuntudebian-based-distribution-installation)
         2. [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
         3. [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
-4. [MIT License](#mit-license)
+4. [MIT License](#-mit-license)
     1. [Disclamier](#disclaimer-not-affiliated-with-microsoft)
 
 # Introduction

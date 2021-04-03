@@ -16,8 +16,9 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
     3. [Linux Installation](#linux-installation)
         1. [Ubuntu/Debain based distribution installation](#ubuntudebian-based-distribution-installation)
         2. [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
+        3. [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
 4. [MIT License](#mit-license)
-    1. 
+    1. [Disclamier](#disclaimer-not-affiliated-with-microsoft)
 
 # Introduction
 
@@ -58,9 +59,13 @@ If you want to run this app without installing, Go to the [Releases](https://git
 
 ## 📀 Linux Installation
 ### Ubuntu/Debain based distribution installation
-For Installing in Ubuntu, Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.deb` file to download it. Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
+For Installing in Ubuntu/Debian based distribution, Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.deb` file to download it. Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
 
 ### Red Hat/Fedora based distribution installation
+For Installing in Red Hat/Fedora based distribution, Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.rpm` file to download it. Then run the rpm file and click Install to install the App. Launch it from the Applications Menu.
 
-# MIT License
+### Arch/Manjaro Linux based distribution installation
+Currently, I have not made an installer for Arch/Manjaro Linux based distribution. Till then, you can run it via an AppImage file. Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.AppImage` file to download it and then run the app.
+
+# 📜 MIT License
 #### *Disclaimer: Not affiliated with Microsoft*

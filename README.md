@@ -58,7 +58,7 @@ If you want to run this app without installing, Go to the [Releases](https://git
 ![Fedora Preview](https://raw.githubusercontent.com/agam778/Microsoft-Office-Electron/main/Preview/Fedora%20Preview.png)
 
 ## 📀 Linux Installation
-### Ubuntu/Debain based distribution installation
+### Ubuntu/Debian based distribution installation
 For Installing in Ubuntu/Debian based distribution, Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.deb` file to download it. Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
 
 ### Red Hat/Fedora based distribution installation

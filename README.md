@@ -13,6 +13,11 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 3. [Linux](#linux)
     1. [Ubuntu Preview](#ubuntu-preview)
     2. [Fedora Preview](#fedora-preview)
+    3. [Linux Installation](#linux-installation)
+        1. [Ubuntu/Debain based distribution installation](#ubuntudebian-based-distribution-installation)
+        2. [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
+4. [MIT License](#mit-license)
+    1. 
 
 # Introduction
 
@@ -30,9 +35,11 @@ Supported Platforms
 1. Windows x64 (EXE File)
 2. Ubuntu/Debian based distributions (DEB File)
 3. Red Hat Linux/Fedora based distributions (RPM File)
-4. All Distributions supporting AppImage (AppImage File)
+4. Arch/Manjaro Linux based distributions via AppImage only (AppImage File)
+5. All Distributions supporting AppImage (AppImage File)
 
-Arch/Manjaro Linux based distributions and Mac OS is not currently supported.
+Not made an Installer for Arch/Manjaro Linux based distributions.
+Mac OS is not currently supported.
 
 # Windows
 ## Windows Preview
@@ -54,5 +61,6 @@ If you want to run this app without installing, Go to the [Releases](https://git
 For Installing in Ubuntu, Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page, Scroll down and click the `.deb` file to download it. Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
 
 ### Red Hat/Fedora based distribution installation
+
 # MIT License
 #### *Disclaimer: Not affiliated with Microsoft*

@@ -2,6 +2,8 @@ const { app, Menu, BrowserWindow } = require('electron')
 const openAboutWindow = require('about-window').default;
 const join = require('path').join;
 const isMac = process.platform === 'darwin'
+const electron = require('electron')
+const {autoUpdater} = require("electron-updater");
 
 const template = [
   // { role: 'appMenu' }
@@ -21,7 +23,7 @@ const template = [
   }] : []),
   // { role: 'fileMenu' }
   {
-    label: 'Microsoft Office - Electron',
+    label: 'Application',
     submenu: [
       {
         label: 'About Microsoft Office - Electron',
@@ -91,7 +93,8 @@ const template = [
       { role: 'toggleDevTools' },
       { type: 'separator' },
       { role: 'resetZoom' },
-      { role: 'zoomIn' },
+      { role: 'zoomIn',
+      accelerator: process.platform === 'darwin' ? 'Control+=' : 'Control+=' },
       { role: 'zoomOut' },
       { type: 'separator' },
       { role: 'togglefullscreen' }
@@ -145,3 +148,11 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+try {
+  require('electron-reloader')(module)
+} catch (_) {}
+
+app.on('ready', function()  {
+  autoUpdater.checkForUpdatesAndNotify();
+});

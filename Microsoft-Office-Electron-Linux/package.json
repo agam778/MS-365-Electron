@@ -1,6 +1,6 @@
 {
    "name": "microsoft-office-electron",
-   "version": "0.1.0",
+   "version": "0.1.1",
    "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
    "main": "main.js",
    "repository": {
@@ -12,33 +12,34 @@
          "index.html",
          "Intro Image.png",
          "Loading.gif",
-         "license.txt",
-         "icon2.png",
          "icon.png",
-         "icon.icns"
+         "icon.ico",
+         "license.txt",
+         "icon2.png"
       ],
       "appId": "com.agampreet.microsoft-office-electron",
-      "productName": "Microsoft Office - Electron",
+      "productName": "Microsoft-Office-Electron",
       "linux": {
          "category": "Utilities",
-         "icon": "icon.icns",
          "desktop": {
             "Comment": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
-            "Name": "Microsoft Office - Electron",
+            "Name": "Microsoft-Office-Electron",
             "StartupNotify": "true",
             "Terminal": "false",
             "Type": "Application",
-            "License": "license.txt",
             "Categories": "Utilities;Office;"
          },
+         "icon": "icon.icns",
          "executableName": "microsoft-office-electron",
-         "maintainer": "Agampreet Singh <agampreet628@gmail.com>",
+         "maintainer": "Agampreet Singh <agam778singh@outlook.com>",
          "target": [
             "deb",
-            "rpm",
-            "appImage"
+            "rpm"
          ]
       },
+      "deb": {
+         "compression": "bzip2"
+        },
       "mac": {
          "category": "public.app-category.utilities",
          "target": [
@@ -67,15 +68,20 @@
    },
    "author": {
       "author": "Agampreet Singh",
-      "email": "agampreet628@gmail.com",
+      "email": "agam778singh@outlook.com",
       "url": "https://agam778.github.io/"
    },
    "license": "MIT",
    "devDependencies": {
       "electron": "^12.0.0",
-      "electron-builder": "^22.10.5"
+      "electron-builder": "^22.10.5",
+      "electron-reloader": "^1.2.1"
    },
    "dependencies": {
-      "about-window": "^1.14.0"
+      "about-window": "^1.14.0",
+      "custom-electron-titlebar": "^3.2.7",
+      "electron-reload": "^1.5.0",
+      "electron-updater": "^4.3.9",
+      "update-electron-app": "^2.0.1"
    }
 }

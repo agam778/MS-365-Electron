@@ -33,10 +33,12 @@
          "executableName": "microsoft-office-electron",
          "maintainer": "Agampreet Singh <agam778singh@outlook.com>",
          "target": [
-            "deb",
-            "rpm"
+          "AppImage"
          ]
       },
+      "deb": {
+         "compression": "bzip2"
+        },
       "mac": {
          "category": "public.app-category.utilities",
          "target": [

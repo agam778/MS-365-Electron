@@ -8,8 +8,8 @@ An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of
 
 1. [Introduction](#Introduction)
 2. [Windows](#Windows)
-    1. [Windows Preview](#windows-preview)
-    2. [Windows Installation](#-windows-installation)
+    1. [Windows Installation](#-windows-installation)
+    2. [Windows Preview](#windows-preview)
 3. [Linux](#linux)
     1. [Linux Installation](#-linux-installation)
         1. [Ubuntu/Debain based distribution installation](#ubuntudebian-based-distribution-installation)

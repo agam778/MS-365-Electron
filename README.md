@@ -36,7 +36,7 @@ Supported Platforms
 1. Windows x64 (EXE File)
 2. Ubuntu/Debian based distributions (DEB File)
 3. Red Hat Linux/Fedora based distributions (RPM File)
-4. Arch/Manjaro Linux based distributions via AppImage only (AppImage File)
+4. Arch/Manjaro Linux based distributions (PKG.TAR.ZST File)
 5. All Distributions supporting AppImage (AppImage File)
 
 Not made an Installer for Arch/Manjaro Linux based distributions.

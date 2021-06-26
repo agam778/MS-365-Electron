@@ -4,19 +4,19 @@
 
 <p align="center">
 <a href="https://bit.ly/agamtechtricks">
- <img align="center" src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=for-the-badge">&nbsp;&nbsp;
+ <img align="center" src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=style=flat">&nbsp;&nbsp;
  </a>
 <a href="https://electronjs.org">
- <img align="center" src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=for-the-badge">&nbsp;&nbsp;
+ <img align="center" src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=flat">&nbsp;&nbsp;
  </a>
 <a href="https://github.com/agam778/Microsoft-Office-Electron/blob/main/license.txt">
- <img align="center" src="https://img.shields.io/github/license/agam778/Microsoft-Office-Electron?style=for-the-badge">&nbsp;&nbsp;
+ <img align="center" src="https://img.shields.io/github/license/agam778/Microsoft-Office-Electron?style=flat">&nbsp;&nbsp;
  </a>
 <a  href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
- <img align="center" src="https://img.shields.io/github/v/release/agam778/Microsoft-Office-Electron?label=Release&logo=github&style=for-the-badge&color=blue">&nbsp;&nbsp;
- </a><br<br>
+ <img align="center" src="https://img.shields.io/github/v/release/agam778/Microsoft-Office-Electron?label=Release&logo=github&style=style=flat&color=blue">&nbsp;&nbsp;
+ </a>
 <a href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
- <img align="center" src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=for-the-badge">
+ <img align="center" src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=style=flat">
  </a>
 </p>
 

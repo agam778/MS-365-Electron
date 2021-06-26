@@ -2,18 +2,23 @@
 
 <p align="center">An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of Cost.</p>
 
+<p align="center">
 <a href="https://bit.ly/agamtechtricks">
- ![Badge](https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=for-the-badge)</a>&nbsp;&nbsp;
+ <img src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=for-the-badge">&nbsp;&nbsp;
+ </a>
 <a href="https://electronjs.org">
- ![Badge](https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=for-the-badge)</a>&nbsp;&nbsp;
+ <img src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=for-the-badge">&nbsp;&nbsp;
+ </a>
 <a href="https://github.com/agam778/Microsoft-Office-Electron/blob/main/license.txt">
- ![Badge](https://img.shields.io/github/license/agam778/Microsoft-Office-Electron?style=for-the-badge)</a>&nbsp;&nbsp;
+ <img src="https://img.shields.io/github/license/agam778/Microsoft-Office-Electron?style=for-the-badge">&nbsp;&nbsp;
+ </a>
 <a  href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
- ![Badge](https://img.shields.io/github/v/release/agam778/Microsoft-Office-Electron?label=Release&logo=github&style=for-the-badge&color=blue)</a>&nbsp;&nbsp;
+ <img src="https://img.shields.io/github/v/release/agam778/Microsoft-Office-Electron?label=Release&logo=github&style=for-the-badge&color=blue">&nbsp;&nbsp;
+ </a>
 <a href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
- ![Badge](https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=for-the-badge)</a>
- 
- 
+ <img src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=for-the-badge">
+ </a>
+</p>
 # Table of contents
 
 1. [Introduction](#Introduction)

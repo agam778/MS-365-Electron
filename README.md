@@ -14,11 +14,12 @@
  </a>
 <a  href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
  <img align="center" src="https://img.shields.io/github/v/release/agam778/Microsoft-Office-Electron?label=Release&logo=github&style=for-the-badge&color=blue">&nbsp;&nbsp;
- </a>
+ </a><br<br>
 <a href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
  <img align="center" src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=for-the-badge">
  </a>
 </p>
+
 # Table of contents
 
 1. [Introduction](#Introduction)

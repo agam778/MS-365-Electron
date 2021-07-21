@@ -55,7 +55,7 @@ Supported Platforms
 4. Arch/Manjaro Linux based distributions (PKG.TAR.ZST File)
 5. All Distributions supporting AppImage (AppImage File)
 
-Not made an Installer for Arch/Manjaro Linux based distributions.
+Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
 Mac OS is not currently supported.
 
 # Windows

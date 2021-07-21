@@ -1,6 +1,6 @@
 {
    "name": "microsoft-office-electron",
-   "version": "0.1.1",
+   "version": "0.2.0",
    "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
    "main": "main.js",
    "repository": {
@@ -20,14 +20,14 @@
       "appId": "com.agampreet.microsoft-office-electron",
       "productName": "Microsoft-Office-Electron",
       "linux": {
-         "category": "Utilities",
+         "category": "Office",
          "desktop": {
             "Comment": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
             "Name": "Microsoft-Office-Electron",
             "StartupNotify": "true",
             "Terminal": "false",
             "Type": "Application",
-            "Categories": "Utilities;Office;"
+            "Categories": "Office;"
          },
          "icon": "icon.png",
          "executableName": "microsoft-office-electron",
@@ -38,7 +38,7 @@
          ]
       },
       "mac": {
-         "category": "public.app-category.utilities",
+         "category": "public.app-category.office",
          "target": [
             "dmg"
          ]

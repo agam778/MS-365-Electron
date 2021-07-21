@@ -131,8 +131,8 @@ function createWindow () {
     }
   })
 
-  win.loadURL('file:///index.html',
-{userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36'});
+  win.loadURL('https://agam778.gitlab.io/Microsoft-Office-Electron/',
+{userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36'});
 }
 
 app.whenReady().then(createWindow)

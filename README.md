@@ -18,7 +18,11 @@
 <a href="https://github.com/agam778/Microsoft-Office-Electron/releases/">
  <img align="center" src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/total?label=Downloads&style=style=flat">
  </a>
+ <a href="https://github.com/agam778/Microsoft-Office-Electron/releases/latest/">
+ <img align="center" src="https://img.shields.io/github/downloads/agam778/Microsoft-Office-Electron/latest/total?label=Downloads%40Latest">
+ </a>
 </p>
+
 
 # Table of contents
 

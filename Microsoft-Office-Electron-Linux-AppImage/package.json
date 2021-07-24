@@ -30,6 +30,7 @@
             "Categories": "Office;"
          },
          "icon": "icon.icns",
+         "artifactName": "${productName}-Setup-${version}-x86_64.${ext}",
          "executableName": "microsoft-office-electron",
          "maintainer": "Agampreet Singh <agam778singh@outlook.com>",
          "target": [

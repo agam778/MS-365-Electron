@@ -1,0 +1,90 @@
+{
+   "name": "ms-office-electron",
+   "version": "0.2.1",
+   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
+   "main": "main.js",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/agam778/MS-Office-Electron.git"
+   },
+   "build": {
+      "extraFiles": [
+         "index.html",
+         "Intro Image.png",
+         "Loading.gif",
+         "icon.png",
+         "icon.ico",
+         "license.txt",
+         "icon2.png"
+      ],
+      "appId": "com.agampreet.microsoft-office-electron",
+      "productName": "MS Office - Electron",
+      "linux": {
+         "category": "Office",
+         "desktop": {
+            "Comment": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
+            "Name": "MS Office - Electron",
+            "StartupNotify": "true",
+            "Terminal": "false",
+            "Type": "Application",
+            "Categories": "Office;"
+         },
+         "icon": "icon.icns",
+         "executableName": "MS Office - Electron",
+         "maintainer": "Agampreet Singh <agam778@zohomail.in>",
+         "target": [
+            "deb",
+            "rpm"
+         ]
+      },
+      "deb": {
+         "compression": "bzip2"
+      },
+      "mac": {
+         "category": "public.app-category.office",
+         "target": [
+            "dmg"
+         ]
+      },
+      "nsis": {
+         "oneClick": false,
+         "perMachine": false,
+         "allowToChangeInstallationDirectory": false,
+         "license": "license.txt",
+         "artifactName": "MS-Office-Electron-Setup-${version}.${ext}"
+      },
+      "win": {
+         "target": [
+            "nsis"
+         ]
+      },
+      "directories": {
+         "output": "release"
+      }
+   },
+   "scripts": {
+      "start": "electron .",
+      "pack": "electron-builder --dir",
+      "dist": "electron-builder"
+   },
+   "author": {
+      "author": "Agampreet Singh",
+      "email": "agam778@zohomail.in",
+      "url": "https://agam778.github.io/"
+   },
+   "license": "MIT",
+   "devDependencies": {
+      "electron": "^12.0.0",
+      "electron-builder": "^22.10.5",
+      "electron-reloader": "^1.2.1"
+   },
+   "dependencies": {
+      "about-window": "^1.14.0",
+      "custom-electron-titlebar": "^3.2.7",
+      "electron-reload": "^1.5.0",
+      "electron-updater": "^4.3.9",
+      "is-online": "^9.0.1",
+      "node-notifier": "^10.0.0",
+      "update-electron-app": "^2.0.1"
+   }
+}

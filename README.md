@@ -63,7 +63,7 @@ Supported Platforms
 5. All Distributions supporting AppImage (AppImage File)
 
 Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
-Mac OS supported now with builds for both M1 And Intel Chips 🎉. See the instructions how to install below
+Mac OS supported now with builds for both M1 And Intel Chips 🎉. See the instructions how to install below<br>
 Note: All thanks to [@RickRollMaster101](https://github.com/rickrollmaster101) for the seperate M1 and Intel Mac builds!
 
 # Windows

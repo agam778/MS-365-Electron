@@ -64,7 +64,7 @@ Supported Platforms
 
 Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
 Mac OS supported now with builds for both M1 And Intel Chips 🎉. See the instructions how to install below
-Note: All thanks to @RickRollMaster101 for the seperate builds!
+Note: All thanks to @rickrollmaster101 for the seperate builds!
 
 # Windows
 

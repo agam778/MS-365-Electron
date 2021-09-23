@@ -83,7 +83,7 @@ For Installing this app on Windows :-
 
 ## 💿 macOS Installation
 
-##### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds  (As I don't have a MacBook 😅)
+##### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds 🥳🥳 (As I don't have a MacBook 😅)
 
 For Installing this app on Mac :-
 

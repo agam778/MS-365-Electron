@@ -23,7 +23,6 @@
  </a>
 </p>
 
-
 # Table of contents
 
 1. [Introduction](#Introduction)
@@ -63,12 +62,12 @@ Supported Platforms
 5. All Distributions supporting AppImage (AppImage File)
 
 Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
-Mac OS supported now with builds for both M1 And Intel Chips 🎉. See the instructions how to install below<br>
+Mac OS supported now with builds for both M1 And Intel Chips ?��. See the instructions how to install below<br>
 Note: All thanks to [@RickRollMaster101](https://github.com/rickrollmaster101) for the seperate M1 and Intel Mac builds!
 
 # Windows
 
-## 📀 Windows Installation
+## ? Windows Installation
 
 For Installing this app on Windows :- 
 
@@ -82,9 +81,11 @@ For Installing this app on Windows :-
 
 # macOS
 
-## 📀 macOS Installation
+## ?macOS Installation
 
-For Installing this app on Windows :-
+##### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds ?? (As I don't have a MacBook ?)
+
+For Installing this app on Mac :-
 
 1. Just go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page
 2. Scroll down and click the `.dmg` file. The build with no architecture written is for Intel Macs (Will fix it soon) and the build with arm64 written in it is for M1 Macs. Download the build according to your Mac.
@@ -92,7 +93,7 @@ For Installing this app on Windows :-
 
 # Linux
 
-## 📀 Linux Installation
+## ?Linux Installation
 
 ### Ubuntu/Debian based distribution installation
 
@@ -112,7 +113,7 @@ For Installing in Red Hat/Fedora based distribution :-
 
 ### Arch/Manjaro Linux based distribution installation
 
-I currently have not uploaded the package to AUR but you can install it this way :-
+I currently have not uploaded the package to AUR (and maybe won't cause i don't have that much time, i'll try tho) but you can install it this way :-
 
 1) Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page
 2) Scroll down and click the `.pkg.tar.zst` file to download it.
@@ -126,6 +127,6 @@ I currently have not uploaded the package to AUR but you can install it this way
 
 [Click Here](https://raw.githubusercontent.com/agam778/Microsoft-Office-Electron/main/Preview/Fedora%20Preview.png)
 
-# 📜 MIT License
+# ?MIT License
 
 #### *Disclaimer: Not affiliated with Microsoft*

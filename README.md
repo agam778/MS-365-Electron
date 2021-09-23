@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://bit.ly/agamtechtricks">
- <img align="center" src="https://img.shields.io/badge/Made%20with%20❤%20by%20Agam-orange?style=style=flat">  
+ <img align="center" src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=style=flat">   
  </a>
 <a href="https://electronjs.org">
  <img align="center" src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=flat">  

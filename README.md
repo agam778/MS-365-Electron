@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://bit.ly/agamtechtricks">
- <img align="center" src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=style=flat">  
+ <img align="center" src="https://img.shields.io/badge/Made%20With%20♥-by%20Agam-orange?style=style=flat">   
  </a>
 <a href="https://electronjs.org">
  <img align="center" src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=flat">  
@@ -62,12 +62,12 @@ Supported Platforms
 5. All Distributions supporting AppImage (AppImage File)
 
 Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
-Mac OS supported now with builds for both M1 And Intel Chips ?��. See the instructions how to install below<br>
+Mac OS supported now with builds for both M1 And Intel Chips ?Ž‰. See the instructions how to install below<br>
 Note: All thanks to [@RickRollMaster101](https://github.com/rickrollmaster101) for the seperate M1 and Intel Mac builds!
 
 # Windows
 
-## ? Windows Installation
+## 💿 Windows Installation
 
 For Installing this app on Windows :- 
 
@@ -81,9 +81,9 @@ For Installing this app on Windows :-
 
 # macOS
 
-## ?macOS Installation
+## 💿 macOS Installation
 
-##### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds ?? (As I don't have a MacBook ?)
+### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds 🥳🥳 (As I don't have a MacBook 😅)
 
 For Installing this app on Mac :-
 
@@ -93,7 +93,7 @@ For Installing this app on Mac :-
 
 # Linux
 
-## ?Linux Installation
+## 💿 Linux Installation
 
 ### Ubuntu/Debian based distribution installation
 
@@ -127,6 +127,6 @@ I currently have not uploaded the package to AUR (and maybe won't cause i don't 
 
 [Click Here](https://raw.githubusercontent.com/agam778/Microsoft-Office-Electron/main/Preview/Fedora%20Preview.png)
 
-# ?MIT License
+# MIT License
 
 #### *Disclaimer: Not affiliated with Microsoft*

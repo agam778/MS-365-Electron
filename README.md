@@ -62,8 +62,7 @@ Supported Platforms
 5. All Distributions supporting AppImage (AppImage File)
 
 Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
-Mac OS supported now with builds for both M1 And Intel Chips ?Ž‰. See the instructions how to install below<br>
-Note: All thanks to [@RickRollMaster101](https://github.com/rickrollmaster101) for the seperate M1 and Intel Mac builds!
+Mac OS supported now with builds for both M1 And Intel Chips . See the instructions how to install below<br>
 
 # Windows
 
@@ -75,7 +74,7 @@ For Installing this app on Windows :-
 2) Scroll down and click the  `setup.x.x.x.exe` file. The Setup file will start downloading.
 3) After it downloads, click on the file and proceed with the Installation. You can choose whether to install for only you or all the users on the PC. You can always start the app from Start Menu or from the Desktop Shortcut.
 
-## Windows Preview
+## 📸 Windows Preview
 
 [Click Here](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Windows%20Preview.png?raw=true)
 
@@ -119,14 +118,14 @@ I currently have not uploaded the package to AUR (and maybe won't cause i don't 
 2) Scroll down and click the `.pkg.tar.zst` file to download it.
 3) Now open terminal and run `sudo pacman -U ./microsoft-office-electron-x.y.z-x86_64.pkg.tar.xz`  (Replace x.y.z with version number)
 
-## Ubuntu Preview
+## 📸 Ubuntu Preview
 
 [Click Here](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Ubuntu%20Preview.png?raw=true)
 
-## Fedora Preview
+## 📸 Fedora Preview
 
 [Click Here](https://raw.githubusercontent.com/agam778/Microsoft-Office-Electron/main/Preview/Fedora%20Preview.png)
 
-# MIT License
+# 📃 MIT License
 
 #### *Disclaimer: Not affiliated with Microsoft*

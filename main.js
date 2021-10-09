@@ -130,7 +130,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
-    icon: "./icon.icns",
+    icon: "./icon.png",
     webPreferences: {
       nodeIntegration: true,
       devTools: false,
@@ -140,7 +140,7 @@ function createWindow() {
 
   win.loadURL("https://agam778.gitlab.io/Microsoft-Office-Electron/", {
     userAgent:
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36",
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36",
   });
 }
 

@@ -50,7 +50,8 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": false,
-      "license": "license.txt"
+      "license": "license.txt",
+      "artifactName": "MS-Office-Electron-Setup-${version}-x86_64.${ext}"
     },
     "win": {
       "target": [

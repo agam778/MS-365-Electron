@@ -12,6 +12,8 @@ matrix:
       services: docker
       language: generic
 
+dist: focal
+
 cache:
   yarn: true
   directories:

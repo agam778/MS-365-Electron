@@ -13,7 +13,6 @@ matrix:
       language: generic
 
 cache:
-  yarn: true
   directories:
     - node_modules
     - $HOME/.cache/electron
@@ -28,9 +27,9 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "cd MS-Office-Electron-Linux && yarn --link-duplicates --pure-lockfile && yarn dist --linux && cd ../MS-Office-Electron-Windows && yarn --link-duplicates --pure-lockfile && yarn dist --win"
+        /bin/bash -c "cd MS-Office-Electron-Linux && npm install && npm run dist --linux && cd ../MS-Office-Electron-Windows && npm install && npm run dist --win"
     else
-      cd MS-Office-Electron-Linux && yarn dist --linux && cd ../MS-Office-Electron-Linux-AppImage && yarn dist --linux && cd ../MS-Office-Electron-Windows && yarn dist --win && cd ../MS-Office-Electron-Mac && yarn dist --mac
+      cd MS-Office-Electron-Linux && npm run dist --linux && cd ../MS-Office-Electron-Linux-AppImage && npm run dist --linux && cd ../MS-Office-Electron-Windows && npm run dist --win && cd ../MS-Office-Electron-Mac && npm run dist --mac
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine

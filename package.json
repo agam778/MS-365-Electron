@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -9,17 +9,14 @@
   },
   "build": {
     "extraFiles": [
-      "index.html",
       "Intro Image.png",
-      "Loading.gif",
       "icon.png",
       "icon.ico",
-      "icon.icns",
       "license.txt",
       "icon2.png"
     ],
-    "appId": "com.agampreet.microsoft-office-electron",
-    "productName": "MS Office - Electron",
+    "appId": "com.agampreet.ms-office-electron",
+    "productName": "ms-office-electron",
     "linux": {
       "category": "Office",
       "desktop": {
@@ -30,13 +27,14 @@
         "Type": "Application",
         "Categories": "Office;"
       },
-      "icon": "icon.icns",
+      "icon": "icon.png",
       "artifactName": "MS-Office-Electron-Setup-${version}-x86_64.${ext}",
       "executableName": "MS Office - Electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
         "deb",
-        "rpm"
+        "rpm",
+        "AppImage"
       ]
     },
     "deb": {
@@ -52,8 +50,7 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": false,
-      "license": "license.txt",
-      "artifactName": "MS-Office-Electron-Setup-${version}-x86_64.${ext}"
+      "license": "license.txt"
     },
     "win": {
       "target": [
@@ -70,7 +67,7 @@
     "dist": "electron-builder"
   },
   "author": {
-    "author": "Agampreet Singh",
+    "name": "Agampreet Singh",
     "email": "agam778singh@outlook.com",
     "url": "https://agam778.is-a.dev/"
   },

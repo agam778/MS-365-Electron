@@ -14,6 +14,8 @@ matrix:
 
 dist: focal
 
+arch: arm64
+
 cache:
   yarn: true
   directories:
@@ -30,9 +32,9 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn dist --linux --win --publish always"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn dist --x64 --linux --win --publish always"
     else
-      npm run dist --x64 --arm64
+      npm run dist --x64; npm run dist --arm64
     fi
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine

@@ -82,8 +82,6 @@ For Installing this app on Windows :-
 
 ## 💿 macOS Installation
 
-### Note - Thanks a lot to [@RickRollMaster101](https://github.com/RickRollMaster101) for the macOS builds 🥳🥳 (As I don't have a MacBook 😅)
-
 For Installing this app on Mac :-
 
 1. Just go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page

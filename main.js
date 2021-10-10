@@ -184,3 +184,4 @@ app.on("ready", function () {
   });
   autoUpdater.checkForUpdatesAndNotify();
 });
+

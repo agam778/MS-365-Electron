@@ -14,8 +14,6 @@ matrix:
 
 dist: focal
 
-arch: arm64
-
 cache:
   yarn: true
   directories:

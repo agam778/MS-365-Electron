@@ -1,10 +1,13 @@
-const { app, Menu, BrowserWindow, globalShortcut } = require("electron");
-const { dialog } = require("electron");
+const {
+  app,
+  Menu,
+  BrowserWindow,
+  globalShortcut,
+  electron,
+  dialog,
+} = require("electron");
 const openAboutWindow = require("about-window").default;
-const join = require("path").join;
 const isMac = process.platform === "darwin";
-const path = require("path");
-const electron = require("electron");
 const { autoUpdater } = require("electron-updater");
 const isOnline = require("is-online");
 
@@ -39,10 +42,10 @@ const template = [
             icon_path:
               "https://github.com/agam778/MS-Office-Electron/blob/main/icon2.png?raw=true",
             product_name: "MS Office - Electron",
-            copyright: "Copyright (c) 2021 Agampreet Singh Bajaj",
+            copyright: "Copyright (c) 2021 Agampreet Singh",
             package_json_dir: __dirname,
             bug_report_url:
-              "https://github.com/agam778/Microsoft-Office-Electron/issues/",
+              "https://github.com/agam778/MS-Office-Electron/issues/",
             bug_link_text: "Report an issue",
             adjust_window_size: "2",
             show_close_button: "Close",
@@ -158,10 +161,6 @@ app.on("activate", () => {
   }
 });
 
-try {
-  require("electron-reloader")(module);
-} catch (_) {}
-
 app.on("ready", function () {
   isOnline().then((online) => {
     if (online) {
@@ -177,9 +176,7 @@ app.on("ready", function () {
           "Please check your Internet Connectivity. This app cannot run without an Internet Connection!",
       };
 
-      dialog.showMessageBox(null, options, (response, checkboxChecked) => {
-        console.log(response);
-      });
+      dialog.showMessageBox(null, options);
     }
   });
   autoUpdater.checkForUpdatesAndNotify();

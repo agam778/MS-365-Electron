@@ -33,7 +33,7 @@
    1. [macOS Installation](#-macOS-installation)
 4. [Linux](#linux)
    1. [Linux Installation](#-linux-installation)
-      1. [Ubuntu/Debain based distribution installation](#ubuntudebian-based-distribution-installation)
+      1. [Ubuntu/Debian based distribution installation](#ubuntudebian-based-distribution-installation)
       2. [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
       3. [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
    2. [Ubuntu Preview](#ubuntu-preview)

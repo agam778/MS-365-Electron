@@ -61,7 +61,7 @@ Supported Platforms
 4. Arch/Manjaro Linux based distributions (PKG.TAR.ZST File)
 5. All Distributions supporting AppImage (AppImage File)
 
-Not uploaded Arch/Manjaro Linux based distributions build to AUR.<br>
+Arch Linux builds are now on AUR!<br>
 Mac OS supported now with builds for both M1 And Intel Chips . See the instructions how to install below<br>
 
 # Windows
@@ -110,19 +110,23 @@ For Installing in Red Hat/Fedora based distribution :-
 
 ### Arch/Manjaro Linux based distribution installation
 
-I currently have not uploaded the package to AUR (and maybe won't cause i don't have that much time, i'll try tho) but you can install it this way :-
+Arch Linux builds have been published to "AUR" now!
 
-1) Go to the [Releases](https://github.com/agam778/Microsoft-Office-Electron/releases) page
-2) Scroll down and click the `.pkg.tar.zst` file to download it.
-3) Now open terminal and run `sudo pacman -U ./microsoft-office-electron-x.y.z-x86_64.pkg.tar.xz`  (Replace x.y.z with version number)
+1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay)
+
+2. The package name is `ms-office-electron-git`, so run `yay -Sy ms-office-electron-git`
+
+3. Wait for it to install and tada! The app is installed.
+
+If you find any issues in using the AUR Builds, please create a [New Issue](https://github.com/agam778/MS-Office-Electron/issues/new) and i'll try to fix that as soon as possible :D
 
 ## 📸 Ubuntu Preview
 
 [Click Here](https://github.com/agam778/Microsoft-Office-Electron/blob/main/Preview/Ubuntu%20Preview.png?raw=true)
 
-## 📸 Fedora Preview
 
-[Click Here](https://raw.githubusercontent.com/agam778/Microsoft-Office-Electron/main/Preview/Fedora%20Preview.png)
+
+
 
 # 📃 MIT License
 

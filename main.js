@@ -153,10 +153,11 @@ function createWindow() {
     },
   });
 
-  win.loadURL(`${store.get("enterprise-or-normal")}`, {
-    userAgent:
-      "Mozilla/5.0 (x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
-  });
+  if (store.get("enterprise-or-normal") === undefined) {
+    win.loadURL("https://agam778.github.io/MS-Office-Electron/loading");
+  } else {
+    win.loadURL(store.get("enterprise-or-normal"));
+  }
 }
 
 app.whenReady().then(createWindow);

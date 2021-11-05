@@ -1,15 +1,12 @@
-const { app, Menu, BrowserWindow, globalShortcut } = require("electron");
-const { dialog } = require("electron");
-const openAboutWindow = require("about-window").default;
-const join = require("path").join;
-const isMac = process.platform === "darwin";
-const path = require("path");
-const electron = require("electron");
+const { app, Menu, BrowserWindow, dialog } = require("electron");
 const { autoUpdater } = require("electron-updater");
+const isMac = process.platform === "darwin";
+const openAboutWindow = require("about-window").default;
 const isOnline = require("is-online");
+const Store = require("electron-store");
+const store = new Store();
 
 const template = [
-  // { role: 'appMenu' }
   ...(isMac
     ? [
         {
@@ -28,7 +25,6 @@ const template = [
         },
       ]
     : []),
-  // { role: 'fileMenu' }
   {
     label: "Application",
     submenu: [
@@ -42,7 +38,7 @@ const template = [
             copyright: "Copyright (c) 2021 Agampreet Singh Bajaj",
             package_json_dir: __dirname,
             bug_report_url:
-              "https://github.com/agam778/Microsoft-Office-Electron/issues/",
+              "https://github.com/agam778/MS-Office-Electron/issues/",
             bug_link_text: "Report an issue",
             adjust_window_size: "2",
             show_close_button: "Close",
@@ -59,12 +55,34 @@ const template = [
       },
       { type: "separator" },
       {
+        label: "Open Normal version of MS Office",
+        type: "radio",
+        click() {
+          store.set(
+            "enterprise-or-normal",
+            "https://agam778.github.io/MS-Office-Electron/loading"
+          );
+        },
+        checked:
+          store.get("enterprise-or-normal") ===
+          "https://agam778.github.io/MS-Office-Electron/loading",
+      },
+      {
+        label: "Open Enterprise version of MS Office",
+        type: "radio",
+        click() {
+          store.set("enterprise-or-normal", "https://office.com/?auth=2");
+        },
+        checked:
+          store.get("enterprise-or-normal") === "https://office.com/?auth=2",
+      },
+      { type: "separator" },
+      {
         role: "quit",
         accelerator: process.platform === "darwin" ? "Ctrl+Q" : "Ctrl+Q",
       },
     ],
   },
-  // { role: 'editMenu' }
   {
     label: "Edit",
     submenu: [
@@ -88,7 +106,6 @@ const template = [
         : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
     ],
   },
-  // { role: 'viewMenu' }
   {
     label: "View",
     submenu: [
@@ -105,7 +122,6 @@ const template = [
       { role: "togglefullscreen" },
     ],
   },
-  // { role: 'windowMenu' }
   {
     label: "Window",
     submenu: [
@@ -134,13 +150,12 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       devTools: false,
-      autoHideMenuBar: true,
     },
   });
 
-  win.loadURL("https://agam778.gitlab.io/Microsoft-Office-Electron/", {
+  win.loadURL(`${store.get("enterprise-or-normal")}`, {
     userAgent:
-      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36",
+      "Mozilla/5.0 (x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
   });
 }
 
@@ -158,10 +173,6 @@ app.on("activate", () => {
   }
 });
 
-try {
-  require("electron-reloader")(module);
-} catch (_) {}
-
 app.on("ready", function () {
   isOnline().then((online) => {
     if (online) {
@@ -177,7 +188,7 @@ app.on("ready", function () {
           "Please check your Internet Connectivity. This app cannot run without an Internet Connection!",
       };
 
-      dialog.showMessageBox(null, options, (response, checkboxChecked) => {
+      dialog.showMessageBox(null, options, (response) => {
         console.log(response);
       });
     }

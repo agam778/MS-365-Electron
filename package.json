@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.3.1",
+  "version": "0.3.5",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -16,7 +16,7 @@
       "icon2.png"
     ],
     "appId": "com.agampreet.ms-office-electron",
-    "productName": "ms-office-electron",
+    "productName": "MS-Office-Electron",
     "linux": {
       "category": "Office",
       "desktop": {
@@ -29,7 +29,7 @@
       },
       "icon": "icon.png",
       "artifactName": "MS-Office-Electron-Setup-${version}-x86_64.${ext}",
-      "executableName": "MS Office - Electron",
+      "executableName": "MS-Office-Electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
         "deb",
@@ -74,13 +74,13 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^15.1.1",
-    "electron-builder": "^22.11.7"
+    "electron": "^15.3.0",
+    "electron-builder": "^22.13.1"
   },
   "dependencies": {
-    "about-window": "^1.15.0",
+    "about-window": "^1.15.2",
+    "electron-store": "^8.0.1",
     "electron-updater": "^4.3.9",
-    "is-online": "^9.0.1",
-    "node-notifier": "^10.0.0"
+    "is-online": "^9.0.1"
   }
 }

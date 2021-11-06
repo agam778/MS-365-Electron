@@ -3,10 +3,9 @@ const { autoUpdater } = require("electron-updater");
 const isMac = process.platform === "darwin";
 const openAboutWindow = require("about-window").default;
 const isOnline = require("is-online");
-const Store = require("electron-store");
-const store = new Store();
 
 const template = [
+  // { role: 'appMenu' }
   ...(isMac
     ? [
         {
@@ -25,6 +24,7 @@ const template = [
         },
       ]
     : []),
+  // { role: 'fileMenu' }
   {
     label: "Application",
     submenu: [
@@ -38,7 +38,7 @@ const template = [
             copyright: "Copyright (c) 2021 Agampreet Singh Bajaj",
             package_json_dir: __dirname,
             bug_report_url:
-              "https://github.com/agam778/MS-Office-Electron/issues/",
+              "https://github.com/agam778/Microsoft-Office-Electron/issues/",
             bug_link_text: "Report an issue",
             adjust_window_size: "2",
             show_close_button: "Close",
@@ -55,34 +55,12 @@ const template = [
       },
       { type: "separator" },
       {
-        label: "Open Normal version of MS Office",
-        type: "radio",
-        click() {
-          store.set(
-            "enterprise-or-normal",
-            "https://agam778.github.io/MS-Office-Electron/loading"
-          );
-        },
-        checked:
-          store.get("enterprise-or-normal") ===
-          "https://agam778.github.io/MS-Office-Electron/loading",
-      },
-      {
-        label: "Open Enterprise version of MS Office",
-        type: "radio",
-        click() {
-          store.set("enterprise-or-normal", "https://office.com/?auth=2");
-        },
-        checked:
-          store.get("enterprise-or-normal") === "https://office.com/?auth=2",
-      },
-      { type: "separator" },
-      {
         role: "quit",
         accelerator: process.platform === "darwin" ? "Ctrl+Q" : "Ctrl+Q",
       },
     ],
   },
+  // { role: 'editMenu' }
   {
     label: "Edit",
     submenu: [
@@ -106,6 +84,7 @@ const template = [
         : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
     ],
   },
+  // { role: 'viewMenu' }
   {
     label: "View",
     submenu: [
@@ -122,6 +101,7 @@ const template = [
       { role: "togglefullscreen" },
     ],
   },
+  // { role: 'windowMenu' }
   {
     label: "Window",
     submenu: [
@@ -153,11 +133,10 @@ function createWindow() {
     },
   });
 
-  if (store.get("enterprise-or-normal") === undefined) {
-    win.loadURL("https://agam778.github.io/MS-Office-Electron/loading");
-  } else {
-    win.loadURL(store.get("enterprise-or-normal"));
-  }
+  win.loadURL("https://agam778.github.io/MS-Office-Electron/loading", {
+    userAgent:
+      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
+  });
 }
 
 app.whenReady().then(createWindow);

@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -69,7 +69,7 @@
   },
   "author": {
     "name": "Agampreet Singh",
-    "email": "agam778singh@outlook.com",
+    "email": "agam778@zohomail.in",
     "url": "https://agam778.is-a.dev/"
   },
   "license": "MIT",
@@ -79,7 +79,6 @@
   },
   "dependencies": {
     "about-window": "^1.15.2",
-    "electron-store": "^8.0.1",
     "electron-updater": "^4.3.9",
     "is-online": "^9.0.1"
   }

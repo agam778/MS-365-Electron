@@ -23,5 +23,5 @@ jobs:
         run: |
           export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
           yarn install
-          yarn dist
+          yarn dist --arm64 --x64
         shell: bash

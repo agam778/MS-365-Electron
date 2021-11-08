@@ -22,4 +22,6 @@ jobs:
       - name: Build and release with electron-builder
         run:  |
           export GH_TOKEN=${{ secrets.github_token }}
-          yarn dist
+          yarn install
+          yarn dist --publish onTagOrDraft
+  

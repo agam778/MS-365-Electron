@@ -21,17 +21,17 @@ jobs:
 
       - name: Build and release with electron-builder
         run:  |
-         if [ "$RUNNER_OS" == "Linux" ]; then
+         if ( "$RUNNER_OS" == "Linux" ); then
               export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
               yarn install
               yarn dist
               
-         elif [ "$RUNNER_OS" == "Windows" ]; then
+         elif ( "$RUNNER_OS" == "Windows" ); then
               set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
               yarn install
               yarn dist
               
-         elif [ "$RUNNER_OS" == "macOS" ]; then
+         elif ( "$RUNNER_OS" == "macOS" ); then
               export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
               yarn install
               yarn dist

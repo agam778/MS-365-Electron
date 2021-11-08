@@ -18,13 +18,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17
-      
-      - name: Setup GIT token
-        uses: fregante/setup-git-token@v1
-        with:
-          token: ${{ secrets.github_token }}
-          name: Agampreet Singh
-          
+
       - name: Build and release with electron-builder
         run:  |
          if [ "$RUNNER_OS" == "Linux" ]; then

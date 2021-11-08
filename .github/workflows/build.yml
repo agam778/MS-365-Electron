@@ -20,20 +20,24 @@ jobs:
           node-version: 17
 
       - name: Build and release with electron-builder
-        if: matrix.os == 'ubuntu-latest'
-        run:
-            export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
-
-        elif: matrix.os == 'windows-latest'
-        run:
-            set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
-
-        elif: matrix.os == 'macOS-latest'
-        run:
-            export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
+        run:  |
+         if [ "$RUNNER_OS" == "Linux" ]; then
+              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist
+              
+         elif [ "$RUNNER_OS" == "Windows" ]; then
+              set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist
+              
+         elif [ "$RUNNER_OS" == "macOS" ]; then
+              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist
+              
+         else
+              echo "$RUNNER_OS not supported"
+              exit 1
+         fi
+        shell: bash

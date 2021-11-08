@@ -9,9 +9,7 @@
   },
   "build": {
     "extraFiles": [
-      "Intro Image.png",
       "icon.png",
-      "icon.ico",
       "license.txt",
       "icon2.png"
     ],
@@ -44,7 +42,8 @@
       "category": "public.app-category.office",
       "target": [
         "dmg"
-      ]
+      ],
+      "icon": "icon.icns"
     },
     "nsis": {
       "oneClick": false,
@@ -56,7 +55,8 @@
     "win": {
       "target": [
         "nsis"
-      ]
+      ],
+      "icon": "icon.ico"
     },
     "directories": {
       "output": "release"

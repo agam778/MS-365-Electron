@@ -18,10 +18,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17
+      
+      - name: Setup GIT token
+        uses: fregante/setup-git-token@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          name: Agampreet Singh
           
       - name: Build and release with electron-builder
         run:  |
-          export GH_TOKEN=${{ secrets.github_token }}
           yarn install
           yarn dist
   

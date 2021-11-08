@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
-    steps:        
+    steps:
       - name: Checkout code
         uses: actions/checkout@v1
 
@@ -20,24 +20,8 @@ jobs:
           node-version: 17
 
       - name: Build and release with electron-builder
-        run:  |
-         if [ "$RUNNER_OS" == "Linux" ]; then
-              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-              yarn install
-              yarn dist
-              
-         elif [ "$RUNNER_OS" == "Windows" ]; then
-              set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-              yarn install
-              yarn dist
-              
-         elif [ "$RUNNER_OS" == "macOS" ]; then
-              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-              yarn install
-              yarn dist
-              
-         else
-              echo "$RUNNER_OS not supported"
-              exit 1
-         fi
+        run: |
+          export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          yarn install
+          yarn dist
         shell: bash

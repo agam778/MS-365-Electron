@@ -23,5 +23,5 @@ jobs:
         run:  |
           export GH_TOKEN=${{ secrets.github_token }}
           yarn install
-          yarn dist --publish onTagOrDraft
+          yarn dist
   

@@ -26,13 +26,13 @@ jobs:
             yarn install
             yarn dist
 
-        if: matrix.os == 'windows-latest'
+        elif: matrix.os == 'windows-latest'
         run:
             set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
             yarn install
             yarn dist
 
-        if: matrix.os == 'macOS-latest'
+        elif: matrix.os == 'macOS-latest'
         run:
             export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
             yarn install

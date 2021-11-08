@@ -21,19 +21,19 @@ jobs:
 
       - name: Build and release with electron-builder
         if: matrix.os == 'ubuntu-latest'
-          run: |
-            export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
+          run:
+              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist
 
         if: matrix.os == 'windows-latest'
-          run: |
-            set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
+          run:
+              set GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist
 
         if: matrix.os == 'macOS-latest'
-          run: |
-            export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
-            yarn install
-            yarn dist
+          run:
+              export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+              yarn install
+              yarn dist

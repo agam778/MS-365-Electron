@@ -132,7 +132,9 @@ If you find any issues in using the AUR Builds, please create a [New Issue](http
 To build the app locally:<br>
 Run this script to automatically install `nodejs`, `yarn` and all the dependencies, and automatically start/build the app (it will show options) (Note: for Linux and macOS Only!):
 ```bash
-wget -O- https://git.io/build-ms-office-electron | bash
+git clone --depth=1 https://github.com/agam778/MS-Office-Electron.git
+cd MS-Office-Electron
+bash build.sh
 ```
 <br>
 Or:<br>

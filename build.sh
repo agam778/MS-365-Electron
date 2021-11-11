@@ -170,7 +170,7 @@ echo 'Do you want to run the app or build the app?'
 echo '1. Run the app'
 echo '2. Build the app'
 echo '3. Exit'
-echo 'Enter your choice:'; read -r choice;
+echo 'Enter your choice:'; read choice;
 if [ $choice -eq 1 ]; then
     echo 'Running the app...'
     yarn start

@@ -28,21 +28,22 @@
 
 # Table of contents
 
-1. [Introduction](#Introduction)
-2. [Windows](#Windows)
-   1. [Windows Installation](#-windows-installation)
-   2. [Windows Preview](#windows-preview)
-3. [macOS](#macOS)
-   1. [macOS Installation](#-macOS-installation)
-4. [Linux](#linux)
-   1. [Linux Installation](#-linux-installation)
-      1. [Ubuntu/Debian based distribution installation](#ubuntudebian-based-distribution-installation)
-      2. [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
-      3. [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
-   2. [Ubuntu Preview](#ubuntu-preview)
-   3. [Fedora Preview](#fedora-preview)
-5. [MIT License](#-mit-license)
-   1. [Disclamier](#disclaimer-not-affiliated-with-microsoft)
+- [Table of contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Windows](#windows)
+  - [💿 Windows Installation](#-windows-installation)
+  - [📸 Windows Preview](#-windows-preview)
+- [macOS](#macos)
+  - [💿 macOS Installation](#-macos-installation)
+- [Linux](#linux)
+  - [💿 Linux Installation](#-linux-installation)
+    - [Ubuntu/Debian based distribution installation](#ubuntudebian-based-distribution-installation)
+    - [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
+    - [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
+  - [📸 Ubuntu Preview](#-ubuntu-preview)
+- [💻 Developing Locally](#-developing-locally)
+- [📃 MIT License](#-mit-license)
+      - [*Disclaimer: Not affiliated with Microsoft*](#disclaimer-not-affiliated-with-microsoft)
 
 # Introduction
 
@@ -127,9 +128,37 @@ If you find any issues in using the AUR Builds, please create a [New Issue](http
 
 [Click Here](https://github.com/agam778/MS-Office-Electron/blob/main/Preview/Ubuntu%20Preview.png?raw=true)
 
+# 💻 Developing Locally
+To build the app locally:<br>
+Run this script to automatically install `nodejs`, `yarn` and all the dependencies, and automatically start/build the app (it will show options) (Note: for Linux and macOS Only!):
+```bash
+wget -O- https://git.io/build-ms-office-electron | bash
+```
+<br>
+Or:<br>
+Run the following commands to clone the repository and install the dependencies
 
+```bash
+git clone https://github.com/agam778/MS-0ffice-Electron.git
+cd MS-Office-Electron
+yarn install
+```
+```bash
+$ yarn run
+yarn run v1.22.17
+info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-osx-flat, electron-osx-sign, extract-zip, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, node-which, rc, rimraf, semver
+info Project commands
+   - dist
+      electron-builder
+   - pack
+      electron-builder --dir
+   - start
+      electron .
+question Which command would you like to run?:
+```
 
-
+To start the app, run `yarn start`<br>
+To build the app, run `yarn dist`
 
 # 📃 MIT License
 

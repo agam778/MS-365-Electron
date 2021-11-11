@@ -153,7 +153,7 @@ else
             echo 'Please install git manually.'
         fi
     fi
-    git clone https://github.com/agam778/MS-Office-Electron
+    git clone --depth=1 https://github.com/agam778/MS-Office-Electron; cd MS-Office-Electron
     echo 'Cloned the repository'
 fi
 
@@ -171,10 +171,10 @@ echo '1. Run the app'
 echo '2. Build the app'
 echo '3. Exit'
 echo 'Enter your choice:'; read -r choice;
-if [ "$choice" -eq "1" ]; then
+if [ $choice -eq 1 ]; then
     echo 'Running the app...'
     yarn start
-    elif [ "$choice" -eq "2" ]; then
+    elif [ $choice -eq 2 ]; then
     echo 'Building the app...'
     if [ "$(id -u)" != "0" ]; then
         if [ "$(uname -m)" == "arm64" ]; then
@@ -189,7 +189,7 @@ if [ "$choice" -eq "1" ]; then
             yarn dist --x64
         fi
     fi
-    elif [ "$choice" -eq "3" ]; then
+    elif [ $choice -eq 3 ]; then
     echo 'Exiting...'
     exit 1
 fi

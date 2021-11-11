@@ -1,11 +1,50 @@
-const { app, Menu, BrowserWindow, dialog } = require("electron");
+const { app, Menu, BrowserWindow, dialog, shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const isMac = process.platform === "darwin";
 const openAboutWindow = require("about-window").default;
 const isOnline = require("is-online");
 
+const ElectronDl = require("electron-dl");
+const contextMenu = require("electron-context-menu");
+
+const log = require("electron-log");
+log.transports.file.level = "verbose";
+console.log = log.log;
+
+ElectronDl({
+  dlPath: "./downloads",
+  onStarted: (item) => {
+    dialog.showMessageBox({
+      type: "info",
+      title: "Downloading File",
+      message: `Downloading "${item.getFilename()}" to "${item.getSavePath()}"`,
+      buttons: ["OK"],
+    });
+  },
+  onCompleted: () => {
+    dialog.showMessageBox({
+      type: "info",
+      title: "Download Completed",
+      message: `Downloading Completed! Please check your "Downloads" folder.`,
+      buttons: ["OK"],
+    });
+  },
+  onError: (item) => {
+    dialog.showMessageBox({
+      type: "error",
+      title: "Download failed",
+      message: `Downloading "${item.getFilename()}" failed :(`,
+      buttons: ["OK"],
+    });
+  },
+});
+
+contextMenu({
+  showInspectElement: false,
+  showServices: false,
+});
+
 const template = [
-  // { role: 'appMenu' }
   ...(isMac
     ? [
         {
@@ -24,7 +63,6 @@ const template = [
         },
       ]
     : []),
-  // { role: 'fileMenu' }
   {
     label: "Application",
     submenu: [
@@ -53,6 +91,31 @@ const template = [
           );
         },
       },
+      {
+        label: "Open Logs Folder",
+        click: async () => {
+          const { shell } = require("electron");
+          if (process.platform === "win32") {
+            await shell.openPath(
+              "C:\\Users\\" +
+                process.env.USERNAME +
+                "\\AppData\\Roaming\\ms-office-electron\\\\logs\\"
+            );
+          } else if (process.platform === "darwin") {
+            await shell.openPath(
+              "/Users/" +
+                process.env.USERNAME +
+                "/Library/Logs/ms-office-electron/"
+            );
+          } else if (process.platform === "linux") {
+            await shell.openPath(
+              "/home/" +
+                process.env.USERNAME +
+                "/.config/ms-office-electron/logs"
+            );
+          }
+        },
+      },
       { type: "separator" },
       {
         role: "quit",
@@ -60,7 +123,6 @@ const template = [
       },
     ],
   },
-  // { role: 'editMenu' }
   {
     label: "Edit",
     submenu: [
@@ -84,7 +146,6 @@ const template = [
         : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
     ],
   },
-  // { role: 'viewMenu' }
   {
     label: "View",
     submenu: [
@@ -101,7 +162,6 @@ const template = [
       { role: "togglefullscreen" },
     ],
   },
-  // { role: 'windowMenu' }
   {
     label: "Window",
     submenu: [

@@ -118,9 +118,17 @@ Arch Linux builds have been published to "AUR" now!
 
 1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay)
 
-2. The package name is `ms-office-electron-git`, so run `yay -Sy ms-office-electron-git`
+2. There are 2 packages in the AUR
+   - `ms-office-electron-bin`: For installing pre-built releases
+   - `ms-office-electron-git`: For building the app from source and installing.
 
-3. Wait for it to install and tada! The app is installed.
+3. Now, for example, using `yay`, run:
+   ```bash
+   yay -Sy ms-office-electron-*
+   ```
+   To install the package accordingly.
+
+4. Wait for it to install and tada! The app is installed.
 
 If you find any issues in using the AUR Builds, please create a [New Issue](https://github.com/agam778/MS-Office-Electron/issues/new) and i'll try to fix that as soon as possible :D
 

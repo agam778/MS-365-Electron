@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.4.0",
+  "version": "0.4.5",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -15,18 +15,18 @@
     ],
     "appId": "com.agampreet.ms-office-electron",
     "productName": "MS-Office-Electron",
+    "artifactName": "MS-Office-Electron-Setup-v${version}-${os}-${arch}.${ext}",
     "linux": {
       "category": "Office",
       "desktop": {
         "Comment": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
-        "Name": "MS Office - Electron",
+        "Name": "MS-Office-Electron",
         "StartupNotify": "true",
         "Terminal": "false",
         "Type": "Application",
         "Categories": "Office;"
       },
       "icon": "icon.png",
-      "artifactName": "ms-office-electron-setup-${version}-${arch}.${ext}",
       "executableName": "MS-Office-Electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
@@ -49,8 +49,7 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": false,
-      "license": "license.txt",
-      "artifactName": "ms-office-electron-setup-${version}-${arch}.${ext}"
+      "license": "license.txt"
     },
     "win": {
       "target": [
@@ -74,15 +73,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^15.x.x",
-    "electron-builder": "^22.x.x"
+    "electron": "^17.0.0",
+    "electron-builder": "^22.14.5"
   },
   "dependencies": {
-    "about-window": "^1.x.x",
-    "electron-context-menu": "^3.x.x",
-    "electron-dl": "^3.x.x",
-    "electron-log": "^4.4.1",
-    "electron-updater": "^4.x.x",
-    "is-online": "^9.x.x"
+    "about-window": "^1.15.2",
+    "axios": "^0.25.0",
+    "electron-context-menu": "^3.1.1",
+    "electron-dl": "^3.3.0",
+    "electron-log": "^4.4.5",
+    "electron-updater": "^4.6.1",
+    "is-online": "^9.0.1"
   }
 }

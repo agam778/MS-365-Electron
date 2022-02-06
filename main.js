@@ -3,7 +3,7 @@ const { autoUpdater } = require("electron-updater");
 const isMac = process.platform === "darwin";
 const openAboutWindow = require("about-window").default;
 const isOnline = require("is-online");
-
+const axios = require("axios");
 const ElectronDl = require("electron-dl");
 const contextMenu = require("electron-context-menu");
 
@@ -81,6 +81,40 @@ const template = [
             adjust_window_size: "2",
             show_close_button: "Close",
           }),
+      },
+      {
+        label: "Check for Updates",
+        click: async () => {
+          axios
+            .get(
+              "https://api.github.com/repos/agam778/MS-Office-Electron/releases/latest"
+            )
+            .then((res) => {
+              let data = res.data;
+              let currentVersion = "v" + app.getVersion();
+              let latestVersion = data.tag_name;
+              if (currentVersion !== latestVersion) {
+                const updatedialog = dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Update Available",
+                  message: `Your App's version: ${currentVersion}\nLatest version: ${latestVersion}\n\nPlease update to the latest version.`,
+                  buttons: ["Download", "Close"],
+                });
+                if (updatedialog === 0) {
+                  shell.openExternal(
+                    "https://github.com/agam778/MS-Office-Electron/releases/latest"
+                  );
+                }
+              } else {
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "No Update Available",
+                  message: `Your App's version: ${currentVersion}\nLatest version: ${latestVersion}\n\nYou are already using the latest version.`,
+                  buttons: ["OK"],
+                });
+              }
+            });
+        },
       },
       {
         label: "Learn More",
@@ -187,19 +221,37 @@ function createWindow() {
     width: 1181,
     height: 670,
     icon: "./icon.png",
+    show: false,
     webPreferences: {
       nodeIntegration: true,
       devTools: false,
     },
   });
 
-  win.loadURL("https://agam778.github.io/MS-Office-Electron/loading", {
+  const splash = new BrowserWindow({
+    width: 810,
+    height: 610,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    icon: "./icon.png",
+  });
+
+  splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
+  win.loadURL("https://office.com/?auth=1", {
     userAgent:
       "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
   });
+
+  win.webContents.on("did-finish-load", () => {
+    splash.destroy();
+    win.show();
+  });
 }
 
-app.whenReady().then(createWindow);
+app.on("ready", () => {
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

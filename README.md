@@ -9,7 +9,7 @@
 <a href="https://electronjs.org">
  <img align="center" src="https://img.shields.io/badge/Developed%20With-Electron-red?logo=Electron&logoColor=white&style=flat">  
  </a>
-<a href="https://github.com/agam778/MS-Office-Electron/blob/main/license.txt">
+<a href="https://github.com/agam778/MS-Office-Electron/blob/main/LICENSE">
  <img align="center" src="https://img.shields.io/github/license/agam778/MS-Office-Electron?style=flat">  
  </a>
 <a  href="https://github.com/agam778/MS-Office-Electron/releases/">

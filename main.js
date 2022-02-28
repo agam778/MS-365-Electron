@@ -6,6 +6,9 @@ const isOnline = require("is-online");
 const axios = require("axios");
 const ElectronDl = require("electron-dl");
 const contextMenu = require("electron-context-menu");
+const path = require("path");
+const Store = require("electron-store");
+const store = new Store();
 
 const log = require("electron-log");
 log.transports.file.level = "verbose";
@@ -44,7 +47,7 @@ contextMenu({
   showServices: false,
 });
 
-const template = [
+const menulayout = [
   ...(isMac
     ? [
         {
@@ -152,8 +155,76 @@ const template = [
       },
       { type: "separator" },
       {
+        label: "Open Websites in New Windows (Recommended)",
+        type: "radio",
+        click: () => {
+          store.set("websites-in-new-window", "true");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Websites in New Windows",
+            message:
+              "Websites which are targeted to open in new tabs will now open in new windows. Please restart the app to apply this change.",
+            buttons: ["OK"],
+          });
+        },
+        checked: store.get("websites-in-new-window") === "true",
+      },
+      {
+        label: "Open Websites in the Same Window",
+        type: "radio",
+        click: () => {
+          store.set("websites-in-new-window", "false");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Websites in New Windows",
+            message:
+              "Websites which are targeted to open in new tabs will now open in the same window. Please restart the app to apply this change.",
+            buttons: ["OK"],
+          });
+        },
+        checked: () => {
+          if (store.get("websites-in-new-window") === "false") {
+            return true;
+          } else {
+            return false;
+          }
+        },
+      },
+      { type: "separator" },
+      {
         role: "quit",
         accelerator: process.platform === "darwin" ? "Ctrl+Q" : "Ctrl+Q",
+      },
+    ],
+  },
+  {
+    label: "Navigation",
+    submenu: [
+      {
+        label: "Back",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.goBack();
+        },
+      },
+      {
+        label: "Forward",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.goForward();
+        },
+      },
+      {
+        label: "Reload",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.reload();
+        },
+      },
+      {
+        label: "Home",
+        click: () => {
+          BrowserWindow.getFocusedWindow().loadURL(
+            "https://www.office.com/?auth=1"
+          );
+        },
       },
     ],
   },
@@ -209,24 +280,60 @@ const template = [
             { role: "window" },
           ]
         : [{ role: "close" }]),
+      {
+        label: "Show Menu Bar",
+        type: "radio",
+        click: () => {
+          store.set("autohide-menubar", "false");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Menu Bar Settings",
+            message:
+              "Menu will be visible now. Please restart the app for changes to take effect.",
+            buttons: ["OK"],
+          });
+        },
+        checked: store.get("autohide-menubar") === "false",
+      },
+      {
+        label: "Hide Menu Bar (Press ALT To show for some time)",
+        type: "radio",
+        click: () => {
+          store.set("autohide-menubar", "true");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Menu Bar Settings",
+            message:
+              "Menu bar will be automatically hidden now. Please restart the app for changes to take effect.",
+            buttons: ["OK"],
+          });
+        },
+        checked: store.get("autohide-menubar") === "true",
+      },
     ],
   },
 ];
 
-const menu = Menu.buildFromTemplate(template);
+const menu = Menu.buildFromTemplate(menulayout);
 Menu.setApplicationMenu(menu);
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
-    icon: "./icon.png",
+    icon: path.join(__dirname, "/icon.png"),
     show: false,
     webPreferences: {
       nodeIntegration: true,
       devTools: false,
     },
   });
+
+  if (store.get("autohide-menubar") === "true") {
+    win.setAutoHideMenuBar(true);
+  } else {
+    win.setAutoHideMenuBar(false);
+  }
 
   const splash = new BrowserWindow({
     width: 810,
@@ -251,6 +358,16 @@ function createWindow() {
 
 app.on("ready", () => {
   createWindow();
+});
+
+app.on("web-contents-created", (event, contents) => {
+  contents.on("new-window", (event, url) => {
+    if (store.get("websites-in-new-window") === "false") {
+      event.preventDefault();
+      BrowserWindow.getFocusedWindow().loadURL(url);
+    } else {
+    }
+  });
 });
 
 app.on("window-all-closed", () => {

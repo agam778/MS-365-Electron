@@ -10,6 +10,10 @@ const path = require("path");
 const Store = require("electron-store");
 const store = new Store();
 
+const RPC = require("discord-rpc");
+const clientId = "942637872530460742";
+const rpc = new RPC.Client({ transport: "ipc" });
+
 const log = require("electron-log");
 log.transports.file.level = "verbose";
 console.log = log.log;
@@ -163,11 +167,13 @@ const menulayout = [
             type: "info",
             title: "Websites in New Windows",
             message:
-              "Websites which are targeted to open in new tabs will now open in new windows. Please restart the app to apply this change.",
+              "Websites which are targeted to open in new tabs will now open in new windows.",
             buttons: ["OK"],
           });
         },
-        checked: store.get("websites-in-new-window") === "true",
+        checked: store.get("websites-in-new-window")
+          ? store.get("websites-in-new-window") === "true"
+          : true,
       },
       {
         label: "Open Websites in the Same Window",
@@ -178,17 +184,50 @@ const menulayout = [
             type: "info",
             title: "Websites in New Windows",
             message:
-              "Websites which are targeted to open in new tabs will now open in the same window. Please restart the app to apply this change.",
+              "Websites which are targeted to open in new tabs will now open in the same window.",
             buttons: ["OK"],
           });
         },
-        checked: () => {
-          if (store.get("websites-in-new-window") === "false") {
-            return true;
-          } else {
-            return false;
-          }
+        checked: store.get("websites-in-new-window")
+          ? store.get("websites-in-new-window") === "false"
+          : false,
+      },
+      { type: "separator" },
+      {
+        label: "Enable Discord Rich Presence",
+        type: "radio",
+        click: () => {
+          store.set("discordrpcstatus", "true");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Discord Rich Presence",
+            message: "Discord Rich Presence is now enabled.",
+            buttons: ["OK"],
+          });
+          discordrpcupdate(
+            `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
+          );
         },
+        checked: store.get("discordrpcstatus")
+          ? store.get("discordrpcstatus") === "true"
+          : true,
+      },
+      {
+        label: "Disable Discord Rich Presence",
+        type: "radio",
+        click: () => {
+          store.set("discordrpcstatus", "false");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Discord Rich Presence",
+            message: "Discord Rich Presence is now disabled.",
+            buttons: ["OK"],
+          });
+          rpc.clearActivity();
+        },
+        checked: store.get("discordrpcstatus")
+          ? store.get("discordrpcstatus") === "false"
+          : false,
       },
       { type: "separator" },
       {
@@ -317,6 +356,31 @@ const menulayout = [
 const menu = Menu.buildFromTemplate(menulayout);
 Menu.setApplicationMenu(menu);
 
+function discordrpc(title) {
+  if (store.get("discordrpcstatus") === "true") {
+    rpc.setActivity({
+      details: `${title}`,
+      largeImageKey: "logo",
+      largeImageText: "MS-Office-Electron",
+      startTimestamp: Date.now(),
+      instance: false,
+    });
+  } else {
+    // don't do anything
+  }
+}
+
+function discordrpcupdate(title) {
+  rpc.clearActivity();
+  rpc.setActivity({
+    details: `${title}`,
+    largeImageKey: "logo",
+    largeImageText: "MS-Office-Electron",
+    startTimestamp: Date.now(),
+    instance: false,
+  });
+}
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
@@ -353,6 +417,7 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
+    discordrpc(`On "${win.webContents.getTitle()}"`);
   });
 }
 
@@ -371,6 +436,7 @@ app.on("web-contents-created", (event, contents) => {
 });
 
 app.on("window-all-closed", () => {
+  rpc.clearActivity();
   if (process.platform !== "darwin") {
     app.quit();
   }
@@ -403,4 +469,5 @@ app.on("ready", function () {
     }
   });
   autoUpdater.checkForUpdatesAndNotify();
+  rpc.login({ clientId }).catch((err) => console.error(err));
 });

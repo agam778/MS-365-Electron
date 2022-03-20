@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script helps you to start/build the MS-Office-Electron app
 if ! [ -x "$(command -v node)" ]; then
     echo 'Error: nodejs is not installed.' >&2
     echo 'Installing nodejs now; this may take a while.'
@@ -153,7 +154,7 @@ else
             echo 'Please install git manually.'
         fi
     fi
-    git clone --depth=1 https://github.com/agam778/MS-Office-Electron; cd MS-Office-Electron
+    git clone --depth=1 https://github.com/agam778/MS-Office-Electron; cd MS-Office-Electron || echo "Failed to change directory." && return 1
     echo 'Cloned the repository'
 fi
 
@@ -171,10 +172,10 @@ echo '1. Run the app'
 echo '2. Build the app'
 echo '3. Exit'
 echo 'Enter your choice:'; read choice;
-if [ $choice -eq 1 ]; then
+if [ "$choice" -eq "1" ]; then
     echo 'Running the app...'
     yarn start
-    elif [ $choice -eq 2 ]; then
+    elif [ "$choice" -eq "2" ]; then
     echo 'Building the app...'
     if [ "$(id -u)" != "0" ]; then
         if [ "$(uname -m)" == "arm64" ]; then
@@ -189,7 +190,7 @@ if [ $choice -eq 1 ]; then
             yarn dist --x64
         fi
     fi
-    elif [ $choice -eq 3 ]; then
+    elif [ "$choice" -eq "3" ]; then
     echo 'Exiting...'
     exit 1
 fi

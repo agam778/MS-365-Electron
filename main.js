@@ -21,6 +21,12 @@ console.log = log.log;
 ElectronDl({
   dlPath: "./downloads",
   onStarted: (item) => {
+    BrowserWindow.getAllWindows().forEach((window) => {
+      window.setOverlayIcon(
+        __dirname + "/assets/icons/download.png",
+        "Downloading"
+      );
+    });
     dialog.showMessageBox({
       type: "info",
       title: "Downloading File",
@@ -29,12 +35,23 @@ ElectronDl({
     });
   },
   onCompleted: () => {
+    BrowserWindow.getAllWindows().forEach((window) => {
+      window.setOverlayIcon(
+        __dirname + "/assets/icons/download-success.png",
+        "Download Successful"
+      );
+    });
     dialog.showMessageBox({
       type: "info",
       title: "Download Completed",
       message: `Downloading Completed! Please check your "Downloads" folder.`,
       buttons: ["OK"],
     });
+    setTimeout(() => {
+      BrowserWindow.getAllWindows().forEach((window) => {
+        window.setOverlayIcon(null, "");
+      });
+    }, 7000);
   },
   onError: (item) => {
     dialog.showMessageBox({
@@ -43,6 +60,17 @@ ElectronDl({
       message: `Downloading "${item.getFilename()}" failed :(`,
       buttons: ["OK"],
     });
+    BrowserWindow.getAllWindows().forEach((window) => {
+      window.setOverlayIcon(
+        __dirname + "/download-fail.png",
+        "Download Failed"
+      );
+    });
+    setTimeout(() => {
+      BrowserWindow.getAllWindows().forEach((window) => {
+        window.setOverlayIcon(null, "");
+      });
+    }, 7000);
   },
 });
 
@@ -78,9 +106,10 @@ const menulayout = [
         click: () =>
           openAboutWindow({
             icon_path:
-              "https://github.com/agam778/MS-Office-Electron/blob/main/icon2.png?raw=true",
+              "https://raw.githubusercontent.com/agam778/MS-Office-Electron/main/assets/icons/icon.png",
             product_name: "MS Office - Electron",
-            copyright: "Copyright (c) 2021 Agampreet Singh Bajaj",
+            copyright:
+              "Copyright (c) 2022 Agampreet Singh\nOffice, the name, website, images/icons\nare the intellectual properties of Microsoft.",
             package_json_dir: __dirname,
             bug_report_url:
               "https://github.com/agam778/Microsoft-Office-Electron/issues/",
@@ -358,13 +387,17 @@ Menu.setApplicationMenu(menu);
 
 function discordrpc(title) {
   if (store.get("discordrpcstatus") === "true") {
-    rpc.setActivity({
-      details: `${title}`,
-      largeImageKey: "logo",
-      largeImageText: "MS-Office-Electron",
-      startTimestamp: Date.now(),
-      instance: false,
-    });
+    rpc
+      .setActivity({
+        details: `${title}`,
+        largeImageKey: "logo",
+        largeImageText: "MS-Office-Electron",
+        startTimestamp: Date.now(),
+        instance: false,
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
     // don't do anything
   }
@@ -372,20 +405,24 @@ function discordrpc(title) {
 
 function discordrpcupdate(title) {
   rpc.clearActivity();
-  rpc.setActivity({
-    details: `${title}`,
-    largeImageKey: "logo",
-    largeImageText: "MS-Office-Electron",
-    startTimestamp: Date.now(),
-    instance: false,
-  });
+  rpc
+    .setActivity({
+      details: `${title}`,
+      largeImageKey: "logo",
+      largeImageText: "MS-Office-Electron",
+      startTimestamp: Date.now(),
+      instance: false,
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
-    icon: path.join(__dirname, "/icon.png"),
+    icon: path.join(__dirname, "/assets/icons/icon.png"),
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -405,11 +442,11 @@ function createWindow() {
     transparent: true,
     frame: false,
     alwaysOnTop: true,
-    icon: "./icon.png",
+    icon: path.join(__dirname, "/assets/icons/icon.png"),
   });
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
-  win.loadURL("https://office.com/?auth=1", {
+  win.loadURL("https://www.office.com/?auth=1", {
     userAgent:
       "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
   });

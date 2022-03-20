@@ -43,7 +43,7 @@
   - [📸 Ubuntu Preview](#-ubuntu-preview)
 - [💻 Developing Locally](#-developing-locally)
 - [📃 MIT License](#-mit-license)
-      - [*Disclaimer: Not affiliated with Microsoft*](#disclaimer-not-affiliated-with-microsoft)
+      - [*Disclaimer: Not affiliated with Microsoft. Office, the name, website, images/icons are the intellectual properties of Microsoft.*](#disclaimer-not-affiliated-with-microsoft-office-the-name-website-imagesicons-are-the-intellectual-properties-of-microsoft)
 
 # Introduction
 
@@ -172,4 +172,4 @@ To build the app, run `yarn dist`
 
 # 📃 MIT License
 
-#### *Disclaimer: Not affiliated with Microsoft*
+#### *Disclaimer: Not affiliated with Microsoft. Office, the name, website, images/icons are the intellectual properties of Microsoft.*

@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -9,9 +9,8 @@
   },
   "build": {
     "extraFiles": [
-      "icon.png",
-      "LICENSE",
-      "icon2.png"
+      "/assets",
+      "LICENSE"
     ],
     "appId": "com.agampreet.ms-office-electron",
     "productName": "MS-Office-Electron",
@@ -26,7 +25,7 @@
         "Type": "Application",
         "Categories": "Office;"
       },
-      "icon": "icon.png",
+      "icon": "./assets/icons/icon.png",
       "executableName": "MS-Office-Electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
@@ -43,7 +42,7 @@
       "target": [
         "dmg"
       ],
-      "icon": "icon.icns"
+      "icon": "./assets/icons/icon.icns"
     },
     "nsis": {
       "oneClick": false,
@@ -55,7 +54,7 @@
       "target": [
         "nsis"
       ],
-      "icon": "icon.ico"
+      "icon": "./assets/icons/icon.ico"
     },
     "directories": {
       "output": "release"

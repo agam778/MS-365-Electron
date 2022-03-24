@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "about-window": "^1.15.2",
-    "axios": "^0.25.0",
+    "axios": "^0.26.1",
     "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.1.1",
     "electron-dl": "^3.3.0",

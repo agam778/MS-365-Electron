@@ -188,6 +188,29 @@ const menulayout = [
       },
       { type: "separator" },
       {
+        label: "Open Normal version of MS Office",
+        type: "radio",
+        click() {
+          store.set(
+            "enterprise-or-normal",
+            "https://agam778.github.io/MS-Office-Electron/loading"
+          );
+        },
+        checked:
+          store.get("enterprise-or-normal") ===
+          "https://agam778.github.io/MS-Office-Electron/loading",
+      },
+      {
+        label: "Open Enterprise version of MS Office",
+        type: "radio",
+        click() {
+          store.set("enterprise-or-normal", "https://office.com/?auth=2");
+        },
+        checked:
+          store.get("enterprise-or-normal") === "https://office.com/?auth=2",
+      },
+      { type: "separator" },
+      {
         label: "Open Websites in New Windows (Recommended)",
         type: "radio",
         click: () => {
@@ -290,7 +313,7 @@ const menulayout = [
         label: "Home",
         click: () => {
           BrowserWindow.getFocusedWindow().loadURL(
-            "https://www.office.com/?auth=1"
+            `${store.get("enterprise-or-normal")}`
           );
         },
       },
@@ -324,6 +347,7 @@ const menulayout = [
     submenu: [
       { role: "reload" },
       { role: "forceReload" },
+      { role: 'toggleDevTools' },
       { type: "separator" },
       { role: "resetZoom" },
       {
@@ -426,7 +450,7 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      devTools: false,
+      devTools: true,
     },
   });
 
@@ -446,9 +470,9 @@ function createWindow() {
   });
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
-  win.loadURL("https://www.office.com/?auth=1", {
+  win.loadURL(`${store.get("enterprise-or-normal")}`, {
     userAgent:
-      "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36",
   });
 
   win.webContents.on("did-finish-load", () => {
@@ -460,6 +484,7 @@ function createWindow() {
 
 app.on("ready", () => {
   createWindow();
+
 });
 
 app.on("web-contents-created", (event, contents) => {

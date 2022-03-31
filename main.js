@@ -14,6 +14,13 @@ const RPC = require("discord-rpc");
 const clientId = "942637872530460742";
 const rpc = new RPC.Client({ transport: "ipc" });
 
+const windowsuseragent =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+const macuseragent =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+const linuxuseragent =
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+
 const log = require("electron-log");
 log.transports.file.level = "verbose";
 console.log = log.log;
@@ -191,20 +198,30 @@ const menulayout = [
         label: "Open Normal version of MS Office",
         type: "radio",
         click() {
-          store.set(
-            "enterprise-or-normal",
-            "https://agam778.github.io/MS-Office-Electron/loading"
-          );
+          store.set("enterprise-or-normal", "https://office.com/?auth=1");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Normal version of MS Office",
+            message:
+              "The normal version of MS Office will be opened.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
         },
         checked:
-          store.get("enterprise-or-normal") ===
-          "https://agam778.github.io/MS-Office-Electron/loading",
+          store.get("enterprise-or-normal") === "https://office.com/?auth=1",
       },
       {
         label: "Open Enterprise version of MS Office",
         type: "radio",
         click() {
           store.set("enterprise-or-normal", "https://office.com/?auth=2");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Enterprise version of MS Office",
+            message:
+              "The enterprise version of MS Office will be opened.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
         },
         checked:
           store.get("enterprise-or-normal") === "https://office.com/?auth=2",
@@ -236,7 +253,7 @@ const menulayout = [
             type: "info",
             title: "Websites in New Windows",
             message:
-              "Websites which are targeted to open in new tabs will now open in the same window.",
+              "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS Office.",
             buttons: ["OK"],
           });
         },
@@ -280,6 +297,53 @@ const menulayout = [
         checked: store.get("discordrpcstatus")
           ? store.get("discordrpcstatus") === "false"
           : false,
+      },
+      { type: "separator" },
+      {
+        label: "Windows Useragent",
+        type: "radio",
+        click: () => {
+          store.set("useragentstring", windowsuseragent);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "User agent switcher",
+            message:
+              "You have switched to Windows Useragent.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          store.get("useragentstring") === windowsuseragent ? true : false,
+      },
+      {
+        label: "Mac os Useragent",
+        type: "radio",
+        click: () => {
+          store.set("useragentstring", macuseragent);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "User agent switcher",
+            message:
+              "You have switched to Mac OS Useragent.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: store.get("useragentstring") === macuseragent ? true : false,
+      },
+      {
+        label: "Linux Useragent",
+        type: "radio",
+        click: () => {
+          store.set("useragentstring", linuxuseragent);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "User agent switcher",
+            message:
+              "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: store.get("useragentstring") === linuxuseragent ? true : false,
       },
       { type: "separator" },
       {
@@ -347,7 +411,6 @@ const menulayout = [
     submenu: [
       { role: "reload" },
       { role: "forceReload" },
-      { role: 'toggleDevTools' },
       { type: "separator" },
       { role: "resetZoom" },
       {
@@ -422,8 +485,6 @@ function discordrpc(title) {
       .catch((err) => {
         console.log(err);
       });
-  } else {
-    // don't do anything
   }
 }
 
@@ -470,10 +531,12 @@ function createWindow() {
   });
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
-  win.loadURL(`${store.get("enterprise-or-normal")}`, {
-    userAgent:
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36",
-  });
+  win.loadURL(
+    `${store.get("enterprise-or-normal") || "https://office.com/?auth=1"}`,
+    {
+      userAgent: store.get("useragentstring") || windowsuseragent,
+    }
+  );
 
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
@@ -484,7 +547,6 @@ function createWindow() {
 
 app.on("ready", () => {
   createWindow();
-
 });
 
 app.on("web-contents-created", (event, contents) => {

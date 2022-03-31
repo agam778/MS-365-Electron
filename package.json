@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {

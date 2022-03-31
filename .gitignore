@@ -1,3 +1,4 @@
 /node_modules/
 /.idea/
 /release/
+.DS_Store

@@ -66,7 +66,7 @@ Supported Platforms
 5. All Distributions supporting AppImage (AppImage File)
 
 Arch Linux builds are now on AUR!<br>
-Mac OS supported now with builds for both M1 And Intel Chips . See the instructions how to install below<br>
+Mac OS is supported now! See the instructions how to install below<br>
 
 # Windows
 
@@ -89,7 +89,7 @@ For Installing this app on Windows :-
 For Installing this app on Mac :-
 
 1. Just go to the [Releases](https://github.com/agam778/MS-Office-Electron/releases) page
-2. Scroll down and click the `.dmg` file. The build with no architecture written is for Intel Macs (Will fix it soon) and the build with arm64 written in it is for M1 Macs. Download the build according to your Mac.
+2. Scroll down and click the `.dmg` file. The build is only for Intel Macs.
 3. After it downloads, click on the file and mount it on your system. Now drag my app to the Applications Folder (There will be a shortcut in the opened window too) and your app will be installed. Open from Launchpad and enjoy.
 
 # Linux

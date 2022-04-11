@@ -80,7 +80,7 @@
     "axios": "^0.26.1",
     "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.1.1",
-    "electron-dl": "^3.3.0",
+    "electron-dl": "^3.3.1",
     "electron-log": "^4.4.5",
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",

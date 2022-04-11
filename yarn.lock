@@ -904,10 +904,10 @@ electron-context-menu@^3.1.1:
     electron-dl "^3.2.1"
     electron-is-dev "^2.0.0"
 
-electron-dl@^3.2.1, electron-dl@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/electron-dl/-/electron-dl-3.3.0.tgz#4e422e276c627373ba61fcf3f92ffa088988db1a"
-  integrity sha512-Zwaz/OMGPIfBLV2SQH4sTsdDOs/U4y5AOHfremMBXEpjIxX+SiTx845DZAvJJwgb5hfowyWOBLiJhd/emBNLLQ==
+electron-dl@^3.2.1, electron-dl@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/electron-dl/-/electron-dl-3.3.1.tgz#14164595bebcc636c671eb791b2a3265003f76c4"
+  integrity sha512-kmcSYZyHVEHHHFKlZWW58GiCmu2NSu3Rdwnl3+/fr/ftQYHJULVf1QkrCBPFE2bp/Ly113Za7c8wJZs1nBy04A==
   dependencies:
     ext-name "^5.0.0"
     pupa "^2.0.1"

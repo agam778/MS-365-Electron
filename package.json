@@ -83,7 +83,7 @@
     "electron-dl": "^3.3.0",
     "electron-log": "^4.4.5",
     "electron-store": "^8.0.1",
-    "electron-updater": "^4.6.1",
+    "electron-updater": "^5.0.1",
     "is-online": "^9.0.1"
   }
 }

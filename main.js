@@ -15,11 +15,11 @@ const clientId = "942637872530460742";
 const rpc = new RPC.Client({ transport: "ipc" });
 
 const windowsuseragent =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
 const macuseragent =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
 const linuxuseragent =
-  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36";
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
 
 const log = require("electron-log");
 log.transports.file.level = "verbose";
@@ -176,7 +176,7 @@ const menulayout = [
             await shell.openPath(
               "C:\\Users\\" +
                 process.env.USERNAME +
-                "\\AppData\\Roaming\\ms-office-electron\\\\logs\\"
+                "\\AppData\\Roaming\\ms-office-electron\\logs\\"
             );
           } else if (process.platform === "darwin") {
             await shell.openPath(

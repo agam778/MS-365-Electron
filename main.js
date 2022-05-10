@@ -24,6 +24,8 @@ const linuxuseragent =
 const log = require("electron-log");
 log.transports.file.level = "verbose";
 console.log = log.log;
+Object.assign(console, log.functions);
+require("electron-log");
 
 ElectronDl({
   dlPath: "./downloads",
@@ -180,15 +182,11 @@ const menulayout = [
             );
           } else if (process.platform === "darwin") {
             await shell.openPath(
-              "/Users/" +
-                process.env.USERNAME +
-                "/Library/Logs/ms-office-electron/"
+              "/Users/" + process.env.USER + "/Library/Logs/ms-office-electron/"
             );
           } else if (process.platform === "linux") {
             await shell.openPath(
-              "/home/" +
-                process.env.USERNAME +
-                "/.config/ms-office-electron/logs"
+              "/home/" + process.env.USER + "/.config/ms-office-electron/logs/"
             );
           }
         },
@@ -593,5 +591,11 @@ app.on("ready", function () {
     }
   });
   autoUpdater.checkForUpdatesAndNotify();
-  rpc.login({ clientId }).catch((err) => console.error(err));
+  rpc
+    .login({ clientId })
+    .catch((err) =>
+      console.error(
+        "Oops! An Error occured while connecting to Discord RPC. Probably discord isn't installed or opened?"
+      )
+    );
 });

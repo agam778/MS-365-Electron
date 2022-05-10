@@ -34,9 +34,7 @@
         "AppImage"
       ]
     },
-    "deb": {
-      "compression": "bzip2"
-    },
+
     "mac": {
       "category": "public.app-category.office",
       "target": [

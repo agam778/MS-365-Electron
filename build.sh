@@ -8,6 +8,7 @@ if ! [ -x "$(command -v node)" ]; then
             if [ -f /etc/debian_version ]; then
                 curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
                 sudo apt-get install -y nodejs
+                sudo apt-get install rpm -y # for rpm build.
                 elif [ -f /etc/redhat-release ]; then
                 sudo yum install nodejs
                 elif [ -f /etc/arch-release ]; then
@@ -167,10 +168,11 @@ else
 fi
 
 clear
-echo 'Do you want to run the app or build the app?'
-echo '1. Run the app'
+echo 'What do you want to do?'
+echo '1. Run the app without building'
 echo '2. Build the app'
-echo '3. Exit'
+echo '3. Build and install the app'
+echo '4. Exit'
 echo 'Enter your choice:'; read choice;
 if [ "$choice" -eq "1" ]; then
     echo 'Running the app...'
@@ -191,6 +193,29 @@ if [ "$choice" -eq "1" ]; then
         fi
     fi
     elif [ "$choice" -eq "3" ]; then
+    echo 'Building and installing the app...'
+    if ! [ -f /etc/debian_version ]; then
+        echo 'Error: "Build and install the app" option is only supported on Debian-based systems for now.' >&2
+        exit 0
+    fi
+    if [ "$(id -u)" != "0" ]; then
+        if [ "$(uname -m)" == "arm64" ]; then
+            sudo yarn dist --arm64
+            sudo apt install -y -f ./release/MS-Office-Electron*.deb
+            elif [ "$(uname -m)" == "x86_64" ]; then
+            sudo yarn dist --x64
+            sudo apt install -y -f ./release/MS-Office-Electron*.deb
+        fi
+    else
+        if [ "$(uname -m)" == "arm64" ]; then
+            yarn dist --arm64
+            apt install -y -f ./release/MS-Office-Electron*.deb
+            elif [ "$(uname -m)" == "x86_64" ]; then
+            yarn dist --x64
+            apt install -y -f ./release/MS-Office-Electron*.deb
+        fi
+    fi
+    elif [ "$choice" -eq "4" ]; then
     echo 'Exiting...'
     exit 1
 fi

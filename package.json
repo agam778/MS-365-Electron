@@ -7,6 +7,11 @@
     "type": "git",
     "url": "https://github.com/agam778/MS-Office-Electron.git"
   },
+  "author": {
+    "name": "Agampreet Singh",
+    "email": "agam778@zohomail.in",
+    "url": "https://agam778.is-a.dev/"
+  },
   "build": {
     "extraFiles": [
       "/assets",
@@ -15,32 +20,19 @@
     "appId": "com.agampreet.ms-office-electron",
     "productName": "MS-Office-Electron",
     "artifactName": "MS-Office-Electron-Setup-v${version}-${os}-${arch}.${ext}",
-    "linux": {
-      "category": "Office",
-      "desktop": {
-        "Comment": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
-        "Name": "MS-Office-Electron",
-        "StartupNotify": "true",
-        "Terminal": "false",
-        "Type": "Application",
-        "Categories": "Office;"
-      },
-      "icon": "./assets/icons/icon.png",
-      "executableName": "MS-Office-Electron",
-      "maintainer": "Agampreet Singh <agam778@zohomail.in>",
-      "target": [
-        "deb",
-        "rpm",
-        "AppImage"
-      ]
-    },
-
     "mac": {
+      "identity": "null",
       "category": "public.app-category.office",
       "target": [
         "dmg"
       ],
-      "icon": "./assets/icons/icon.icns"
+      "icon": "./assets/generated/icons/mac/icon.icns"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./assets/generated/icons/win/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -48,11 +40,16 @@
       "allowToChangeInstallationDirectory": false,
       "license": "LICENSE"
     },
-    "win": {
+    "linux": {
+      "category": "Office",
+      "icon": "./assets/generated/icons/png",
+      "executableName": "ms-office-electron",
+      "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
-        "nsis"
-      ],
-      "icon": "./assets/icons/icon.ico"
+        "deb",
+        "rpm",
+        "AppImage"
+      ]
     },
     "directories": {
       "output": "release"
@@ -60,13 +57,9 @@
   },
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
+    "genicon": "rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated",
+    "pack": "yarn genicon && electron-builder --dir",
     "dist": "electron-builder"
-  },
-  "author": {
-    "name": "Agampreet Singh",
-    "email": "agam778@zohomail.in",
-    "url": "https://agam778.is-a.dev/"
   },
   "license": "MIT",
   "devDependencies": {
@@ -82,6 +75,7 @@
     "electron-log": "^4.4.7",
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",
-    "is-online": "^9.0.1"
+    "is-online": "^9.0.1",
+    "electron-icon-maker": "0.0.5"
   }
 }

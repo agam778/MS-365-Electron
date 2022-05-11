@@ -49,9 +49,9 @@
 
 As we know that Microsoft Office is a paid service, they also have a free Web version [here](https://office.com).
 
-For those people who can't afford Microsoft Office Subscription, or don't want to pay for that, or like the web version of it, Then **MS Office - Electron** is the app you require.
+For those people who can't afford Microsoft Office Subscription, or don't want to pay for that, or like the web version of it, Then **MS-Office-Electron** is the app you require.
 
-**MS Office - Electron** is the app in which the Web Version of Microsoft Office is wrapped into a Cross-Platform App with Electron. And all the Services of Microsoft Office will work for free.
+**MS-Office-Electron** is the app in which the Web Version of Microsoft Office is wrapped into a Cross-Platform App with Electron. And all the Services of Microsoft Office will work for free.
 
 Note - Windows Hello or Sign in with Security key is not currently supported and will show you an error. You will have to manually sign in with your E-Mail and Password.
 

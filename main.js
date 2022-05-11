@@ -111,12 +111,12 @@ const menulayout = [
     label: "Application",
     submenu: [
       {
-        label: "About MS Office - Electron",
+        label: "About MS-Office-Electron",
         click: () =>
           openAboutWindow({
             icon_path:
-              "https://raw.githubusercontent.com/agam778/MS-Office-Electron/main/assets/icons/icon.png",
-            product_name: "MS Office - Electron",
+              "https://raw.githubusercontent.com/agam778/MS-Office-Electron/main/assets/icon.png",
+            product_name: "MS-Office-Electron",
             copyright:
               "Copyright (c) 2022 Agampreet Singh\nOffice, the name, website, images/icons\nare the intellectual properties of Microsoft.",
             package_json_dir: __dirname,
@@ -505,7 +505,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
-    icon: path.join(__dirname, "/assets/icons/icon.png"),
+    icon: path.join(__dirname, "/assets/generated/icons/png/1024x1024.png"),
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -525,7 +525,7 @@ function createWindow() {
     transparent: true,
     frame: false,
     alwaysOnTop: true,
-    icon: path.join(__dirname, "/assets/icons/icon.png"),
+    icon: path.join(__dirname, "/assets/generated/icons/png/1024x1024.png"),
   });
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);

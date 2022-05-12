@@ -140,7 +140,7 @@ If you find any issues in using the AUR Builds, please create a [New Issue](http
 To build the app locally:<br>
 Run this script to automatically install `nodejs`, `yarn` and all the dependencies, and automatically start/build the app (it will show options) (Note: for Linux and macOS Only!):
 ```bash
-git clone --depth=1 https://github.com/agam778/MS-Office-Electron.git
+git clone https://github.com/agam778/MS-Office-Electron.git
 cd MS-Office-Electron
 bash build.sh
 ```
@@ -155,16 +155,18 @@ yarn install
 ```
 ```bash
 $ yarn run
-yarn run v1.22.17
-info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-osx-flat, electron-osx-sign, extract-zip, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, node-which, rc, rimraf, semver
+yarn run v1.22.18
+info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-icon-maker, electron-osx-flat, electron-osx-sign, extract-zip, icon-gen, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, phantomjs, pixelmatch, rc, resolve, rimraf, semver, sshpk-conv, sshpk-sign, sshpk-verify, svg2png, uuid, which
 info Project commands
    - dist
-      electron-builder
+      yarn genicon && electron-builder
+   - genicon
+      rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated
    - pack
-      electron-builder --dir
+      yarn genicon && electron-builder --dir
    - start
       electron .
-question Which command would you like to run?:
+question Which command would you like to run?: 
 ```
 
 To start the app, run `yarn start`<br>

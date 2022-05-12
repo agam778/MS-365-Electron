@@ -10,7 +10,7 @@
   "author": {
     "name": "Agampreet Singh",
     "email": "agam778@zohomail.in",
-    "url": "https://agam778.is-a.dev/"
+    "url": "https://agamsblog.xyz/"
   },
   "build": {
     "extraFiles": [
@@ -72,10 +72,10 @@
     "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.1.1",
     "electron-dl": "^3.3.1",
+    "electron-icon-maker": "0.0.5",
     "electron-log": "^4.4.7",
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",
-    "is-online": "^9.0.1",
-    "electron-icon-maker": "0.0.5"
+    "is-online": "^9.0.1"
   }
 }

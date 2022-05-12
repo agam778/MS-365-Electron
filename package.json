@@ -59,7 +59,7 @@
     "start": "electron .",
     "genicon": "rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated",
     "pack": "yarn genicon && electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "yarn genicon && electron-builder"
   },
   "license": "MIT",
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "ms-office-electron",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
   "main": "main.js",
   "repository": {
@@ -46,6 +46,7 @@
       "executableName": "ms-office-electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
+        "snap",
         "deb",
         "rpm",
         "AppImage"
@@ -58,8 +59,8 @@
   "scripts": {
     "start": "electron .",
     "genicon": "rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated",
-    "pack": "yarn genicon && electron-builder --dir",
-    "dist": "yarn genicon && electron-builder"
+    "pack": "yarn genicon && electron-builder --dir -c.snap.publish=github",
+    "dist": "yarn genicon && electron-builder -c.snap.publish=github"
   },
   "license": "MIT",
   "devDependencies": {

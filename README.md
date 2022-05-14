@@ -96,6 +96,10 @@ For Installing this app on Mac :-
 
 ## 💿 Linux Installation
 
+<a href="https://snapcraft.io/ms-office-electron">
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a>
+
 ### Ubuntu/Debian based distribution installation
 
 For Installing in Ubuntu/Debian based distribution :- 

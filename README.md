@@ -160,17 +160,15 @@ yarn install
 ```bash
 $ yarn run
 yarn run v1.22.18
-info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-icon-maker, electron-osx-flat, electron-osx-sign, extract-zip, icon-gen, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, phantomjs, pixelmatch, rc, resolve, rimraf, semver, sshpk-conv, sshpk-sign, sshpk-verify, svg2png, uuid, which
+info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-osx-flat, electron-osx-sign, extract-zip, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, node-which, rc, rimraf, semver
 info Project commands
    - dist
-      yarn genicon && electron-builder
-   - genicon
-      rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated
+      electron-builder
    - pack
-      yarn genicon && electron-builder --dir
+      electron-builder --dir
    - start
       electron .
-question Which command would you like to run?: 
+question Which command would you like to run?:
 ```
 
 To start the app, run `yarn start`<br>

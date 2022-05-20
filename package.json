@@ -59,9 +59,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "genicon": "rm -rf ./assets/generated && electron-icon-maker --input=assets/icon.png --output=assets/generated",
-    "pack": "yarn genicon && electron-builder --dir -c.snap.publish=github",
-    "dist": "yarn genicon && electron-builder -c.snap.publish=github"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "license": "MIT",
   "devDependencies": {
@@ -74,7 +73,6 @@
     "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.1.1",
     "electron-dl": "^3.3.1",
-    "electron-icon-maker": "0.0.5",
     "electron-log": "^4.4.7",
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",

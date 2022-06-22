@@ -71,7 +71,7 @@
     "about-window": "^1.15.2",
     "axios": "^0.27.2",
     "discord-rpc": "^4.0.1",
-    "electron-context-menu": "^3.2.0",
+    "electron-context-menu": "^3.3.0",
     "electron-dl": "^3.3.1",
     "electron-log": "^4.4.7",
     "electron-store": "^8.0.2",

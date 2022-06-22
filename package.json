@@ -65,7 +65,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^19.0.5",
-    "electron-builder": "^23.0.3"
+    "electron-builder": "^23.1.0"
   },
   "dependencies": {
     "about-window": "^1.15.2",

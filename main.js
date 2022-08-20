@@ -2,7 +2,7 @@ const { app, Menu, BrowserWindow, dialog, shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const isMac = process.platform === "darwin";
 const openAboutWindow = require("about-window").default;
-const isOnline = require("is-online");
+const checkInternetConnected = require("check-internet-connected");
 const axios = require("axios");
 const ElectronDl = require("electron-dl");
 const contextMenu = require("electron-context-menu");
@@ -571,25 +571,24 @@ app.on("activate", () => {
 });
 
 app.on("ready", function () {
-  isOnline().then((online) => {
-    if (online) {
+  checkInternetConnected()
+    .then((result) => {
       console.log("You are connected to the internet!");
-    } else {
+    })
+    .catch((ex) => {
       const options = {
         type: "warning",
-        buttons: ["Ok"],
+        buttons: ["Ok"],  
         defaultId: 2,
         title: "Warning",
         message: "You appear to be offline!",
         detail:
           "Please check your Internet Connectivity. This app cannot run without an Internet Connection!",
       };
-
       dialog.showMessageBox(null, options, (response) => {
         console.log(response);
       });
-    }
-  });
+    });
   autoUpdater.checkForUpdatesAndNotify();
   rpc
     .login({ clientId })

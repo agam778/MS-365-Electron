@@ -65,17 +65,18 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^20.2.0",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.3.3",
+    "eslint": "^8.24.0"
   },
   "dependencies": {
     "about-window": "^1.15.2",
     "axios": "^0.27.2",
+    "check-internet-connected": "^2.0.6",
     "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.5.0",
     "electron-dl": "^3.3.1",
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",
-    "electron-updater": "^5.2.1",
-    "check-internet-connected": "^2.0.6"
+    "electron-updater": "^5.2.1"
   }
 }

@@ -552,7 +552,6 @@ app.on("web-contents-created", (event, contents) => {
     if (store.get("websites-in-new-window") === "false") {
       event.preventDefault();
       BrowserWindow.getFocusedWindow().loadURL(url);
-    } else {
     }
   });
 });
@@ -572,13 +571,13 @@ app.on("activate", () => {
 
 app.on("ready", function () {
   checkInternetConnected()
-    .then((result) => {
+    .then(() => {
       console.log("You are connected to the internet!");
     })
-    .catch((ex) => {
+    .catch(() => {
       const options = {
         type: "warning",
-        buttons: ["Ok"],  
+        buttons: ["Ok"],
         defaultId: 2,
         title: "Warning",
         message: "You appear to be offline!",
@@ -592,7 +591,7 @@ app.on("ready", function () {
   autoUpdater.checkForUpdatesAndNotify();
   rpc
     .login({ clientId })
-    .catch((err) =>
+    .catch(() =>
       console.error(
         "Oops! An Error occured while connecting to Discord RPC. Probably discord isn't installed or opened?"
       )

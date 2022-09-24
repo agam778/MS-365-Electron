@@ -589,11 +589,15 @@ app.on("ready", function () {
       });
     });
   autoUpdater.checkForUpdatesAndNotify();
-  rpc
-    .login({ clientId })
-    .catch(() =>
-      console.error(
-        "Oops! An Error occured while connecting to Discord RPC. Probably discord isn't installed or opened?"
-      )
+  if (store.get("discordrpcstatus") === "true") {
+    rpc.login({ clientId }).catch(() =>
+      dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
+        type: "error",
+        title: "Discord RPC Error",
+        message:
+          "Oops! An Error occured while connecting to Discord RPC. Probably discord isn't installed or opened?",
+        buttons: ["OK"],
+      })
     );
+  }
 });

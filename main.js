@@ -1,6 +1,5 @@
 const { app, Menu, BrowserWindow, dialog, shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
-const isMac = process.platform === "darwin";
 const openAboutWindow = require("about-window").default;
 const checkInternetConnected = require("check-internet-connected");
 const axios = require("axios");
@@ -8,24 +7,28 @@ const ElectronDl = require("electron-dl");
 const contextMenu = require("electron-context-menu");
 const path = require("path");
 const Store = require("electron-store");
+const log = require("electron-log");
+
 const store = new Store();
+
+const isMac = process.platform === "darwin";
+const isWin = process.platform === "win32";
+const isLinux = process.platform === "linux";
 
 const RPC = require("discord-rpc");
 const clientId = "942637872530460742";
 const rpc = new RPC.Client({ transport: "ipc" });
 
 const windowsuseragent =
-  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
 const macuseragent =
-  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_3_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
 const linuxuseragent =
-  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36";
+  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
 
-const log = require("electron-log");
 log.transports.file.level = "verbose";
 console.log = log.log;
 Object.assign(console, log.functions);
-require("electron-log");
 
 ElectronDl({
   dlPath: "./downloads",
@@ -174,7 +177,7 @@ const menulayout = [
         label: "Open Logs Folder",
         click: async () => {
           const { shell } = require("electron");
-          if (process.platform === "win32") {
+          if (isWin) {
             await shell.openPath(
               "C:\\Users\\" +
                 process.env.USERNAME +
@@ -184,7 +187,7 @@ const menulayout = [
             await shell.openPath(
               "/Users/" + process.env.USER + "/Library/Logs/ms-office-electron/"
             );
-          } else if (process.platform === "linux") {
+          } else if (isLinux) {
             await shell.openPath(
               "/home/" + process.env.USER + "/.config/ms-office-electron/logs/"
             );

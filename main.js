@@ -508,7 +508,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
-    icon: path.join(__dirname, "/assets/generated/icons/png/1024x1024.png"),
+    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
     show: false,
     webPreferences: {
       nodeIntegration: true,
@@ -528,7 +528,7 @@ function createWindow() {
     transparent: true,
     frame: false,
     alwaysOnTop: true,
-    icon: path.join(__dirname, "/assets/generated/icons/png/1024x1024.png"),
+    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
   });
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);

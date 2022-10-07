@@ -26,13 +26,13 @@
       "target": [
         "dmg"
       ],
-      "icon": "./assets/generated/icons/mac/icon.icns"
+      "icon": "./assets/icons/mac/icon.icns"
     },
     "win": {
       "target": [
         "nsis"
       ],
-      "icon": "./assets/generated/icons/win/icon.ico"
+      "icon": "./assets/icons/win/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -42,7 +42,7 @@
     },
     "linux": {
       "category": "Office",
-      "icon": "./assets/generated/icons/png",
+      "icon": "./assets/icons/png",
       "executableName": "ms-office-electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [

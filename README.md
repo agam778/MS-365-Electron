@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/agam778/Microsoft-Office-Electron/blob/main/Intro_Image.png?raw=true" alt="Intro Image"></p>
 
-<p align="center">An Unofficial Microsoft Office Online Desktop Client made with Electron. Free of Cost.</p>
+<p align="center">Unofficial Microsoft Office Online Desktop Client made with Electron</p>
 
 <p align="center">
 <a href="https://bit.ly/agamtechtricks">

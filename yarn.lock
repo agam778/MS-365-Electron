@@ -894,10 +894,10 @@ electron-updater@^5.3.0:
     semver "^7.3.5"
     typed-emitter "^2.1.0"
 
-electron@^21.2.0:
-  version "21.2.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-21.2.0.tgz#8eb65d69b36aa8dac0ee7330eab70181df211c8b"
-  integrity sha512-oKV4fo8l6jlOZ1cYZ4RpZz02ZxLuBo3SO7DH+FrJ8uDyCirP+eVJ/qlzu23odtNe0P7S/mYAZbC6abZHWoqtLg==
+electron@^21.2.3:
+  version "21.2.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-21.2.3.tgz#7bd190f57b154ab85c92a2e52e0329fd40cbc7b9"
+  integrity sha512-Wyj0ri3P8hnWEvX7+2Q1OtNzJI8Qn4V9J+aeypoXh+wtlX/fjfHxi4vZkos/XRncoIeYCeUZ5nhGjsOIQwSElQ==
   dependencies:
     "@electron/get" "^1.14.1"
     "@types/node" "^16.11.26"

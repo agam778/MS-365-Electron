@@ -4,3 +4,10 @@
 .DS_Store
 flatpak-node-generator.py
 generated-sources.json
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -199,7 +199,7 @@ const menulayout = [
         label: "Open Normal version of MS Office",
         type: "radio",
         click() {
-          store.set("enterprise-or-normal", "https://office.com/?auth=1");
+          store.set("enterprise-or-normal", "https://microsoft365.com/?auth=1");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Normal version of MS Office",
@@ -209,13 +209,14 @@ const menulayout = [
           });
         },
         checked:
-          store.get("enterprise-or-normal") === "https://office.com/?auth=1",
+          store.get("enterprise-or-normal") ===
+          "https://microsoft365.com/?auth=1",
       },
       {
         label: "Open Enterprise version of MS Office",
         type: "radio",
         click() {
-          store.set("enterprise-or-normal", "https://office.com/?auth=2");
+          store.set("enterprise-or-normal", "https://microsoft365.com/?auth=2");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Enterprise version of MS Office",
@@ -225,7 +226,8 @@ const menulayout = [
           });
         },
         checked:
-          store.get("enterprise-or-normal") === "https://office.com/?auth=2",
+          store.get("enterprise-or-normal") ===
+          "https://microsoft365.com/?auth=2",
       },
       { type: "separator" },
       {
@@ -533,7 +535,9 @@ function createWindow() {
 
   splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
   win.loadURL(
-    `${store.get("enterprise-or-normal") || "https://office.com/?auth=1"}`,
+    `${
+      store.get("enterprise-or-normal") || "https://microsoft365.com/?auth=1"
+    }`,
     {
       userAgent: store.get("useragentstring") || windowsuseragent,
     }

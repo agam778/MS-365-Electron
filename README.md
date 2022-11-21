@@ -47,7 +47,7 @@
 
 # Introduction
 
-As we know that Microsoft Office is a paid service, they also have a free Web version [here](https://office.com).
+As we know that Microsoft Office is a paid service, they also have a free Web version [here](https://microsoft365.com).
 
 For those people who can't afford Microsoft Office Subscription, or don't want to pay for that, or like the web version of it, Then **MS-Office-Electron** is the app you require.
 

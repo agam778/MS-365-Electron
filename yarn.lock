@@ -2617,9 +2617,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ms-office-electron@workspace:.":
+"ms-365-electron@workspace:.":
   version: 0.0.0-use.local
-  resolution: "ms-office-electron@workspace:."
+  resolution: "ms-365-electron@workspace:."
   dependencies:
     about-window: ^1.15.2
     axios: ^1.1.3

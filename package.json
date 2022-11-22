@@ -1,7 +1,7 @@
 {
-  "name": "ms-office-electron",
+  "name": "ms-365-electron",
   "version": "0.7.3",
-  "description": "An Unofficial Microsoft Office Online Desktop Client. Free of Cost.",
+  "description": "Unofficial Microsoft 365 Web Desktop Wrapper made with Electron",
   "main": "main.js",
   "repository": {
     "type": "git",
@@ -17,9 +17,9 @@
       "/assets",
       "LICENSE"
     ],
-    "appId": "com.agampreet.ms-office-electron",
-    "productName": "MS-Office-Electron",
-    "artifactName": "MS-Office-Electron-Setup-v${version}-${os}-${arch}.${ext}",
+    "appId": "com.agampreet.ms-365-electron",
+    "productName": "MS-365-Electron",
+    "artifactName": "MS-365-Electron-v${version}-${os}-${arch}.${ext}",
     "mac": {
       "identity": "null",
       "category": "public.app-category.office",
@@ -43,7 +43,7 @@
     "linux": {
       "category": "Office",
       "icon": "./assets/icons/png",
-      "executableName": "ms-office-electron",
+      "executableName": "ms-365-electron",
       "maintainer": "Agampreet Singh <agam778@zohomail.in>",
       "target": [
         "snap",

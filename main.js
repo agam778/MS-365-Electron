@@ -114,17 +114,17 @@ const menulayout = [
     label: "Application",
     submenu: [
       {
-        label: "About MS-Office-Electron",
+        label: "About MS-365-Electron",
         click: () =>
           openAboutWindow({
             icon_path:
-              "https://raw.githubusercontent.com/agam778/MS-Office-Electron/main/assets/icon.png",
-            product_name: "MS-Office-Electron",
+              "https://raw.githubusercontent.com/agam778/MS-365-Electron/main/assets/icon.png",
+            product_name: "MS-365-Electron",
             copyright:
               "Copyright (c) 2021-2022 Agampreet Singh\nOffice, the name, website, images/icons\nare the intellectual properties of Microsoft.",
             package_json_dir: __dirname,
             bug_report_url:
-              "https://github.com/agam778/Microsoft-Office-Electron/issues/",
+              "https://github.com/agam778/MS-365-Electron/issues/",
             bug_link_text: "Report an issue",
             adjust_window_size: "2",
             show_close_button: "Close",
@@ -135,7 +135,7 @@ const menulayout = [
         click: async () => {
           axios
             .get(
-              "https://api.github.com/repos/agam778/MS-Office-Electron/releases/latest"
+              "https://api.github.com/repos/agam778/MS-365-Electron/releases/latest"
             )
             .then((res) => {
               let data = res.data;
@@ -150,7 +150,7 @@ const menulayout = [
                 });
                 if (updatedialog === 0) {
                   shell.openExternal(
-                    "https://github.com/agam778/MS-Office-Electron/releases/latest"
+                    "https://github.com/agam778/MS-365-Electron/releases/latest"
                   );
                 }
               } else {
@@ -169,7 +169,7 @@ const menulayout = [
         click: async () => {
           const { shell } = require("electron");
           await shell.openExternal(
-            "https://github.com/agam778/MS-Office-Electron"
+            "https://github.com/agam778/MS-365-Electron"
           );
         },
       },
@@ -181,30 +181,30 @@ const menulayout = [
             await shell.openPath(
               "C:\\Users\\" +
                 process.env.USERNAME +
-                "\\AppData\\Roaming\\ms-office-electron\\logs\\"
+                "\\AppData\\Roaming\\ms-365-electron\\logs\\"
             );
           } else if (process.platform === "darwin") {
             await shell.openPath(
-              "/Users/" + process.env.USER + "/Library/Logs/ms-office-electron/"
+              "/Users/" + process.env.USER + "/Library/Logs/ms-365-electron/"
             );
           } else if (isLinux) {
             await shell.openPath(
-              "/home/" + process.env.USER + "/.config/ms-office-electron/logs/"
+              "/home/" + process.env.USER + "/.config/ms-365-electron/logs/"
             );
           }
         },
       },
       { type: "separator" },
       {
-        label: "Open Normal version of MS Office",
+        label: "Open Normal version of MS 365",
         type: "radio",
         click() {
           store.set("enterprise-or-normal", "https://microsoft365.com/?auth=1");
           dialog.showMessageBoxSync({
             type: "info",
-            title: "Normal version of MS Office",
+            title: "Normal version of MS 365",
             message:
-              "The normal version of MS Office will be opened.\n\nPlease restart the app to apply the changes.",
+              "The normal version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
             buttons: ["OK"],
           });
         },
@@ -213,15 +213,15 @@ const menulayout = [
           "https://microsoft365.com/?auth=1",
       },
       {
-        label: "Open Enterprise version of MS Office",
+        label: "Open Enterprise version of MS 365",
         type: "radio",
         click() {
           store.set("enterprise-or-normal", "https://microsoft365.com/?auth=2");
           dialog.showMessageBoxSync({
             type: "info",
-            title: "Enterprise version of MS Office",
+            title: "Enterprise version of MS 365",
             message:
-              "The enterprise version of MS Office will be opened.\n\nPlease restart the app to apply the changes.",
+              "The enterprise version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
             buttons: ["OK"],
           });
         },
@@ -256,7 +256,7 @@ const menulayout = [
             type: "info",
             title: "Websites in New Windows",
             message:
-              "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS Office.",
+              "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
             buttons: ["OK"],
           });
         },
@@ -481,7 +481,7 @@ function discordrpc(title) {
       .setActivity({
         details: `${title}`,
         largeImageKey: "logo",
-        largeImageText: "MS-Office-Electron",
+        largeImageText: "MS-365-Electron",
         startTimestamp: Date.now(),
         instance: false,
       })
@@ -497,7 +497,7 @@ function discordrpcupdate(title) {
     .setActivity({
       details: `${title}`,
       largeImageKey: "logo",
-      largeImageText: "MS-Office-Electron",
+      largeImageText: "MS-365-Electron",
       startTimestamp: Date.now(),
       instance: false,
     })
@@ -533,7 +533,7 @@ function createWindow() {
     icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
   });
 
-  splash.loadURL(`https://agam778.github.io/MS-Office-Electron/loading`);
+  splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
   win.loadURL(
     `${
       store.get("enterprise-or-normal") || "https://microsoft365.com/?auth=1"

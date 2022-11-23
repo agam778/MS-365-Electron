@@ -19,12 +19,18 @@ jobs:
         with:
           node-version: latest
 
-      - name: Upgrade yarn version
-        run: corepack prepare yarn@3.3.0 --activate
-
       - name: Build and release with electron-builder
         run: |
           export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
           yarn
-          yarn dist -c.snap.publish=github
+          if [ "$RUNNER_OS" == "Linux" ]; then
+              yarn dist -c.snap.publish=github
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+              yarn dist
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+              yarn dist -m --x64 --arm64
+          else
+              echo "$RUNNER_OS not supported"
+              exit 1
+          fi
         shell: bash

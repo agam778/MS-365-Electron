@@ -1326,16 +1326,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron@npm:^21.3.0":
-  version: 21.3.0
-  resolution: "electron@npm:21.3.0"
+"electron@npm:^21.3.1":
+  version: 21.3.1
+  resolution: "electron@npm:21.3.1"
   dependencies:
     "@electron/get": ^1.14.1
     "@types/node": ^16.11.26
     extract-zip: ^2.0.1
   bin:
     electron: cli.js
-  checksum: c0f170299609410a4aeb2daa9bf4d6ac2872ca226a6ba16b0c97d9dfcfbfa27e0d3339c3b71c66b59dd333d471f813ca16933e7b4e7ce10342799dc60cbdf066
+  checksum: b3886ec848c3494fa634ea67771a9a12bd8ff021005253bf796a1341e26379e45dc239bef4996d501f7a8dea1a85f06fc9a6ab63608dfb05eae3b51f32552506
   languageName: node
   linkType: hard
 
@@ -2625,7 +2625,7 @@ __metadata:
     axios: ^1.2.0
     check-internet-connected: ^2.0.6
     discord-rpc: ^4.0.1
-    electron: ^21.3.0
+    electron: ^21.3.1
     electron-builder: ^23.6.0
     electron-context-menu: ^3.6.0
     electron-dl: ^3.5.0

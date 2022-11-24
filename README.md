@@ -31,15 +31,16 @@
 - [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Windows](#windows)
-  - [💿 Windows Installation](#-windows-installation)
+  - [💿 Installation on Windows](#-installation-on-windows)
   - [📸 Windows Preview](#-windows-preview)
 - [macOS](#macos)
-  - [💿 macOS Installation](#-macos-installation)
+  - [💿 Installation on macOS](#-installation-on-macos)
 - [Linux](#linux)
-  - [💿 Linux Installation](#-linux-installation)
-    - [Ubuntu/Debian based distribution installation](#ubuntudebian-based-distribution-installation)
-    - [Red Hat/Fedora based distribution installation](#red-hatfedora-based-distribution-installation)
-    - [Arch/Manjaro Linux based distribution installation](#archmanjaro-linux-based-distribution-installation)
+  - [💿 Installation on Linux](#-installation-on-linux)
+    - [Installation on Ubuntu/Debian based distributions](#installation-on-ubuntudebian-based-distributions)
+    - [Installation on Red Hat/Fedora based distributions](#installation-on-red-hatfedora-based-distributions)
+    - [Installation on Arch/Manjaro Linux based distributions](#installation-on-archmanjaro-linux-based-distributions)
+    - [Installation on Gentoo Linux](#installation-on-gentoo-linux)
   - [📸 Ubuntu Preview](#-ubuntu-preview)
 - [💻 Developing Locally](#-developing-locally)
 - [📃 MIT License](#-mit-license)
@@ -49,7 +50,7 @@
 
 This project is basically a Desktop wrapper for the web version of [Microsoft 365](https://microsoft365.com), which is free but with some basic limits.
 
-I initially made this project because I wanted to use Microsoft 365 on my Linux machine, so to get the feel of using a native app while using it on Linux, I thought to made this project. Later, I decided to make it public so that others can enjoy this too!
+I initially made this project because I wanted to use Microsoft 365 on my Linux system with a native experience. Later, I decided to make it public so that others can enjoy this too!
 
 Don't expect this to be a full-fledged Microsoft 365 Desktop Suite (like we have for Windows/macOS), it's just a wrapper of the web version of Microsoft 365.
 
@@ -67,12 +68,12 @@ Supported Platforms
 6. Gentoo Linux (Unofficial overlay)
 7. All Distributions supporting AppImage (AppImage File); and
 8. All Distributions supporting Snap (Uploaded on Snap Store)
-9. 
+
 # Windows
 
-## 💿 Windows Installation
+## 💿 Installation on Windows
 
-For Installing this app on Windows :- 
+For Installing this app on Windows:
 
 1) Just go to the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
 2) Scroll down and click the  `MS-365-Electron-vx.x.x-win-x64.exe` file. The Setup file will start downloading.
@@ -84,7 +85,7 @@ For Installing this app on Windows :-
 
 # macOS
 
-## 💿 macOS Installation
+## 💿 Installation on macOS
 
 For Installing this app on Mac :-
 
@@ -94,13 +95,13 @@ For Installing this app on Mac :-
 
 # Linux
 
-## 💿 Linux Installation
+## 💿 Installation on Linux
 
 <a href="https://snapcraft.io/ms-office-electron">
   <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
 </a>
 
-### Ubuntu/Debian based distribution installation
+### Installation on Ubuntu/Debian based distributions
 
 For Installing in Ubuntu/Debian based distribution :- 
 
@@ -108,7 +109,7 @@ For Installing in Ubuntu/Debian based distribution :-
 2) Scroll down and click the `.deb` file to download it.
 3) Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
 
-### Red Hat/Fedora based distribution installation
+### Installation on Red Hat/Fedora based distributions
 
 For Installing in Red Hat/Fedora based distribution :- 
 
@@ -116,9 +117,7 @@ For Installing in Red Hat/Fedora based distribution :-
 2) Scroll down and click the `.rpm` file to download it.
 3) Then run the rpm file and click Install to install the App. Launch it from the Applications Menu.
 
-### Arch/Manjaro Linux based distribution installation
-
-Arch Linux builds have been published to "AUR" now!
+### Installation on Arch/Manjaro Linux based distributions
 
 1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay)
 
@@ -134,7 +133,19 @@ Arch Linux builds have been published to "AUR" now!
 
 4. Wait for it to install and tada! The app is installed.
 
-If you find any issues in using the AUR Builds, please create a [New Issue](https://github.com/agam778/MS-365-Electron/issues/new) and i'll try to fix that as soon as possible :D
+### Installation on Gentoo Linux
+
+1. This is supported by an ebuild uploaded on my unofficial overlay. First, enable the overlay on your system:
+
+   ```bash
+   eselect repository add agam778-overlay git https://github.com/agam778/agam778-overlay.git
+   emaint sync -r agam778-overlay
+   ```
+2. Now, install the package:
+
+    ```bash
+    sudo emerge -a ms-office-electron
+    ```
 
 ## 📸 Ubuntu Preview
 

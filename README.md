@@ -122,12 +122,12 @@ For Installing in Red Hat/Fedora based distribution :-
 1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay)
 
 2. There are 2 packages in the AUR
-   - `ms-office-electron-bin`: For installing pre-built releases
-   - `ms-office-electron-git`: For building the app from source and installing.
+   - `ms-365-electron-bin`: For installing pre-built releases
+   - `ms-365-electron-git`: For building the app from source and installing.
 
 3. Now, for example, using `yay`, run:
    ```bash
-   yay -Sy ms-office-electron-*
+   yay -Sy ms-365-electron-*
    ```
    To install the package accordingly.
 

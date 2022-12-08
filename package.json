@@ -64,16 +64,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^21.3.0",
+    "electron": "^21.3.3",
     "electron-builder": "^23.6.0",
-    "eslint": "^8.28.0"
+    "eslint": "^8.29.0"
   },
   "dependencies": {
     "about-window": "^1.15.2",
-    "axios": "^1.2.0",
+    "axios": "^1.2.1",
     "check-internet-connected": "^2.0.6",
     "discord-rpc": "^4.0.1",
-    "electron-context-menu": "^3.6.0",
+    "electron-context-menu": "^3.6.1",
     "electron-dl": "^3.5.0",
     "electron-log": "^4.4.8",
     "electron-store": "^8.1.0",

@@ -281,7 +281,7 @@ const menulayout = [
             return;
           } else if (
             store.get("discordrpcstatus") === "false" ||
-            !store.get("discordrpcstatus")
+            store.get("discordrpcstatus") === undefined
           ) {
             store.set("discordrpcstatus", "true");
             dialog.showMessageBoxSync({
@@ -296,7 +296,7 @@ const menulayout = [
             return;
           }
         },
-        checked: store.get("discordrpcstatus") === "true",
+        checked: store.get("discordrpcstatus") === "true" ? true : false,
       },
       { type: "separator" },
       {

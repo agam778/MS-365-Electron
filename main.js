@@ -267,39 +267,36 @@ const menulayout = [
       { type: "separator" },
       {
         label: "Enable Discord Rich Presence",
-        type: "radio",
+        type: "checkbox",
         click: () => {
-          store.set("discordrpcstatus", "true");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Discord Rich Presence",
-            message: "Discord Rich Presence is now enabled.",
-            buttons: ["OK"],
-          });
-          discordrpcupdate(
-            `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
-          );
+          if (store.get("discordrpcstatus") === "true") {
+            store.set("discordrpcstatus", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Discord Rich Presence",
+              message: "Discord Rich Presence is now disabled.",
+              buttons: ["OK"],
+            });
+            discordrpcupdate("On MS 365 Electron");
+            return;
+          } else if (
+            store.get("discordrpcstatus") === "false" ||
+            !store.get("discordrpcstatus")
+          ) {
+            store.set("discordrpcstatus", "true");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Discord Rich Presence",
+              message: "Discord Rich Presence is now enabled.",
+              buttons: ["OK"],
+            });
+            discordrpcupdate(
+              `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
+            );
+            return;
+          }
         },
-        checked: store.get("discordrpcstatus")
-          ? store.get("discordrpcstatus") === "true"
-          : true,
-      },
-      {
-        label: "Disable Discord Rich Presence",
-        type: "radio",
-        click: () => {
-          store.set("discordrpcstatus", "false");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Discord Rich Presence",
-            message: "Discord Rich Presence is now disabled.",
-            buttons: ["OK"],
-          });
-          rpc.clearActivity();
-        },
-        checked: store.get("discordrpcstatus")
-          ? store.get("discordrpcstatus") === "false"
-          : false,
+        checked: store.get("discordrpcstatus") === "true",
       },
       { type: "separator" },
       {

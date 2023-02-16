@@ -277,7 +277,7 @@ const menulayout = [
               message: "Discord Rich Presence is now disabled.",
               buttons: ["OK"],
             });
-            discordrpcupdate("On MS 365 Electron");
+            rpc.clearActivity();
             return;
           } else if (
             store.get("discordrpcstatus") === "false" ||

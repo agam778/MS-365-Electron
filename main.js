@@ -554,10 +554,12 @@ app.on("ready", () => {
 });
 
 app.on("web-contents-created", (event, contents) => {
-  contents.on("new-window", (event, url) => {
+  contents.setWindowOpenHandler(({ url }) => {
     if (store.get("websites-in-new-window") === "false") {
-      event.preventDefault();
       BrowserWindow.getFocusedWindow().loadURL(url);
+      return { action: "deny" };
+    } else {
+      return { action: "allow" };
     }
   });
 });

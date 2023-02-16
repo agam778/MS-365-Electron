@@ -121,7 +121,7 @@ const menulayout = [
               "https://raw.githubusercontent.com/agam778/MS-365-Electron/main/assets/icon.png",
             product_name: "MS-365-Electron",
             copyright:
-              "Copyright (c) 2021-2022 Agampreet Singh\nOffice, the name, website, images/icons\nare the intellectual properties of Microsoft.",
+              "Copyright (c) 2021-2023 Agampreet Singh\nOffice, the name, website, images/icons\nare the intellectual properties of Microsoft.",
             package_json_dir: __dirname,
             bug_report_url:
               "https://github.com/agam778/MS-365-Electron/issues/",

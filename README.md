@@ -30,6 +30,7 @@
 
 - [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
+- [List of Features](#list-of-features)
 - [Windows](#windows)
   - [💿 Installation on Windows](#-installation-on-windows)
   - [📸 Windows Preview](#-windows-preview)
@@ -69,19 +70,31 @@ Supported Platforms
 7. All Distributions supporting AppImage (AppImage File); and
 8. All Distributions supporting Snap (Uploaded on Snap Store)
 
+# List of Features
+
+- Discord Rich Presence 
+- Ability to use useragent strings of Windows, macOS or Linux
+- Switch between normal and enterprise/education/developer account in the same app
+- Back, Forward, Reload, and Home buttons
+- and more 
+
 # Windows
 
 ## 💿 Installation on Windows
 
 For Installing this app on Windows:
 
-1) Just go to the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
-2) Scroll down and click the  `MS-365-Electron-vx.x.x-win-x64.exe` file. The Setup file will start downloading.
+1) Visit the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
+2) Scroll down and click the `MS-365-Electron-vx.x.x-win-x64.exe` file. The Setup file will start downloading.
 3) After it downloads, click on the file and proceed with the Installation. You can choose whether to install for only you or all the users on the PC. You can always start the app from Start Menu or from the Desktop Shortcut.
 
 ## 📸 Windows Preview
 
-[Click Here](https://github.com/agam778/MS-365-Electron/blob/main/Preview/Windows%20Preview.png?raw=true)
+<details>
+<summary>Click to expand</summary>
+<img src="https://github.com/agam778/MS-365-Electron/blob/main/Preview/windows_1.png?raw=true" alt="Windows Preview - 1">
+<img src="https://github.com/agam778/MS-365-Electron/blob/main/Preview/windows_2.png?raw=true" alt="Windows Preview - 2">
+</details>
 
 # macOS
 
@@ -89,8 +102,8 @@ For Installing this app on Windows:
 
 For Installing this app on Mac :-
 
-1. Just go to the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
-2. Scroll down and click the `.dmg` file. The build is only for Intel Macs.
+1. Visit the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
+2. Scroll down and click the `.dmg` file (according to your system architecture).
 3. After it downloads, click on the file and mount it on your system. Now drag my app to the Applications Folder (There will be a shortcut in the opened window too) and your app will be installed. Open from Launchpad and enjoy.
 
 # Linux
@@ -105,7 +118,7 @@ For Installing this app on Mac :-
 
 For Installing in Ubuntu/Debian based distribution :- 
 
-1) Go to the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
+1) Visit the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
 2) Scroll down and click the `.deb` file to download it.
 3) Then run the deb file and click Install to install the App. Launch it from the Applications Menu.
 
@@ -113,7 +126,7 @@ For Installing in Ubuntu/Debian based distribution :-
 
 For Installing in Red Hat/Fedora based distribution :- 
 
-1) Go to the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
+1) Visit the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
 2) Scroll down and click the `.rpm` file to download it.
 3) Then run the rpm file and click Install to install the App. Launch it from the Applications Menu.
 

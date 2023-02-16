@@ -11,10 +11,6 @@ const log = require("electron-log");
 
 const store = new Store();
 
-const isMac = process.platform === "darwin";
-const isWin = process.platform === "win32";
-const isLinux = process.platform === "linux";
-
 const RPC = require("discord-rpc");
 const clientId = "942637872530460742";
 const rpc = new RPC.Client({ transport: "ipc" });
@@ -92,7 +88,7 @@ contextMenu({
 });
 
 const menulayout = [
-  ...(isMac
+  ...(process.platform === "darwin"
     ? [
         {
           label: app.name,
@@ -177,7 +173,7 @@ const menulayout = [
         label: "Open Logs Folder",
         click: async () => {
           const { shell } = require("electron");
-          if (isWin) {
+          if (process.platform === "win32") {
             await shell.openPath(
               "C:\\Users\\" +
                 process.env.USERNAME +
@@ -187,7 +183,7 @@ const menulayout = [
             await shell.openPath(
               "/Users/" + process.env.USER + "/Library/Logs/ms-365-electron/"
             );
-          } else if (isLinux) {
+          } else if (process.platform === "linux") {
             await shell.openPath(
               "/home/" + process.env.USER + "/.config/ms-365-electron/logs/"
             );
@@ -392,7 +388,7 @@ const menulayout = [
       { role: "cut" },
       { role: "copy" },
       { role: "paste" },
-      ...(isMac
+      ...(process.platform === "darwin"
         ? [
             { role: "pasteAndMatchStyle" },
             { role: "delete" },
@@ -427,7 +423,7 @@ const menulayout = [
     submenu: [
       { role: "minimize" },
       { role: "zoom" },
-      ...(isMac
+      ...(process.platform === "darwin"
         ? [
             { type: "separator" },
             { role: "front" },

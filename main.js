@@ -546,7 +546,9 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
-    discordrpc(`On "${win.webContents.getTitle()}"`);
+    if (store.get("discordrpcstatus") === "true") {
+      discordrpc(`On "${win.webContents.getTitle()}"`);
+    }
   });
 }
 
@@ -564,7 +566,9 @@ app.on("web-contents-created", (event, contents) => {
 });
 
 app.on("window-all-closed", () => {
-  rpc.clearActivity();
+  if (store.get("discordrpcstatus") === "true") {
+    rpc.clearActivity();
+  }
   if (process.platform !== "darwin") {
     app.quit();
   }

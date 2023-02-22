@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.agam778.MS-365-Electron</id>
+    <launchable type="desktop-id">io.github.agam778.MS-365-Electron.desktop</launchable>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>MIT</project_license>
+
+    <name>MS-365-Electron</name>
+
+    <categories>
+        <category>Utility</category>
+    </categories>
+
+    <summary>Unofficial Microsoft 365 Web Desktop Wrapper made with Electron</summary>
+
+    <description>
+      <p>An unofficial desktop wrapper for the web version of Microsoft 365 made with Electron.</p>
+    </description>
+
+    <developer_name>Agampreet Singh</developer_name>
+
+    <releases>
+      <release version="0.8.0" date="2022-11-24">
+        <description>
+          <p>- As Microsoft Office has been rebranded to Microsoft 365, same happens with this project. The name of this app is now MS-365-Electron with a new executable name and logo! This would require you to relogin to your Microsoft Account(s) and setup your options in app menu again if you are updating from the previous release. There is now a specific logo for macOS builds only. arm64 builds for macOS have been uploaded (for M series macbooks), although they have not been tested due to lack of a Macbook or a Mac system. If you test the app and it works all good, do create an issue and report me so I can further continue with the arm64 builds. Migrate to the new yarn package management system (yarn v3.3.0). Update dependencies. Update useragent strings</p>
+        </description>
+      </release>
+    </releases>
+
+    <screenshots>
+      <screenshot type="default"><image type="source">https://dashboard.snapcraft.io/site_media/appmedia/2022/05/Screenshot_from_2022-05-15_22-10-14.png</image></screenshot>
+      <screenshot><image type="source">https://dashboard.snapcraft.io/site_media/appmedia/2022/05/Screenshot_from_2022-05-15_22-11-27.png</image></screenshot>
+    </screenshots>
+
+    <content_rating type="oars-1.1" />
+
+    <metadata>
+        <value key="GnomeSoftware::popular-background">https://dashboard.snapcraft.io/site_media/appmedia/2022/05/Untitled_design1.png</value>
+    </metadata>
+
+    <url type="homepage">https://github.com/agam778/MS-365-Electron/</url>
+    <url type="bugtracker">https://github.com/agam778/MS-365-Electron/issues</url>
+</component>

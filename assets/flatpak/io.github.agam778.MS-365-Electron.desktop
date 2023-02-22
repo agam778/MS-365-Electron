@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MS-365-Electrom
+GenericName=MS-365-Electron
+Comment=Unofficial Microsoft 365 Web Desktop Wrapper made with Electron 
+Keywords=ms-365;office;electron;cloud
+Exec=start-ms-365-electron
+Icon=io.github.agam778.MS-365-Electron
+Type=Application
+Terminal=false
+Categories=Office

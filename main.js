@@ -283,7 +283,7 @@ const menulayout = [
             dialog.showMessageBoxSync({
               type: "info",
               title: "Discord Rich Presence",
-              message: "Discord Rich Presence is now enabled.",
+              message: "Discord Rich Presence is now enabled.\nPlease restart the app to enable RPC.",
               buttons: ["OK"],
             });
             discordrpcupdate(

@@ -552,8 +552,13 @@ app.on("ready", () => {
 app.on("web-contents-created", (event, contents) => {
   contents.setWindowOpenHandler(({ url }) => {
     if (store.get("websites-in-new-window") === "false") {
-      BrowserWindow.getFocusedWindow().loadURL(url);
-      return { action: "deny" };
+      if (url.includes("page=Download")) {
+        return { action: "allow" };
+      }
+      else {
+        BrowserWindow.getFocusedWindow().loadURL(url);
+        return { action: "deny" };
+      }
     } else {
       return { action: "allow" };
     }

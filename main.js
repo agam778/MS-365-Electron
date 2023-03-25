@@ -296,7 +296,7 @@ const menulayout = [
       },
       { type: "separator" },
       {
-        label: "Windows Useragent",
+        label: "Windows User Agent String",
         type: "radio",
         click: () => {
           store.set("useragentstring", windowsuseragent);
@@ -312,7 +312,7 @@ const menulayout = [
           store.get("useragentstring") === windowsuseragent ? true : false,
       },
       {
-        label: "Mac os Useragent",
+        label: "macOS User Agent String",
         type: "radio",
         click: () => {
           store.set("useragentstring", macuseragent);
@@ -327,7 +327,7 @@ const menulayout = [
         checked: store.get("useragentstring") === macuseragent ? true : false,
       },
       {
-        label: "Linux Useragent",
+        label: "Linux User Agent String",
         type: "radio",
         click: () => {
           store.set("useragentstring", linuxuseragent);

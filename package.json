@@ -26,7 +26,10 @@
       "target": [
         "dmg"
       ],
-      "icon": "./assets/icons/mac/icon.icns"
+      "icon": "./assets/icons/mac/icon.icns",
+      "files": [
+        "!node_modules/**/*.{mk,a,o,h}"
+      ]
     },
     "win": {
       "target": [

@@ -301,46 +301,44 @@ const menulayout = [
       { role: "minimize" },
       { role: "zoom" },
       ...(process.platform === "darwin"
+        ? [{ type: "separator" }, { role: "front" }, { type: "separator" }]
+        : [{ role: "close" }]),
+      ...(!process.platform === "darwin"
         ? [
             { type: "separator" },
-            { role: "front" },
-            { type: "separator" },
-            { role: "window" },
+            {
+              label: "Show Menu Bar",
+              type: "radio",
+              click: () => {
+                store.set("autohide-menubar", "false");
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Menu Bar Settings",
+                  message:
+                    "Menu will be visible now. Please restart the app for changes to take effect.",
+                  buttons: ["OK"],
+                });
+              },
+              checked: store.get("autohide-menubar") === "false",
+            },
+            {
+              label: "Hide Menu Bar (ALT to show)",
+              type: "radio",
+              click: () => {
+                store.set("autohide-menubar", "true");
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Menu Bar Settings",
+                  message:
+                    "Menu bar will be automatically hidden now. Please restart the app for changes to take effect.",
+                  buttons: ["OK"],
+                });
+              },
+              checked: store.get("autohide-menubar") === "true",
+            },
           ]
-        : [{ role: "close" }]),
-      { type: "separator" },
-      {
-        label: "Show Menu Bar",
-        type: "radio",
-        click: () => {
-          store.set("autohide-menubar", "false");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Menu Bar Settings",
-            message:
-              "Menu will be visible now. Please restart the app for changes to take effect.",
-            buttons: ["OK"],
-          });
-        },
-        checked: store.get("autohide-menubar") === "false",
-      },
-      {
-        label: "Hide Menu Bar (ALT to show)",
-        type: "radio",
-        click: () => {
-          store.set("autohide-menubar", "true");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Menu Bar Settings",
-            message:
-              "Menu bar will be automatically hidden now. Please restart the app for changes to take effect.",
-            buttons: ["OK"],
-          });
-        },
-        checked: store.get("autohide-menubar") === "true",
-      },
+        : []),
     ],
   },
 ];
-
 module.exports = { menulayout };

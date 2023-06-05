@@ -92,8 +92,8 @@ For Installing this app on Windows:
 
 <details>
 <summary>Click to expand</summary>
-<img src="https://github.com/agam778/MS-365-Electron/blob/main/Preview/windows_1.png?raw=true" alt="Windows Preview - 1">
-<img src="https://github.com/agam778/MS-365-Electron/blob/main/Preview/windows_2.png?raw=true" alt="Windows Preview - 2">
+<img src="https://github.com/agam778/MS-365-Electron/blob/main/assets/screenshots/windows_1.png?raw=true" alt="Windows Preview - 1">
+<img src="https://github.com/agam778/MS-365-Electron/blob/main/assets/screenshots/windows_2.png?raw=true" alt="Windows Preview - 2">
 </details>
 
 # macOS
@@ -162,7 +162,7 @@ For Installing in Red Hat/Fedora based distribution :-
 
 ## 📸 Ubuntu Preview
 
-[Click Here](https://github.com/agam778/MS-365-Electron/blob/main/Preview/Ubuntu%20Preview.png?raw=true)
+[Click Here](https://github.com/agam778/MS-365-Electron/blob/main/assets/screenshots/ubuntu.png?raw=true)
 
 # 💻 Developing Locally
 To build the app locally:<br>

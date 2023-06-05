@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/agam778/MS-365-Electron/blob/main/Intro_Image.png?raw=true" alt="Intro Image"></p>
+<p align="center"><img src="https://github.com/agam778/MS-365-Electron/blob/main/assets/banner.png?raw=true" alt="Intro Image"></p>
 <p align="center">Thanks a lot to <a href="https://t.me/NextWorksGFX">@NextWorksGFX</a> for this amazing banner!</p>
 <p align="center">Unofficial Microsoft 365 Web Desktop Wrapper made with Electron</p>
 

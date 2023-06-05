@@ -2,7 +2,7 @@
   "name": "ms-365-electron",
   "version": "0.9.0",
   "description": "Unofficial Microsoft 365 Web Desktop Wrapper made with Electron",
-  "main": "main.js",
+  "main": "app/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/agam778/MS-365-Electron.git"
@@ -72,10 +72,8 @@
     "eslint": "^8.36.0"
   },
   "dependencies": {
-    "about-window": "^1.15.2",
     "axios": "^1.3.4",
     "check-internet-connected": "^2.0.6",
-    "discord-rpc": "^4.0.1",
     "electron-context-menu": "^3.6.1",
     "electron-dl": "^3.5.0",
     "electron-log": "^5.0.0-beta.19",

@@ -72,7 +72,6 @@ Supported Platforms
 
 # List of Features
 
-- Discord Rich Presence 
 - Ability to use useragent strings of Windows, macOS or Linux
 - Switch between normal and enterprise/education/developer account in the same app
 - Back, Forward, Reload, and Home buttons

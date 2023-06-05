@@ -166,14 +166,6 @@ For Installing in Red Hat/Fedora based distribution :-
 
 # 💻 Developing Locally
 To build the app locally:<br>
-Run this script to automatically install `nodejs`, `yarn` and all the dependencies, and automatically start/build the app (it will show options) (Note: for Linux and macOS Only!):
-```bash
-git clone https://github.com/agam778/MS-365-Electron.git
-cd MS-365-Electron
-bash build.sh
-```
-<br>
-Or:<br>
 Run the following commands to clone the repository and install the dependencies
 
 ```bash

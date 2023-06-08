@@ -7,8 +7,14 @@ body {
   background-attachment: fixed;
 }
 
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
 :root {
-  --font-seaweed-script: "Seaweed Script";
+  --font-san-francisco: "San Francisco";
   --font-poppins: Poppins;
   --font-size-sm: 14px;
   --color-aliceblue-100: #f3f8ff;
@@ -76,10 +82,10 @@ body {
 .byagam778 {
   position: absolute;
   margin-top: 219px;
-  margin-left: 172px;
-  font-size: 50px;
+  margin-left: 170px;
+  font-size: 38px;
   line-height: 50px;
-  font-family: var(--font-seaweed-script);
+  font-family: 'SF Pro Text',-apple-system,BlinkMacSystemFont,var(--font-san-francisco);
   color: #00acff;
   cursor: pointer;
 }
@@ -146,7 +152,7 @@ body {
   .byagam778 {
     text-align: center;
     width: 100%;
-    font-size: 30px;
+    font-size: 26px;
     height: auto;
     margin-top: 50%;
     margin-left: 59%;

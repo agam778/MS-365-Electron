@@ -1,0 +1,49 @@
+name: CI
+
+on: workflow_dispatch
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Build with Electron Builder
+        run: |
+          export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          yarn
+          if [ "$RUNNER_OS" == "Linux" ]; then
+              yarn dist --publish never
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+              yarn dist --publish never
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+              yarn dist -m --x64 --arm64 --publish never
+          else
+              echo "$RUNNER_OS not supported"
+              exit 1
+          fi
+        shell: bash
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.os }}-dist
+          path: |
+            releases/*.exe
+            releases/*.dmg
+            releases/*.deb
+            releases/*.snap
+            releases/*.tar.gz
+            releases/*.AppImage
+            releases/*.rpm

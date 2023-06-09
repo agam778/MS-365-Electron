@@ -245,6 +245,11 @@ app.on("web-contents-created", (event, contents) => {
 });
 
 app.on("browser-window-created", (event, window) => {
+  window.webContents.on("did-finish-load", () => {
+    if (store.get("discordrpcstatus") === "true") {
+      setActivity(`On "${window.webContents.getTitle()}"`);
+    }
+  });
   if (store.get("blockads") === "true") {
     ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
       blocker.enableBlockingInSession(window.webContents.session);

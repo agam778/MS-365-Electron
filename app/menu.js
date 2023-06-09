@@ -5,6 +5,8 @@ const axios = require("axios");
 const { clearActivity, setActivity } = require("./rpc");
 const { shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
+const { ElectronBlocker } = require("@cliqz/adblocker-electron");
+const fetch = require("cross-fetch");
 
 function getValueOrDefault(key, defaultValue) {
   const value = store.get(key);
@@ -105,6 +107,8 @@ getValueOrDefault("enterprise-or-normal", "https://microsoft365.com/?auth=1");
 getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");
+getValueOrDefault("blockads", "false");
+getValueOrDefault("blockadsandtrackers", "false");
 
 const menulayout = [
   ...(process.platform === "darwin"
@@ -295,6 +299,96 @@ const menulayout = [
           }
         },
         checked: store.get("discordrpcstatus") === "true",
+      },
+      { type: "separator" },
+      {
+        label: "Block Ads",
+        type: "checkbox",
+        click: () => {
+          if (store.get("blockads") === "true") {
+            store.set("blockads", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Block Ads",
+              message: "Ads will no longer be blocked.",
+              buttons: ["OK"],
+            });
+            if (!store.get("blockadsandtrackers") === "true") {
+              ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
+                blocker.disableBlockingInSession(
+                  BrowserWindow.getFocusedWindow().webContents.session
+                )
+              );
+            }
+            return;
+          }
+          if (
+            store.get("blockads") === "false" ||
+            store.get("blockads") === undefined
+          ) {
+            store.set("blockads", "true");
+            ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
+              blocker.enableBlockingInSession(
+                BrowserWindow.getFocusedWindow().webContents.session
+              )
+            );
+
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Block Ads",
+              message: "Ads will now be blocked.",
+              buttons: ["OK"],
+            });
+            return;
+          }
+        },
+        checked: store.get("blockads") === "true",
+      },
+      {
+        label: "Block Ads and Trackers",
+        type: "checkbox",
+        click: () => {
+          if (store.get("blockadsandtrackers") === "true") {
+            store.set("blockadsandtrackers", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Block Ads and Trackers",
+              message: "Ads and trackers will no longer be blocked.",
+              buttons: ["OK"],
+            });
+            if (!store.get("blockads") === "true") {
+              ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+                (blocker) => {
+                  blocker.disableBlockingInSession(
+                    BrowserWindow.getFocusedWindow().webContents.session
+                  );
+                }
+              );
+            }
+            return;
+          }
+          if (
+            store.get("blockadsandtrackers") === "false" ||
+            store.get("blockadsandtrackers") === undefined
+          ) {
+            store.set("blockadsandtrackers", "true");
+            ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+              (blocker) => {
+                blocker.enableBlockingInSession(
+                  BrowserWindow.getFocusedWindow().webContents.session
+                );
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Block Ads and Trackers",
+                  message: "Ads and trackers will now be blocked.",
+                  buttons: ["OK"],
+                });
+              }
+            );
+            return;
+          }
+        },
+        checked: store.get("blockadsandtrackers") === "true",
       },
       { type: "separator" },
       {

@@ -8,6 +8,7 @@ const store = require("./store");
 const log = require("electron-log");
 const { setActivity, loginToRPC, clearActivity } = require("./rpc");
 const useragents = require("./useragents.json");
+const { ElectronBlocker } = require("@cliqz/adblocker-electron");
 
 log.transports.file.level = "verbose";
 console.log = log.log;
@@ -124,6 +125,16 @@ function createWindow() {
     if (store.get("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }
+    if (store.get("blockads") === "true") {
+      ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
+        blocker.enableBlockingInSession(win.webContents.session);
+      });
+    }
+    if (store.get("blockadsandtrackers") === "true") {
+      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+        blocker.enableBlockingInSession(win.webContents.session);
+      });
+    }
   });
 }
 
@@ -231,6 +242,19 @@ app.on("web-contents-created", (event, contents) => {
       }
     } catch {}
   });
+});
+
+app.on("browser-window-created", (event, window) => {
+  if (store.get("blockads") === "true") {
+    ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
+      blocker.enableBlockingInSession(window.webContents.session);
+    });
+  }
+  if (store.get("blockadsandtrackers") === "true") {
+    ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+      blocker.enableBlockingInSession(window.webContents.session);
+    });
+  }
 });
 
 app.on("window-all-closed", () => {

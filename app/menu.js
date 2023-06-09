@@ -3,6 +3,8 @@ const useragents = require("./useragents.json");
 const { app, dialog, BrowserWindow } = require("electron");
 const axios = require("axios");
 const { clearActivity, setActivity } = require("./rpc");
+const { shell } = require("electron");
+const { autoUpdater } = require("electron-updater");
 
 function getValueOrDefault(key, defaultValue) {
   const value = store.get(key);
@@ -23,16 +25,30 @@ async function checkForUpdates() {
     const latestVersion = data.tag_name;
 
     if (currentVersion !== latestVersion) {
-      const updatedialog = dialog.showMessageBoxSync({
-        type: "info",
-        title: "Update Available",
-        message: `Your App's version: ${currentVersion}\nLatest version: ${latestVersion}\n\nPlease update to the latest version.`,
-        buttons: ["Download", "Close"],
-      });
-      if (updatedialog === 0) {
-        shell.openExternal(
-          "https://github.com/agam778/MS-365-Electron/releases/latest"
-        );
+      if (process.platform === "win32" || process.platform === "darwin") {
+        autoUpdater.checkForUpdatesAndNotify().then((result) => {
+          if (result === null) {
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "No Update Available",
+              message: `Current version: ${currentVersion}\nLatest version: ${latestVersion}\n\nYou are already using the latest version.`,
+              buttons: ["OK"],
+            });
+          }
+        });
+        return;
+      } else {
+        const updatedialog = dialog.showMessageBoxSync({
+          type: "info",
+          title: "Update Available",
+          message: `Current version: ${currentVersion}\nLatest version: ${latestVersion}\n\nPlease update to the latest version.`,
+          buttons: ["Download", "Close"],
+        });
+        if (updatedialog === 0) {
+          shell.openExternal(
+            "https://github.com/agam778/MS-365-Electron/releases/latest"
+          );
+        }
       }
     } else {
       dialog.showMessageBoxSync({

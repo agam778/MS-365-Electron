@@ -40,10 +40,10 @@ jobs:
         with:
           name: ${{ matrix.os }}-dist
           path: |
-            releases/*.exe
-            releases/*.dmg
-            releases/*.deb
-            releases/*.snap
-            releases/*.tar.gz
-            releases/*.AppImage
-            releases/*.rpm
+            release/*.exe
+            release/*.dmg
+            release/*.deb
+            release/*.snap
+            release/*.tar.gz
+            release/*.AppImage
+            release/*.rpm

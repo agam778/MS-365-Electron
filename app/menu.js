@@ -91,33 +91,91 @@ getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");
 
 const menulayout = [
+  ...(process.platform === "darwin"
+    ? [
+        {
+          label: app.name,
+          submenu: [
+            { label: "About MS-365-Electron", role: "about" },
+            {
+              label: "Learn More",
+              click: async () => {
+                await openExternalLink(
+                  "https://github.com/agam778/MS-365-Electron"
+                );
+              },
+            },
+            {
+              label: "Check for Updates...",
+              id: "check-for-updates",
+              click: async () => {
+                await checkForUpdates();
+              },
+            },
+            {
+              label: "Open Logs Folder",
+              click: async () => {
+                await openLogsFolder();
+              },
+            },
+            { type: "separator" },
+            { role: "services" },
+            { type: "separator" },
+            { label: "Hide MS-365-Electron", role: "hide" },
+            { role: "hideOthers" },
+            { role: "unhide" },
+            { type: "separator" },
+            { label: "Quit MS-365-Electron", role: "quit" },
+          ],
+        },
+      ]
+    : []),
   {
-    label: "Application",
+    label: process.platform === "darwin" ? "Preferences" : "Application",
     submenu: [
-      {
-        label: "About MS-365-Electron",
-        click: () => {
-          // placeholder
-        },
-      },
-      {
-        label: "Check for Updates",
-        click: async () => {
-          await checkForUpdates();
-        },
-      },
-      {
-        label: "Learn More",
-        click: async () => {
-          await openExternalLink("https://github.com/agam778/MS-365-Electron");
-        },
-      },
-      {
-        label: "Open Logs Folder",
-        click: async () => {
-          await openLogsFolder();
-        },
-      },
+      ...(!process.platform === "darwin"
+        ? [
+            {
+              label: "About MS-365-Electron",
+              click: () => {
+                // placeholder
+              },
+            },
+          ]
+        : []),
+      ...(!process.platform === "darwin"
+        ? [
+            {
+              label: "Learn More",
+              click: async () => {
+                await openExternalLink(
+                  "https://github.com/agam778/MS-365-Electron"
+                );
+              },
+            },
+          ]
+        : []),
+      ...(!process.platform === "darwin"
+        ? [
+            {
+              label: "Check for Updates...",
+              id: "check-for-updates",
+              click: async () => {
+                await checkForUpdates();
+              },
+            },
+          ]
+        : []),
+      ...(!process.platform === "darwin"
+        ? [
+            {
+              label: "Open Logs Folder",
+              click: async () => {
+                await openLogsFolder();
+              },
+            },
+          ]
+        : []),
       { type: "separator" },
       {
         label: "Open Normal version of MS 365",
@@ -255,10 +313,14 @@ const menulayout = [
         checked: store.get("useragentstring") === useragents.Linux,
       },
       { type: "separator" },
-      {
-        role: "quit",
-        accelerator: process.platform === "darwin" ? "Ctrl+Q" : "Ctrl+Q",
-      },
+      ...(!process.platform === "darwin"
+        ? [
+            {
+              role: "quit",
+              accelerator: "Ctrl+Q",
+            },
+          ]
+        : []),
     ],
   },
   {

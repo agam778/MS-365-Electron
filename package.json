@@ -14,7 +14,7 @@
   },
   "build": {
     "extraFiles": [
-      "/assets",
+      "/assets/icons",
       "LICENSE"
     ],
     "appId": "com.agampreet.ms-365-electron",

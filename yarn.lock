@@ -363,6 +363,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xhayper/discord-rpc@npm:^1.0.17":
+  version: 1.0.17
+  resolution: "@xhayper/discord-rpc@npm:1.0.17"
+  dependencies:
+    axios: ^1.4.0
+    discord-api-types: ^0.37.42
+    ws: ^8.13.0
+  checksum: 6b7f4d25900dae4cdffc739e71042e5a980df680d767b10e29738372f8312b793cf654d339355ae382677efb7f263b09e150ec1fe84a2691bb70dff4c6afafd8
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -621,6 +632,17 @@ __metadata:
     form-data: ^4.0.0
     proxy-from-env: ^1.1.0
   checksum: 7440edefcf8498bc3cdf39de00443e8101f249972c83b739c6e880d9d669fea9486372dbe8739e88b3bf8bb1ad15f6106693f206f078f4516fe8fd47b1c3093c
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "axios@npm:1.4.0"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
   languageName: node
   linkType: hard
 
@@ -1127,6 +1149,13 @@ __metadata:
   bin:
     dircompare: src/cli/dircompare.js
   checksum: 16710bcb640b0edb753c6ecf10440c20a073588d797f624288601c52bca64a1f8c4dcd474d1fb7fda3595361b7cf528dee856140d83ecdaa19ba5695112d1209
+  languageName: node
+  linkType: hard
+
+"discord-api-types@npm:^0.37.42":
+  version: 0.37.43
+  resolution: "discord-api-types@npm:0.37.43"
+  checksum: 716bafb6b2881fd0bb36edae67ec04d08e393ff80b762c74376a40d99cf6dace71d9b13242cea95df1fb9db3aa64fd3e94719dc983420e3b3e139f0e77258489
   languageName: node
   linkType: hard
 
@@ -2573,6 +2602,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ms-365-electron@workspace:."
   dependencies:
+    "@xhayper/discord-rpc": ^1.0.17
     axios: ^1.3.4
     check-internet-connected: ^2.0.6
     electron: ^23.2.0
@@ -3562,6 +3592,21 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.13.0":
+  version: 8.13.0
+  resolution: "ws@npm:8.13.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
   languageName: node
   linkType: hard
 

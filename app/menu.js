@@ -2,6 +2,7 @@ const store = require("./store");
 const useragents = require("./useragents.json");
 const { app, dialog, BrowserWindow } = require("electron");
 const axios = require("axios");
+const { clearActivity, setActivity } = require("./rpc");
 
 function getValueOrDefault(key, defaultValue) {
   const value = store.get(key);
@@ -87,6 +88,7 @@ function setUserAgent(useragent) {
 getValueOrDefault("enterprise-or-normal", "https://microsoft365.com/?auth=1");
 getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
+getValueOrDefault("discordrpcstatus", "false");
 
 const menulayout = [
   {
@@ -185,6 +187,40 @@ const menulayout = [
         checked: store.get("websites-in-new-window")
           ? store.get("websites-in-new-window") === "false"
           : false,
+      },
+      { type: "separator" },
+      {
+        label: "Enable Discord RPC",
+        type: "checkbox",
+        click: () => {
+          if (store.get("discordrpcstatus") === "true") {
+            store.set("discordrpcstatus", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Discord RPC",
+              message: "Discord RPC has been disabled.",
+              buttons: ["OK"],
+            });
+            clearActivity();
+            return;
+          } else if (
+            store.get("discordrpcstatus") === "false" ||
+            store.get("discordrpcstatus") === undefined
+          ) {
+            store.set("discordrpcstatus", "true");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Discord RPC",
+              message: "Discord RPC has been enabled.",
+              buttons: ["OK"],
+            });
+            setActivity(
+              `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
+            );
+            return;
+          }
+        },
+        checked: store.get("discordrpcstatus") === "true",
       },
       { type: "separator" },
       {

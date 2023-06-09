@@ -6,7 +6,7 @@ const contextMenu = require("electron-context-menu");
 const path = require("path");
 const store = require("./store");
 const log = require("electron-log");
-
+const { setActivity, loginToRPC, clearActivity } = require("./rpc");
 const useragents = require("./useragents.json");
 
 log.transports.file.level = "verbose";
@@ -116,9 +116,14 @@ function createWindow() {
     }
   );
 
+  require("./rpc.js");
+
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
+    if (store.get("discordrpcstatus") === "true") {
+      setActivity(`On "${win.webContents.getTitle()}"`);
+    }
   });
 }
 
@@ -133,9 +138,19 @@ app.on("web-contents-created", (event, contents) => {
         return { action: "allow" };
       } else {
         BrowserWindow.getFocusedWindow().loadURL(url);
+        if (store.get("discordrpcstatus") === "true") {
+          setActivity(
+            `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
+          );
+        }
         return { action: "deny" };
       }
     } else {
+      if (store.get("discordrpcstatus") === "true") {
+        setActivity(
+          `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
+        );
+      }
       return { action: "allow" };
     }
   });
@@ -145,6 +160,7 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
   }
+  clearActivity();
 });
 
 app.on("activate", () => {
@@ -173,4 +189,8 @@ app.on("ready", function () {
       });
     });
   autoUpdater.checkForUpdatesAndNotify();
+  if (store.get("discordrpcstatus") === "true") {
+    loginToRPC();
+    setActivity(`Opening Microsoft 365...`);
+  }
 });

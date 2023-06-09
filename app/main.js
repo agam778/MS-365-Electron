@@ -154,11 +154,91 @@ app.on("web-contents-created", (event, contents) => {
       return { action: "allow" };
     }
   });
+  contents.on("did-finish-load", () => {
+    try {
+      if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Microsoft PowerPoint")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/powerpoint.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Microsoft Word")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/word.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Microsoft Excel")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/excel.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Outlook")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/outlook.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("OneDrive")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/onedrive.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Microsoft Teams")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/teams.png")
+          );
+        }
+      } else if (
+        BrowserWindow.getFocusedWindow()
+          .webContents.getTitle()
+          .includes("Microsoft OneNote Online")
+      ) {
+        if (process.platform === "darwin") {
+          app.dock.setIcon(
+            path.join(__dirname, "../assets/icons/apps/onenote.png")
+          );
+        }
+      } else {
+        app.dock.setIcon(null);
+      }
+    } catch {}
+  });
 });
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
+  }
+  if (process.platform === "darwin") {
+    app.dock.setIcon(null);
   }
   clearActivity();
 });

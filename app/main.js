@@ -1,4 +1,4 @@
-const { app, Menu, BrowserWindow, dialog } = require("electron");
+const { app, Menu, BrowserWindow, dialog, nativeImage } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const checkInternetConnected = require("check-internet-connected");
 const ElectronDl = require("electron-dl");
@@ -166,81 +166,134 @@ app.on("web-contents-created", (event, contents) => {
     }
   });
   contents.on("did-finish-load", () => {
-    try {
-      if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Microsoft PowerPoint")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Microsoft Word")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/word-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Microsoft Excel")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/excel-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Outlook")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/outlook-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("OneDrive")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/onedrive-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Microsoft Teams")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/teams-mac.png")
-          );
-        }
-      } else if (
-        BrowserWindow.getFocusedWindow()
-          .webContents.getTitle()
-          .includes("Microsoft OneNote Online")
-      ) {
-        if (process.platform === "darwin") {
-          app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/onenote-mac.png")
-          );
-        }
-      } else {
-        app.dock.setIcon(null);
+    if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Microsoft PowerPoint")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/powerpoint.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "PowerPoint");
+        });
       }
-    } catch {}
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Microsoft Word")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/word-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/word.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "Word");
+        });
+      }
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Microsoft Excel")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/excel-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/excel.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "Excel");
+        });
+      }
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Outlook")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/outlook-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/outlook.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "Outlook");
+        });
+      }
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("OneDrive")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/onedrive-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/onedrive.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "OneDrive");
+        });
+      }
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Microsoft Teams")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/teams-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/teams.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "Teams");
+        });
+      }
+    } else if (
+      BrowserWindow.getFocusedWindow()
+        .webContents.getTitle()
+        .includes("Microsoft OneNote Online")
+    ) {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(
+          path.join(__dirname, "../assets/icons/apps/onenote-mac.png")
+        );
+      } else if (process.platform === "win32") {
+        let nimage = nativeImage.createFromPath(
+          path.join(__dirname, "../assets/icons/apps/onenote.png")
+        );
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(nimage, "OneNote");
+        });
+      }
+    } else {
+      if (process.platform === "darwin") {
+        app.dock.setIcon(null);
+      } else {
+        BrowserWindow.getAllWindows().forEach((window) => {
+          window.setOverlayIcon(null, "");
+        });
+      }
+    }
   });
 });
 

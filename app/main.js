@@ -174,7 +174,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/powerpoint.png")
+            path.join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
           );
         }
       } else if (
@@ -184,7 +184,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/word.png")
+            path.join(__dirname, "../assets/icons/apps/word-mac.png")
           );
         }
       } else if (
@@ -194,7 +194,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/excel.png")
+            path.join(__dirname, "../assets/icons/apps/excel-mac.png")
           );
         }
       } else if (
@@ -204,7 +204,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/outlook.png")
+            path.join(__dirname, "../assets/icons/apps/outlook-mac.png")
           );
         }
       } else if (
@@ -214,7 +214,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/onedrive.png")
+            path.join(__dirname, "../assets/icons/apps/onedrive-mac.png")
           );
         }
       } else if (
@@ -224,7 +224,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/teams.png")
+            path.join(__dirname, "../assets/icons/apps/teams-mac.png")
           );
         }
       } else if (
@@ -234,7 +234,7 @@ app.on("web-contents-created", (event, contents) => {
       ) {
         if (process.platform === "darwin") {
           app.dock.setIcon(
-            path.join(__dirname, "../assets/icons/apps/onenote.png")
+            path.join(__dirname, "../assets/icons/apps/onenote-mac.png")
           );
         }
       } else {

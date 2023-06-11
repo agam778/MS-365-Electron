@@ -4,11 +4,11 @@ const checkInternetConnected = require("check-internet-connected");
 const ElectronDl = require("electron-dl");
 const contextMenu = require("electron-context-menu");
 const path = require("path");
-const store = require("./store");
 const log = require("electron-log");
 const { setActivity, loginToRPC, clearActivity } = require("./rpc");
 const useragents = require("./useragents.json");
 const { ElectronBlocker } = require("@cliqz/adblocker-electron");
+const { getValue } = require("./store");
 
 log.transports.file.level = "verbose";
 console.log = log.log;
@@ -92,7 +92,7 @@ function createWindow() {
     },
   });
 
-  if (store.get("autohide-menubar") === "true") {
+  if (getValue("autohide-menubar") === "true") {
     win.setAutoHideMenuBar(true);
   } else {
     win.setAutoHideMenuBar(false);
@@ -110,10 +110,10 @@ function createWindow() {
   splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
   win.loadURL(
     `${
-      store.get("enterprise-or-normal") || "https://microsoft365.com/?auth=1"
+      getValue("enterprise-or-normal") || "https://microsoft365.com/?auth=1"
     }`,
     {
-      userAgent: store.get("useragentstring") || useragents.Windows,
+      userAgent: getValue("useragentstring") || useragents.Windows,
     }
   );
 
@@ -122,15 +122,15 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
-    if (store.get("discordrpcstatus") === "true") {
+    if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }
-    if (store.get("blockads") === "true") {
+    if (getValue("blockads") === "true") {
       ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
         blocker.enableBlockingInSession(win.webContents.session);
       });
     }
-    if (store.get("blockadsandtrackers") === "true") {
+    if (getValue("blockadsandtrackers") === "true") {
       ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
         blocker.enableBlockingInSession(win.webContents.session);
       });
@@ -144,12 +144,12 @@ app.on("ready", () => {
 
 app.on("web-contents-created", (event, contents) => {
   contents.setWindowOpenHandler(({ url }) => {
-    if (store.get("websites-in-new-window") === "false") {
+    if (getValue("websites-in-new-window") === "false") {
       if (url.includes("page=Download")) {
         return { action: "allow" };
       } else {
         BrowserWindow.getFocusedWindow().loadURL(url);
-        if (store.get("discordrpcstatus") === "true") {
+        if (getValue("discordrpcstatus") === "true") {
           setActivity(
             `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
           );
@@ -157,7 +157,7 @@ app.on("web-contents-created", (event, contents) => {
         return { action: "deny" };
       }
     } else {
-      if (store.get("discordrpcstatus") === "true") {
+      if (getValue("discordrpcstatus") === "true") {
         setActivity(
           `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
         );
@@ -301,16 +301,16 @@ app.on("web-contents-created", (event, contents) => {
 
 app.on("browser-window-created", (event, window) => {
   window.webContents.on("did-finish-load", () => {
-    if (store.get("discordrpcstatus") === "true") {
+    if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${window.webContents.getTitle()}"`);
     }
   });
-  if (store.get("blockads") === "true") {
+  if (getValue("blockads") === "true") {
     ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
       blocker.enableBlockingInSession(window.webContents.session);
     });
   }
-  if (store.get("blockadsandtrackers") === "true") {
+  if (getValue("blockadsandtrackers") === "true") {
     ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
       blocker.enableBlockingInSession(window.webContents.session);
     });
@@ -353,7 +353,7 @@ app.on("ready", function () {
       });
     });
   autoUpdater.checkForUpdatesAndNotify();
-  if (store.get("discordrpcstatus") === "true") {
+  if (getValue("discordrpcstatus") === "true") {
     loginToRPC();
     setActivity(`Opening Microsoft 365...`);
   }

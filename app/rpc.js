@@ -1,6 +1,6 @@
 const { Client } = require("@xhayper/discord-rpc");
 const { dialog, BrowserWindow } = require("electron");
-const store = require("./store");
+const { setValue } = require("./store");
 
 const client = new Client({
   clientId: "942637872530460742",
@@ -15,7 +15,7 @@ async function rpcError(status) {
   });
 
   if (rpcerror === 1) {
-    store.set("discordrpcstatus", "false");
+    setValue("discordrpcstatus", "false");
   }
 }
 

@@ -1,4 +1,3 @@
-const store = require("./store");
 const useragents = require("./useragents.json");
 const { app, dialog, BrowserWindow } = require("electron");
 const axios = require("axios");
@@ -9,15 +8,7 @@ const { ElectronBlocker } = require("@cliqz/adblocker-electron");
 const fetch = require("cross-fetch");
 const openAboutWindow = require("about-window").default;
 const path = require("path");
-
-function getValueOrDefault(key, defaultValue) {
-  const value = store.get(key);
-  if (value === undefined) {
-    store.set(key, defaultValue);
-    return defaultValue;
-  }
-  return value;
-}
+const { getValue, setValue, getValueOrDefault } = require("./store");
 
 async function checkForUpdates() {
   try {
@@ -92,7 +83,7 @@ async function openLogsFolder() {
 }
 
 function setUserAgent(useragent) {
-  store.set("useragentstring", useragent);
+  setValue("useragentstring", useragent);
   const updatedialog = dialog.showMessageBoxSync({
     type: "info",
     title: "User-Agent string changed",
@@ -230,7 +221,7 @@ const menulayout = [
         label: "Open Normal version of MS 365",
         type: "radio",
         click() {
-          store.set("enterprise-or-normal", "https://microsoft365.com/?auth=1");
+          setValue("enterprise-or-normal", "https://microsoft365.com/?auth=1");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Normal version of MS 365",
@@ -240,14 +231,14 @@ const menulayout = [
           });
         },
         checked:
-          store.get("enterprise-or-normal") ===
+          getValue("enterprise-or-normal") ===
           "https://microsoft365.com/?auth=1",
       },
       {
         label: "Open Enterprise version of MS 365",
         type: "radio",
         click() {
-          store.set("enterprise-or-normal", "https://microsoft365.com/?auth=2");
+          setValue("enterprise-or-normal", "https://microsoft365.com/?auth=2");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Enterprise version of MS 365",
@@ -257,7 +248,7 @@ const menulayout = [
           });
         },
         checked:
-          store.get("enterprise-or-normal") ===
+          getValue("enterprise-or-normal") ===
           "https://microsoft365.com/?auth=2",
       },
       { type: "separator" },
@@ -265,7 +256,7 @@ const menulayout = [
         label: "Open Websites in New Windows (Recommended)",
         type: "radio",
         click: () => {
-          store.set("websites-in-new-window", "true");
+          setValue("websites-in-new-window", "true");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Websites in New Windows",
@@ -274,15 +265,15 @@ const menulayout = [
             buttons: ["OK"],
           });
         },
-        checked: store.get("websites-in-new-window")
-          ? store.get("websites-in-new-window") === "true"
+        checked: getValue("websites-in-new-window")
+          ? getValue("websites-in-new-window") === "true"
           : true,
       },
       {
         label: "Open Websites in the Same Window",
         type: "radio",
         click: () => {
-          store.set("websites-in-new-window", "false");
+          setValue("websites-in-new-window", "false");
           dialog.showMessageBoxSync({
             type: "info",
             title: "Websites in New Windows",
@@ -291,8 +282,8 @@ const menulayout = [
             buttons: ["OK"],
           });
         },
-        checked: store.get("websites-in-new-window")
-          ? store.get("websites-in-new-window") === "false"
+        checked: getValue("websites-in-new-window")
+          ? getValue("websites-in-new-window") === "false"
           : false,
       },
       { type: "separator" },
@@ -300,8 +291,8 @@ const menulayout = [
         label: "Enable Discord RPC",
         type: "checkbox",
         click: () => {
-          if (store.get("discordrpcstatus") === "true") {
-            store.set("discordrpcstatus", "false");
+          if (getValue("discordrpcstatus") === "true") {
+            setValue("discordrpcstatus", "false");
             dialog.showMessageBoxSync({
               type: "info",
               title: "Discord RPC",
@@ -311,10 +302,10 @@ const menulayout = [
             clearActivity();
             return;
           } else if (
-            store.get("discordrpcstatus") === "false" ||
-            store.get("discordrpcstatus") === undefined
+            getValue("discordrpcstatus") === "false" ||
+            getValue("discordrpcstatus") === undefined
           ) {
-            store.set("discordrpcstatus", "true");
+            setValue("discordrpcstatus", "true");
             dialog.showMessageBoxSync({
               type: "info",
               title: "Discord RPC",
@@ -327,22 +318,22 @@ const menulayout = [
             return;
           }
         },
-        checked: store.get("discordrpcstatus") === "true",
+        checked: getValue("discordrpcstatus") === "true",
       },
       { type: "separator" },
       {
         label: "Block Ads",
         type: "checkbox",
         click: () => {
-          if (store.get("blockads") === "true") {
-            store.set("blockads", "false");
+          if (getValue("blockads") === "true") {
+            setValue("blockads", "false");
             dialog.showMessageBoxSync({
               type: "info",
               title: "Block Ads",
               message: "Ads will no longer be blocked.",
               buttons: ["OK"],
             });
-            if (!store.get("blockadsandtrackers") === "true") {
+            if (!getValue("blockadsandtrackers") === "true") {
               ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
                 blocker.disableBlockingInSession(
                   BrowserWindow.getFocusedWindow().webContents.session
@@ -352,10 +343,10 @@ const menulayout = [
             return;
           }
           if (
-            store.get("blockads") === "false" ||
-            store.get("blockads") === undefined
+            getValue("blockads") === "false" ||
+            getValue("blockads") === undefined
           ) {
-            store.set("blockads", "true");
+            setValue("blockads", "true");
             ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
               blocker.enableBlockingInSession(
                 BrowserWindow.getFocusedWindow().webContents.session
@@ -371,21 +362,21 @@ const menulayout = [
             return;
           }
         },
-        checked: store.get("blockads") === "true",
+        checked: getValue("blockads") === "true",
       },
       {
         label: "Block Ads and Trackers",
         type: "checkbox",
         click: () => {
-          if (store.get("blockadsandtrackers") === "true") {
-            store.set("blockadsandtrackers", "false");
+          if (getValue("blockadsandtrackers") === "true") {
+            setValue("blockadsandtrackers", "false");
             dialog.showMessageBoxSync({
               type: "info",
               title: "Block Ads and Trackers",
               message: "Ads and trackers will no longer be blocked.",
               buttons: ["OK"],
             });
-            if (!store.get("blockads") === "true") {
+            if (!getValue("blockads") === "true") {
               ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
                 (blocker) => {
                   blocker.disableBlockingInSession(
@@ -397,10 +388,10 @@ const menulayout = [
             return;
           }
           if (
-            store.get("blockadsandtrackers") === "false" ||
-            store.get("blockadsandtrackers") === undefined
+            getValue("blockadsandtrackers") === "false" ||
+            getValue("blockadsandtrackers") === undefined
           ) {
-            store.set("blockadsandtrackers", "true");
+            setValue("blockadsandtrackers", "true");
             ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
               (blocker) => {
                 blocker.enableBlockingInSession(
@@ -417,7 +408,7 @@ const menulayout = [
             return;
           }
         },
-        checked: store.get("blockadsandtrackers") === "true",
+        checked: getValue("blockadsandtrackers") === "true",
       },
       { type: "separator" },
       {
@@ -426,7 +417,7 @@ const menulayout = [
         click: () => {
           setUserAgent(useragents.Windows);
         },
-        checked: store.get("useragentstring") === useragents.Windows,
+        checked: getValue("useragentstring") === useragents.Windows,
       },
       {
         label: "macOS User-Agent String",
@@ -434,13 +425,13 @@ const menulayout = [
         click: () => {
           setUserAgent(useragents.macOS);
         },
-        checked: store.get("useragentstring") === useragents.macOS,
+        checked: getValue("useragentstring") === useragents.macOS,
       },
       {
         label: "Linux User-Agent String",
         type: "radio",
         click: () => {
-          store.set("useragentstring", useragents.Linux);
+          setValue("useragentstring", useragents.Linux);
           dialog.showMessageBoxSync({
             type: "info",
             title: "User agent switcher",
@@ -449,7 +440,7 @@ const menulayout = [
             buttons: ["OK"],
           });
         },
-        checked: store.get("useragentstring") === useragents.Linux,
+        checked: getValue("useragentstring") === useragents.Linux,
       },
       { type: "separator" },
       ...(!process.platform === "darwin"
@@ -469,10 +460,10 @@ const menulayout = [
         label: "Word",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -488,10 +479,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -513,10 +504,10 @@ const menulayout = [
         label: "Excel",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -534,10 +525,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -561,10 +552,10 @@ const menulayout = [
         label: "PowerPoint",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -582,10 +573,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -609,10 +600,10 @@ const menulayout = [
         label: "Outlook",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -628,10 +619,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -655,10 +646,10 @@ const menulayout = [
         label: "OneDrive",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -676,10 +667,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -688,7 +679,9 @@ const menulayout = [
                   contextIsolation: true,
                 },
               });
-              onedrivewindow.loadURL("https://microsoft365.com/launch/onedrive?auth=1");
+              onedrivewindow.loadURL(
+                "https://microsoft365.com/launch/onedrive?auth=1"
+              );
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/onedrive?auth=1"
@@ -701,10 +694,10 @@ const menulayout = [
         label: "OneNote",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -722,10 +715,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -747,10 +740,10 @@ const menulayout = [
         label: "All Apps",
         click: () => {
           if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=2"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -766,10 +759,10 @@ const menulayout = [
               );
             }
           } else if (
-            store.get("enterprise-or-normal") ===
+            getValue("enterprise-or-normal") ===
             "https://microsoft365.com/?auth=1"
           ) {
-            if (store.get("websites-in-new-window") === "true") {
+            if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
                 width: 800,
                 height: 600,
@@ -814,7 +807,7 @@ const menulayout = [
         label: "Home",
         click: () => {
           BrowserWindow.getFocusedWindow().loadURL(
-            `${store.get("enterprise-or-normal")}`
+            `${getValue("enterprise-or-normal")}`
           );
         },
       },
@@ -874,7 +867,7 @@ const menulayout = [
               label: "Show Menu Bar",
               type: "radio",
               click: () => {
-                store.set("autohide-menubar", "false");
+                setValue("autohide-menubar", "false");
                 dialog.showMessageBoxSync({
                   type: "info",
                   title: "Menu Bar Settings",
@@ -883,13 +876,13 @@ const menulayout = [
                   buttons: ["OK"],
                 });
               },
-              checked: store.get("autohide-menubar") === "false",
+              checked: getValue("autohide-menubar") === "false",
             },
             {
               label: "Hide Menu Bar (ALT to show)",
               type: "radio",
               click: () => {
-                store.set("autohide-menubar", "true");
+                setValue("autohide-menubar", "true");
                 dialog.showMessageBoxSync({
                   type: "info",
                   title: "Menu Bar Settings",
@@ -898,7 +891,7 @@ const menulayout = [
                   buttons: ["OK"],
                 });
               },
-              checked: store.get("autohide-menubar") === "true",
+              checked: getValue("autohide-menubar") === "true",
             },
           ]
         : []),

@@ -9,10 +9,65 @@ const { setActivity, loginToRPC, clearActivity } = require("./rpc");
 const useragents = require("./useragents.json");
 const { ElectronBlocker } = require("@cliqz/adblocker-electron");
 const { getValue } = require("./store");
+const { menulayout } = require("./menu");
 
 log.transports.file.level = "verbose";
 console.log = log.log;
 Object.assign(console, log.functions);
+
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 1181,
+    height: 670,
+    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+      devTools: true,
+    },
+  });
+
+  if (getValue("autohide-menubar") === "true") {
+    win.setAutoHideMenuBar(true);
+  } else {
+    win.setAutoHideMenuBar(false);
+  }
+
+  const splash = new BrowserWindow({
+    width: 810,
+    height: 610,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+  });
+
+  splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
+  win.loadURL(
+    `${getValue("enterprise-or-normal") || "https://microsoft365.com/?auth=1"}`,
+    {
+      userAgent: getValue("useragentstring") || useragents.Windows,
+    }
+  );
+
+  win.webContents.on("did-finish-load", () => {
+    splash.destroy();
+    win.show();
+    if (getValue("discordrpcstatus") === "true") {
+      setActivity(`On "${win.webContents.getTitle()}"`);
+    }
+    if (getValue("blockads") === "true") {
+      ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
+        blocker.enableBlockingInSession(win.webContents.session);
+      });
+    }
+    if (getValue("blockadsandtrackers") === "true") {
+      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+        blocker.enableBlockingInSession(win.webContents.session);
+      });
+    }
+  });
+}
 
 ElectronDl({
   dlPath: "./downloads",
@@ -75,68 +130,7 @@ contextMenu({
   showServices: false,
 });
 
-const { menulayout } = require("./menu");
-
-const menu = Menu.buildFromTemplate(menulayout);
-Menu.setApplicationMenu(menu);
-
-function createWindow() {
-  const win = new BrowserWindow({
-    width: 1181,
-    height: 670,
-    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
-    show: false,
-    webPreferences: {
-      nodeIntegration: true,
-      devTools: true,
-    },
-  });
-
-  if (getValue("autohide-menubar") === "true") {
-    win.setAutoHideMenuBar(true);
-  } else {
-    win.setAutoHideMenuBar(false);
-  }
-
-  const splash = new BrowserWindow({
-    width: 810,
-    height: 610,
-    transparent: true,
-    frame: false,
-    alwaysOnTop: true,
-    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
-  });
-
-  splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
-  win.loadURL(
-    `${
-      getValue("enterprise-or-normal") || "https://microsoft365.com/?auth=1"
-    }`,
-    {
-      userAgent: getValue("useragentstring") || useragents.Windows,
-    }
-  );
-
-  require("./rpc.js");
-
-  win.webContents.on("did-finish-load", () => {
-    splash.destroy();
-    win.show();
-    if (getValue("discordrpcstatus") === "true") {
-      setActivity(`On "${win.webContents.getTitle()}"`);
-    }
-    if (getValue("blockads") === "true") {
-      ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
-        blocker.enableBlockingInSession(win.webContents.session);
-      });
-    }
-    if (getValue("blockadsandtrackers") === "true") {
-      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-        blocker.enableBlockingInSession(win.webContents.session);
-      });
-    }
-  });
-}
+Menu.setApplicationMenu(Menu.buildFromTemplate(menulayout));
 
 app.on("ready", () => {
   createWindow();

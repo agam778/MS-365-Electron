@@ -328,24 +328,20 @@ app.on("activate", () => {
 });
 
 app.on("ready", function () {
-  checkInternetConnected()
-    .then(() => {
-      console.log("You are connected to the internet!");
-    })
-    .catch(() => {
-      const options = {
-        type: "warning",
-        buttons: ["Ok"],
-        defaultId: 2,
-        title: "Warning",
-        message: "You appear to be offline!",
-        detail:
-          "Please check your Internet Connectivity. This app cannot run without an Internet Connection!",
-      };
-      dialog.showMessageBox(null, options, (response) => {
-        console.log(response);
-      });
+  checkInternetConnected().catch(() => {
+    const options = {
+      type: "warning",
+      buttons: ["Ok"],
+      defaultId: 2,
+      title: "Warning",
+      message: "You appear to be offline!",
+      detail:
+        "Please check your Internet Connectivity. This app cannot run without an Internet Connection!",
+    };
+    dialog.showMessageBox(null, options, (response) => {
+      console.log(response);
     });
+  });
   autoUpdater.checkForUpdatesAndNotify();
   if (getValue("discordrpcstatus") === "true") {
     loginToRPC();

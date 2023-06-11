@@ -7,6 +7,8 @@ const { shell } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const { ElectronBlocker } = require("@cliqz/adblocker-electron");
 const fetch = require("cross-fetch");
+const openAboutWindow = require("about-window").default;
+const path = require("path");
 
 function getValueOrDefault(key, defaultValue) {
   const value = store.get(key);
@@ -116,7 +118,23 @@ const menulayout = [
         {
           label: app.name,
           submenu: [
-            { label: "About MS-365-Electron", role: "about" },
+            {
+              label: "About MS-365-Electron",
+              click: () => {
+                openAboutWindow({
+                  icon_path: path.join(__dirname, "../assets/about.png"),
+                  product_name: "MS-365-Electron",
+                  copyright:
+                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
+                  package_json_dir: __dirname + "/../",
+                  bug_report_url:
+                    "https://github.com/agam778/MS-365-Electron/issues/",
+                  bug_link_text: "Report an issue",
+                  adjust_window_size: "2",
+                  show_close_button: "Close",
+                });
+              },
+            },
             {
               label: "Learn More",
               click: async () => {
@@ -158,7 +176,18 @@ const menulayout = [
             {
               label: "About MS-365-Electron",
               click: () => {
-                // placeholder
+                openAboutWindow({
+                  icon_path: path.join(__dirname, "../assets/about.png"),
+                  product_name: "MS-365-Electron",
+                  copyright:
+                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
+                  package_json_dir: __dirname + "/../",
+                  bug_report_url:
+                    "https://github.com/agam778/MS-365-Electron/issues/",
+                  bug_link_text: "Report an issue",
+                  adjust_window_size: "2",
+                  show_close_button: "Close",
+                });
               },
             },
           ]

@@ -168,8 +168,8 @@ app.on("web-contents-created", (event, contents) => {
   contents.on("did-finish-load", () => {
     if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Microsoft PowerPoint")
+        .webContents.getURL()
+        .includes("&ithint=file%2cpptx")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -185,8 +185,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Microsoft Word")
+        .webContents.getURL()
+        .includes("&ithint=file%2cdocx")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -202,8 +202,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Microsoft Excel")
+        .webContents.getURL()
+        .includes("&ithint=file%2cxlsx")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -219,8 +219,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Outlook")
+        .webContents.getURL()
+        .includes("outlook.live.com")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -236,8 +236,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("OneDrive")
+        .webContents.getURL()
+        .includes("onedrive.live.com")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -253,8 +253,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Microsoft Teams")
+        .webContents.getURL()
+        .includes("teams.live.com")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(
@@ -270,8 +270,8 @@ app.on("web-contents-created", (event, contents) => {
       }
     } else if (
       BrowserWindow.getFocusedWindow()
-        .webContents.getTitle()
-        .includes("Microsoft OneNote Online")
+        .webContents.getURL()
+        .includes("&ithint=onenote")
     ) {
       if (process.platform === "darwin") {
         app.dock.setIcon(

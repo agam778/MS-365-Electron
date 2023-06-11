@@ -151,7 +151,7 @@ const menulayout = [
       ]
     : []),
   {
-    label: process.platform === "darwin" ? "Preferences" : "Application",
+    label: process.platform === "darwin" ? "Preferences" : "MS-365-Electron",
     submenu: [
       ...(!process.platform === "darwin"
         ? [

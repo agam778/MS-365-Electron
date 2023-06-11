@@ -775,18 +775,21 @@ const menulayout = [
         click: () => {
           BrowserWindow.getFocusedWindow().webContents.goBack();
         },
+        accelerator: "AltOrOption+Left",
       },
       {
         label: "Forward",
         click: () => {
           BrowserWindow.getFocusedWindow().webContents.goForward();
         },
+        accelerator: "AltOrOption+Right",
       },
       {
         label: "Reload",
         click: () => {
           BrowserWindow.getFocusedWindow().webContents.reload();
         },
+        accelerator: "CmdOrCtrl+R",
       },
       {
         label: "Home",

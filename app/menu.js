@@ -101,6 +101,7 @@ getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");
 getValueOrDefault("blockadsandtrackers", "false");
+getValueOrDefault("dynamicicons", "true");
 
 const menulayout = [
   ...(process.platform === "darwin"
@@ -318,6 +319,36 @@ const menulayout = [
           }
         },
         checked: getValue("discordrpcstatus") === "true",
+      },
+      { type: "separator" },
+      {
+        label: "Enable Dynamic Icons",
+        type: "checkbox",
+        click: () => {
+          if (getValue("dynamicicons") === "true") {
+            setValue("dynamicicons", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Dynamic Icons",
+              message: "Dynamic icons have been disabled.",
+              buttons: ["OK"],
+            });
+            return;
+          } else if (
+            getValue("dynamicicons") === "false" ||
+            getValue("dynamicicons") === undefined
+          ) {
+            setValue("dynamicicons", "true");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Dynamic Icons",
+              message: "Dynamic icons have been enabled.",
+              buttons: ["OK"],
+            });
+            return;
+          }
+        },
+        checked: getValue("dynamicicons") === "true",
       },
       { type: "separator" },
       {

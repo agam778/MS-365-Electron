@@ -481,10 +481,10 @@ const menulayout = [
                   contextIsolation: true,
                 },
               });
-              wordwindow.loadURL("https://office.com/launch/word?auth=2");
+              wordwindow.loadURL("https://microsoft365.com/launch/word?auth=2");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/word?auth=2"
+                "https://microsoft365.com/launch/word?auth=2"
               );
             }
           } else if (
@@ -500,10 +500,10 @@ const menulayout = [
                   contextIsolation: true,
                 },
               });
-              wordwindow.loadURL("https://office.com/launch/word?auth=1");
+              wordwindow.loadURL("https://microsoft365.com/launch/word?auth=1");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/word?auth=1"
+                "https://microsoft365.com/launch/word?auth=1"
               );
             }
           }
@@ -525,10 +525,12 @@ const menulayout = [
                   contextIsolation: true,
                 },
               });
-              excelwindow.loadURL("https://office.com/launch/excel?auth=2");
+              excelwindow.loadURL(
+                "https://microsoft365.com/launch/excel?auth=2"
+              );
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/excel?auth=2"
+                "https://microsoft365.com/launch/excel?auth=2"
               );
             }
           } else if (
@@ -544,10 +546,12 @@ const menulayout = [
                   contextIsolation: true,
                 },
               });
-              excelwindow.loadURL("https://office.com/launch/excel?auth=1");
+              excelwindow.loadURL(
+                "https://microsoft365.com/launch/excel?auth=1"
+              );
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/excel?auth=1"
+                "https://microsoft365.com/launch/excel?auth=1"
               );
             }
           }
@@ -570,11 +574,11 @@ const menulayout = [
                 },
               });
               powerpointwindow.loadURL(
-                "https://office.com/launch/powerpoint?auth=2"
+                "https://microsoft365.com/launch/powerpoint?auth=2"
               );
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/powerpoint?auth=2"
+                "https://microsoft365.com/launch/powerpoint?auth=2"
               );
             }
           } else if (
@@ -591,11 +595,11 @@ const menulayout = [
                 },
               });
               powerpointwindow.loadURL(
-                "https://office.com/launch/powerpoint?auth=1"
+                "https://microsoft365.com/launch/powerpoint?auth=1"
               );
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
-                "https://office.com/launch/powerpoint?auth=1"
+                "https://microsoft365.com/launch/powerpoint?auth=1"
               );
             }
           }
@@ -642,6 +646,52 @@ const menulayout = [
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://office.live.com/start/Outlook.aspx"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "OneDrive",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let onedrivewindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              onedrivewindow.loadURL(
+                "https://microsoft365.com/launch/onedrive?auth=2"
+              );
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://microsoft365.com/launch/onedrive?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let onedrivewindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              onedrivewindow.loadURL("https://microsoft365.com/launch/onedrive?auth=1");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://microsoft365.com/launch/onedrive?auth=1"
               );
             }
           }

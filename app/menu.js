@@ -127,18 +127,19 @@ const menulayout = [
               },
             },
             {
+              label: "Check for Updates",
+              id: "check-for-updates",
+              click: async () => {
+                await checkForUpdates();
+              },
+            },
+            { type: "separator" },
+            {
               label: "Learn More",
               click: async () => {
                 await openExternalLink(
                   "https://github.com/agam778/MS-365-Electron"
                 );
-              },
-            },
-            {
-              label: "Check for Updates...",
-              id: "check-for-updates",
-              click: async () => {
-                await checkForUpdates();
               },
             },
             {
@@ -186,22 +187,23 @@ const menulayout = [
       ...(!process.platform === "darwin"
         ? [
             {
+              label: "Check for Updates...",
+              id: "check-for-updates",
+              click: async () => {
+                await checkForUpdates();
+              },
+            },
+          ]
+        : []),
+      ...(!process.platform === "darwin" ? [{ type: "separator" }] : []),
+      ...(!process.platform === "darwin"
+        ? [
+            {
               label: "Learn More",
               click: async () => {
                 await openExternalLink(
                   "https://github.com/agam778/MS-365-Electron"
                 );
-              },
-            },
-          ]
-        : []),
-      ...(!process.platform === "darwin"
-        ? [
-            {
-              label: "Check for Updates...",
-              id: "check-for-updates",
-              click: async () => {
-                await checkForUpdates();
               },
             },
           ]

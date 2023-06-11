@@ -100,7 +100,6 @@ getValueOrDefault("enterprise-or-normal", "https://microsoft365.com/?auth=1");
 getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");
-getValueOrDefault("blockads", "false");
 getValueOrDefault("blockadsandtrackers", "false");
 
 const menulayout = [
@@ -322,49 +321,6 @@ const menulayout = [
       },
       { type: "separator" },
       {
-        label: "Block Ads",
-        type: "checkbox",
-        click: () => {
-          if (getValue("blockads") === "true") {
-            setValue("blockads", "false");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Block Ads",
-              message: "Ads will no longer be blocked.",
-              buttons: ["OK"],
-            });
-            if (!getValue("blockadsandtrackers") === "true") {
-              ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
-                blocker.disableBlockingInSession(
-                  BrowserWindow.getFocusedWindow().webContents.session
-                )
-              );
-            }
-            return;
-          }
-          if (
-            getValue("blockads") === "false" ||
-            getValue("blockads") === undefined
-          ) {
-            setValue("blockads", "true");
-            ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) =>
-              blocker.enableBlockingInSession(
-                BrowserWindow.getFocusedWindow().webContents.session
-              )
-            );
-
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Block Ads",
-              message: "Ads will now be blocked.",
-              buttons: ["OK"],
-            });
-            return;
-          }
-        },
-        checked: getValue("blockads") === "true",
-      },
-      {
         label: "Block Ads and Trackers",
         type: "checkbox",
         click: () => {
@@ -376,15 +332,13 @@ const menulayout = [
               message: "Ads and trackers will no longer be blocked.",
               buttons: ["OK"],
             });
-            if (!getValue("blockads") === "true") {
-              ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-                (blocker) => {
-                  blocker.disableBlockingInSession(
-                    BrowserWindow.getFocusedWindow().webContents.session
-                  );
-                }
-              );
-            }
+            ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+              (blocker) => {
+                blocker.disableBlockingInSession(
+                  BrowserWindow.getFocusedWindow().webContents.session
+                );
+              }
+            );
             return;
           }
           if (

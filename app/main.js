@@ -56,11 +56,6 @@ function createWindow() {
     if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }
-    if (getValue("blockads") === "true") {
-      ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
-        blocker.enableBlockingInSession(win.webContents.session);
-      });
-    }
     if (getValue("blockadsandtrackers") === "true") {
       ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
         blocker.enableBlockingInSession(win.webContents.session);
@@ -299,11 +294,6 @@ app.on("browser-window-created", (event, window) => {
       setActivity(`On "${window.webContents.getTitle()}"`);
     }
   });
-  if (getValue("blockads") === "true") {
-    ElectronBlocker.fromPrebuiltAdsOnly(fetch).then((blocker) => {
-      blocker.enableBlockingInSession(window.webContents.session);
-    });
-  }
   if (getValue("blockadsandtrackers") === "true") {
     ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
       blocker.enableBlockingInSession(window.webContents.session);

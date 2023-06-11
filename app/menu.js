@@ -463,6 +463,283 @@ const menulayout = [
     ],
   },
   {
+    label: "Apps",
+    submenu: [
+      {
+        label: "Word",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let wordwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              wordwindow.loadURL("https://office.com/launch/word?auth=2");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/word?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let wordwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              wordwindow.loadURL("https://office.com/launch/word?auth=1");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/word?auth=1"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "Excel",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let excelwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              excelwindow.loadURL("https://office.com/launch/excel?auth=2");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/excel?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let excelwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              excelwindow.loadURL("https://office.com/launch/excel?auth=1");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/excel?auth=1"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "PowerPoint",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let powerpointwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              powerpointwindow.loadURL(
+                "https://office.com/launch/powerpoint?auth=2"
+              );
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/powerpoint?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let powerpointwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              powerpointwindow.loadURL(
+                "https://office.com/launch/powerpoint?auth=1"
+              );
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.com/launch/powerpoint?auth=1"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "Outlook",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let outlookwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              outlookwindow.loadURL("https://outlook.office.com/mail/");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://outlook.office.com/mail/"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let outlookwindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              outlookwindow.loadURL(
+                "https://office.live.com/start/Outlook.aspx"
+              );
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://office.live.com/start/Outlook.aspx"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "OneNote",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let onenotewindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              onenotewindow.loadURL(
+                "https://www.microsoft365.com/launch/onenote?auth=2"
+              );
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://www.microsoft365.com/launch/onenote?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let onenotewindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              onenotewindow.loadURL("https://www.onenote.com/notebooks?auth=1");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://www.onenote.com/notebooks?auth=1"
+              );
+            }
+          }
+        },
+      },
+      {
+        label: "All Apps",
+        click: () => {
+          if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=2"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let allappswindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              allappswindow.loadURL("https://www.microsoft365.com/apps?auth=2");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://www.microsoft365.com/apps?auth=2"
+              );
+            }
+          } else if (
+            store.get("enterprise-or-normal") ===
+            "https://microsoft365.com/?auth=1"
+          ) {
+            if (store.get("websites-in-new-window") === "true") {
+              let allappswindow = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  nodeIntegration: false,
+                  contextIsolation: true,
+                },
+              });
+              allappswindow.loadURL("https://www.microsoft365.com/apps?auth=1");
+            } else {
+              BrowserWindow.getFocusedWindow().loadURL(
+                "https://www.microsoft365.com/apps?auth=1"
+              );
+            }
+          }
+        },
+      },
+    ],
+  },
+  {
     label: "Navigation",
     submenu: [
       {

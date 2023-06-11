@@ -334,7 +334,9 @@ app.on("ready", function () {
       console.log(response);
     });
   });
-  autoUpdater.checkForUpdatesAndNotify();
+  if (getValue("autoupdater") === "true") {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
   if (getValue("discordrpcstatus") === "true") {
     loginToRPC();
     setActivity(`Opening Microsoft 365...`);

@@ -102,6 +102,7 @@ getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");
 getValueOrDefault("blockadsandtrackers", "false");
 getValueOrDefault("dynamicicons", "true");
+getValueOrDefault("autoupdater", "true");
 
 const menulayout = [
   ...(process.platform === "darwin"
@@ -322,7 +323,35 @@ const menulayout = [
         },
         checked: getValue("discordrpcstatus") === "true",
       },
-      { type: "separator" },
+      {
+        label: "Enable Auto Updates",
+        type: "checkbox",
+        click: () => {
+          if (getValue("autoupdater") === "true") {
+            setValue("autoupdater", "false");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Auto Updates",
+              message: "Auto updates have been disabled.",
+              buttons: ["OK"],
+            });
+            return;
+          } else if (
+            getValue("autoupdater") === "false" ||
+            getValue("autoupdater") === undefined
+          ) {
+            setValue("autoupdater", "true");
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Auto Updates",
+              message: "Auto updates have been enabled.",
+              buttons: ["OK"],
+            });
+            return;
+          }
+        },
+        checked: getValue("autoupdater") === "true",
+      },
       {
         label: "Enable Dynamic Icons",
         type: "checkbox",

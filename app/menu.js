@@ -1,5 +1,11 @@
 const useragents = require("./useragents.json");
-const { app, dialog, BrowserWindow, ShareMenu } = require("electron");
+const {
+  app,
+  dialog,
+  BrowserWindow,
+  ShareMenu,
+  clipboard,
+} = require("electron");
 const axios = require("axios");
 const { clearActivity, setActivity } = require("./rpc");
 const { shell } = require("electron");
@@ -747,7 +753,15 @@ const menulayout = [
           });
         },
       },
-      ...(process.platform === "darwin" ? [{ type: "separator" }] : []),
+      { type: "separator" },
+      {
+        label: "Copy URL to Clipboard",
+        accelerator: "CmdOrCtrl+Shift+C",
+        click: () => {
+          const url = BrowserWindow.getFocusedWindow().webContents.getURL();
+          clipboard.writeText(url);
+        },
+      },
       ...(process.platform === "darwin"
         ? [
             {

@@ -1,5 +1,5 @@
 const useragents = require("./useragents.json");
-const { app, dialog, BrowserWindow } = require("electron");
+const { app, dialog, BrowserWindow, ShareMenu } = require("electron");
 const axios = require("axios");
 const { clearActivity, setActivity } = require("./rpc");
 const { shell } = require("electron");
@@ -150,6 +150,264 @@ const menulayout = [
               },
             },
             { type: "separator" },
+            {
+              label: "Preferences",
+              submenu: [
+                {
+                  label: "Open Normal version of MS 365",
+                  type: "radio",
+                  click() {
+                    setValue(
+                      "enterprise-or-normal",
+                      "https://microsoft365.com/?auth=1"
+                    );
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Normal version of MS 365",
+                      message:
+                        "The normal version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked:
+                    getValue("enterprise-or-normal") ===
+                    "https://microsoft365.com/?auth=1",
+                },
+                {
+                  label: "Open Enterprise version of MS 365",
+                  type: "radio",
+                  click() {
+                    setValue(
+                      "enterprise-or-normal",
+                      "https://microsoft365.com/?auth=2"
+                    );
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Enterprise version of MS 365",
+                      message:
+                        "The enterprise version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked:
+                    getValue("enterprise-or-normal") ===
+                    "https://microsoft365.com/?auth=2",
+                },
+                { type: "separator" },
+                {
+                  label: "Open Websites in New Windows (Recommended)",
+                  type: "radio",
+                  click: () => {
+                    setValue("websites-in-new-window", "true");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Websites in New Windows",
+                      message:
+                        "Websites which are targeted to open in new tabs will now open in new windows.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("websites-in-new-window")
+                    ? getValue("websites-in-new-window") === "true"
+                    : true,
+                },
+                {
+                  label: "Open Websites in the Same Window",
+                  type: "radio",
+                  click: () => {
+                    setValue("websites-in-new-window", "false");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Websites in New Windows",
+                      message:
+                        "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("websites-in-new-window")
+                    ? getValue("websites-in-new-window") === "false"
+                    : false,
+                },
+                { type: "separator" },
+                {
+                  label: "Enable Discord RPC",
+                  type: "checkbox",
+                  click: () => {
+                    if (getValue("discordrpcstatus") === "true") {
+                      setValue("discordrpcstatus", "false");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Discord RPC",
+                        message: "Discord RPC has been disabled.",
+                        buttons: ["OK"],
+                      });
+                      clearActivity();
+                      return;
+                    } else if (
+                      getValue("discordrpcstatus") === "false" ||
+                      getValue("discordrpcstatus") === undefined
+                    ) {
+                      setValue("discordrpcstatus", "true");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Discord RPC",
+                        message: "Discord RPC has been enabled.",
+                        buttons: ["OK"],
+                      });
+                      setActivity(
+                        `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
+                      );
+                      return;
+                    }
+                  },
+                  checked: getValue("discordrpcstatus") === "true",
+                },
+                {
+                  label: "Enable Auto Updates",
+                  type: "checkbox",
+                  click: () => {
+                    if (getValue("autoupdater") === "true") {
+                      setValue("autoupdater", "false");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Auto Updates",
+                        message: "Auto updates have been disabled.",
+                        buttons: ["OK"],
+                      });
+                      return;
+                    } else if (
+                      getValue("autoupdater") === "false" ||
+                      getValue("autoupdater") === undefined
+                    ) {
+                      setValue("autoupdater", "true");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Auto Updates",
+                        message: "Auto updates have been enabled.",
+                        buttons: ["OK"],
+                      });
+                      return;
+                    }
+                  },
+                  checked: getValue("autoupdater") === "true",
+                },
+                {
+                  label: "Enable Dynamic Icons",
+                  type: "checkbox",
+                  click: () => {
+                    if (getValue("dynamicicons") === "true") {
+                      setValue("dynamicicons", "false");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Dynamic Icons",
+                        message: "Dynamic icons have been disabled.",
+                        buttons: ["OK"],
+                      });
+                      return;
+                    } else if (
+                      getValue("dynamicicons") === "false" ||
+                      getValue("dynamicicons") === undefined
+                    ) {
+                      setValue("dynamicicons", "true");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Dynamic Icons",
+                        message: "Dynamic icons have been enabled.",
+                        buttons: ["OK"],
+                      });
+                      return;
+                    }
+                  },
+                  checked: getValue("dynamicicons") === "true",
+                },
+                { type: "separator" },
+                {
+                  label: "Block Ads and Trackers",
+                  type: "checkbox",
+                  click: () => {
+                    if (getValue("blockadsandtrackers") === "true") {
+                      setValue("blockadsandtrackers", "false");
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Block Ads and Trackers",
+                        message: "Ads and trackers will no longer be blocked.",
+                        buttons: ["OK"],
+                      });
+                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+                        (blocker) => {
+                          blocker.disableBlockingInSession(
+                            BrowserWindow.getFocusedWindow().webContents.session
+                          );
+                        }
+                      );
+                      return;
+                    }
+                    if (
+                      getValue("blockadsandtrackers") === "false" ||
+                      getValue("blockadsandtrackers") === undefined
+                    ) {
+                      setValue("blockadsandtrackers", "true");
+                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+                        (blocker) => {
+                          blocker.enableBlockingInSession(
+                            BrowserWindow.getFocusedWindow().webContents.session
+                          );
+                          dialog.showMessageBoxSync({
+                            type: "info",
+                            title: "Block Ads and Trackers",
+                            message: "Ads and trackers will now be blocked.",
+                            buttons: ["OK"],
+                          });
+                        }
+                      );
+                      return;
+                    }
+                  },
+                  checked: getValue("blockadsandtrackers") === "true",
+                },
+                { type: "separator" },
+                {
+                  label: "Windows User-Agent String",
+                  type: "radio",
+                  click: () => {
+                    setUserAgent(useragents.Windows);
+                  },
+                  checked: getValue("useragentstring") === useragents.Windows,
+                },
+                {
+                  label: "macOS User-Agent String",
+                  type: "radio",
+                  click: () => {
+                    setUserAgent(useragents.macOS);
+                  },
+                  checked: getValue("useragentstring") === useragents.macOS,
+                },
+                {
+                  label: "Linux User-Agent String",
+                  type: "radio",
+                  click: () => {
+                    setValue("useragentstring", useragents.Linux);
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "User agent switcher",
+                      message:
+                        "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("useragentstring") === useragents.Linux,
+                },
+                { type: "separator" },
+                ...(!process.platform === "darwin"
+                  ? [
+                      {
+                        role: "quit",
+                        accelerator: "Ctrl+Q",
+                      },
+                    ]
+                  : []),
+              ],
+            },
             { role: "services" },
             { type: "separator" },
             { label: "Hide MS-365-Electron", role: "hide" },
@@ -162,311 +420,441 @@ const menulayout = [
       ]
     : []),
   {
-    label: process.platform === "darwin" ? "Preferences" : "MS-365-Electron",
+    label: "File",
     submenu: [
-      ...(!process.platform === "darwin"
-        ? [
-            {
-              label: "About MS-365-Electron",
-              click: () => {
-                openAboutWindow({
-                  icon_path: path.join(__dirname, "../assets/about.png"),
-                  product_name: "MS-365-Electron",
-                  copyright:
-                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
-                  package_json_dir: __dirname + "/../",
-                  bug_report_url:
-                    "https://github.com/agam778/MS-365-Electron/issues/",
-                  bug_link_text: "Report an issue",
-                  adjust_window_size: "2",
-                  show_close_button: "Close",
-                });
-              },
-            },
-          ]
-        : []),
-      ...(!process.platform === "darwin"
-        ? [
-            {
-              label: "Check for Updates...",
-              id: "check-for-updates",
-              click: async () => {
-                await checkForUpdates();
-              },
-            },
-          ]
-        : []),
-      ...(!process.platform === "darwin" ? [{ type: "separator" }] : []),
-      ...(!process.platform === "darwin"
-        ? [
-            {
-              label: "Learn More",
-              click: async () => {
-                await openExternalLink(
-                  "https://github.com/agam778/MS-365-Electron"
-                );
-              },
-            },
-          ]
-        : []),
-      ...(!process.platform === "darwin"
-        ? [
-            {
-              label: "Open Logs Folder",
-              click: async () => {
-                await openLogsFolder();
-              },
-            },
-          ]
-        : []),
-      { type: "separator" },
       {
-        label: "Open Normal version of MS 365",
-        type: "radio",
-        click() {
-          setValue("enterprise-or-normal", "https://microsoft365.com/?auth=1");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Normal version of MS 365",
-            message:
-              "The normal version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
-            buttons: ["OK"],
+        label: "New Window",
+        accelerator: "CmdOrCtrl+N",
+        click: () => {
+          let newWindow = new BrowserWindow({
+            width: 1181,
+            height: 670,
+            webPreferences: {
+              nodeIntegration: true,
+              devTools: true,
+            },
           });
+          newWindow.loadURL(getValue("enterprise-or-normal"));
         },
-        checked:
-          getValue("enterprise-or-normal") ===
-          "https://microsoft365.com/?auth=1",
-      },
-      {
-        label: "Open Enterprise version of MS 365",
-        type: "radio",
-        click() {
-          setValue("enterprise-or-normal", "https://microsoft365.com/?auth=2");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Enterprise version of MS 365",
-            message:
-              "The enterprise version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
-            buttons: ["OK"],
-          });
-        },
-        checked:
-          getValue("enterprise-or-normal") ===
-          "https://microsoft365.com/?auth=2",
       },
       { type: "separator" },
       {
-        label: "Open Websites in New Windows (Recommended)",
-        type: "radio",
+        label: "Close Window",
+        accelerator: "CmdOrCtrl+W",
         click: () => {
-          setValue("websites-in-new-window", "true");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Websites in New Windows",
-            message:
-              "Websites which are targeted to open in new tabs will now open in new windows.",
-            buttons: ["OK"],
-          });
+          BrowserWindow.getFocusedWindow().close();
         },
-        checked: getValue("websites-in-new-window")
-          ? getValue("websites-in-new-window") === "true"
-          : true,
       },
       {
-        label: "Open Websites in the Same Window",
-        type: "radio",
+        label: "Close All Windows",
+        accelerator: "CmdOrCtrl+Shift+W",
         click: () => {
-          setValue("websites-in-new-window", "false");
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "Websites in New Windows",
-            message:
-              "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
-            buttons: ["OK"],
+          BrowserWindow.getAllWindows().forEach((window) => {
+            window.close();
           });
         },
-        checked: getValue("websites-in-new-window")
-          ? getValue("websites-in-new-window") === "false"
-          : false,
       },
       { type: "separator" },
       {
-        label: "Enable Discord RPC",
-        type: "checkbox",
+        label: "Share...",
         click: () => {
-          if (getValue("discordrpcstatus") === "true") {
-            setValue("discordrpcstatus", "false");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Discord RPC",
-              message: "Discord RPC has been disabled.",
-              buttons: ["OK"],
-            });
-            clearActivity();
-            return;
-          } else if (
-            getValue("discordrpcstatus") === "false" ||
-            getValue("discordrpcstatus") === undefined
-          ) {
-            setValue("discordrpcstatus", "true");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Discord RPC",
-              message: "Discord RPC has been enabled.",
-              buttons: ["OK"],
-            });
-            setActivity(
-              `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
-            );
-            return;
-          }
+          let sharemenu = new ShareMenu({
+            urls: [BrowserWindow.getFocusedWindow().webContents.getURL()],
+            texts: [BrowserWindow.getFocusedWindow().getTitle()],
+          });
+          sharemenu.popup();
         },
-        checked: getValue("discordrpcstatus") === "true",
       },
-      {
-        label: "Enable Auto Updates",
-        type: "checkbox",
-        click: () => {
-          if (getValue("autoupdater") === "true") {
-            setValue("autoupdater", "false");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Auto Updates",
-              message: "Auto updates have been disabled.",
-              buttons: ["OK"],
-            });
-            return;
-          } else if (
-            getValue("autoupdater") === "false" ||
-            getValue("autoupdater") === undefined
-          ) {
-            setValue("autoupdater", "true");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Auto Updates",
-              message: "Auto updates have been enabled.",
-              buttons: ["OK"],
-            });
-            return;
-          }
-        },
-        checked: getValue("autoupdater") === "true",
-      },
-      {
-        label: "Enable Dynamic Icons",
-        type: "checkbox",
-        click: () => {
-          if (getValue("dynamicicons") === "true") {
-            setValue("dynamicicons", "false");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Dynamic Icons",
-              message: "Dynamic icons have been disabled.",
-              buttons: ["OK"],
-            });
-            return;
-          } else if (
-            getValue("dynamicicons") === "false" ||
-            getValue("dynamicicons") === undefined
-          ) {
-            setValue("dynamicicons", "true");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Dynamic Icons",
-              message: "Dynamic icons have been enabled.",
-              buttons: ["OK"],
-            });
-            return;
-          }
-        },
-        checked: getValue("dynamicicons") === "true",
-      },
-      { type: "separator" },
-      {
-        label: "Block Ads and Trackers",
-        type: "checkbox",
-        click: () => {
-          if (getValue("blockadsandtrackers") === "true") {
-            setValue("blockadsandtrackers", "false");
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Block Ads and Trackers",
-              message: "Ads and trackers will no longer be blocked.",
-              buttons: ["OK"],
-            });
-            ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-              (blocker) => {
-                blocker.disableBlockingInSession(
-                  BrowserWindow.getFocusedWindow().webContents.session
-                );
-              }
-            );
-            return;
-          }
-          if (
-            getValue("blockadsandtrackers") === "false" ||
-            getValue("blockadsandtrackers") === undefined
-          ) {
-            setValue("blockadsandtrackers", "true");
-            ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-              (blocker) => {
-                blocker.enableBlockingInSession(
-                  BrowserWindow.getFocusedWindow().webContents.session
+    ],
+    ...(process.platform === "win32" || process.platform === "linux"
+      ? {
+          label:
+            process.platform === "darwin" ? "Preferences" : "MS-365-Electron",
+          submenu: [
+            ...(!process.platform === "darwin"
+              ? [
+                  {
+                    label: "About MS-365-Electron",
+                    click: () => {
+                      openAboutWindow({
+                        icon_path: path.join(__dirname, "../assets/about.png"),
+                        product_name: "MS-365-Electron",
+                        copyright:
+                          "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
+                        package_json_dir: __dirname + "/../",
+                        bug_report_url:
+                          "https://github.com/agam778/MS-365-Electron/issues/",
+                        bug_link_text: "Report an issue",
+                        adjust_window_size: "2",
+                        show_close_button: "Close",
+                      });
+                    },
+                  },
+                ]
+              : []),
+            ...(!process.platform === "darwin"
+              ? [
+                  {
+                    label: "Check for Updates...",
+                    id: "check-for-updates",
+                    click: async () => {
+                      await checkForUpdates();
+                    },
+                  },
+                ]
+              : []),
+            ...(!process.platform === "darwin" ? [{ type: "separator" }] : []),
+            ...(!process.platform === "darwin"
+              ? [
+                  {
+                    label: "Learn More",
+                    click: async () => {
+                      await openExternalLink(
+                        "https://github.com/agam778/MS-365-Electron"
+                      );
+                    },
+                  },
+                ]
+              : []),
+            ...(!process.platform === "darwin"
+              ? [
+                  {
+                    label: "Open Logs Folder",
+                    click: async () => {
+                      await openLogsFolder();
+                    },
+                  },
+                ]
+              : []),
+            { type: "separator" },
+            {
+              label: "Open Normal version of MS 365",
+              type: "radio",
+              click() {
+                setValue(
+                  "enterprise-or-normal",
+                  "https://microsoft365.com/?auth=1"
                 );
                 dialog.showMessageBoxSync({
                   type: "info",
-                  title: "Block Ads and Trackers",
-                  message: "Ads and trackers will now be blocked.",
+                  title: "Normal version of MS 365",
+                  message:
+                    "The normal version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
                   buttons: ["OK"],
                 });
-              }
-            );
-            return;
-          }
-        },
-        checked: getValue("blockadsandtrackers") === "true",
-      },
-      { type: "separator" },
-      {
-        label: "Windows User-Agent String",
-        type: "radio",
-        click: () => {
-          setUserAgent(useragents.Windows);
-        },
-        checked: getValue("useragentstring") === useragents.Windows,
-      },
-      {
-        label: "macOS User-Agent String",
-        type: "radio",
-        click: () => {
-          setUserAgent(useragents.macOS);
-        },
-        checked: getValue("useragentstring") === useragents.macOS,
-      },
-      {
-        label: "Linux User-Agent String",
-        type: "radio",
-        click: () => {
-          setValue("useragentstring", useragents.Linux);
-          dialog.showMessageBoxSync({
-            type: "info",
-            title: "User agent switcher",
-            message:
-              "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
-            buttons: ["OK"],
-          });
-        },
-        checked: getValue("useragentstring") === useragents.Linux,
-      },
-      { type: "separator" },
-      ...(!process.platform === "darwin"
-        ? [
+              },
+              checked:
+                getValue("enterprise-or-normal") ===
+                "https://microsoft365.com/?auth=1",
+            },
             {
-              role: "quit",
-              accelerator: "Ctrl+Q",
+              label: "Open Enterprise version of MS 365",
+              type: "radio",
+              click() {
+                setValue(
+                  "enterprise-or-normal",
+                  "https://microsoft365.com/?auth=2"
+                );
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Enterprise version of MS 365",
+                  message:
+                    "The enterprise version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
+                  buttons: ["OK"],
+                });
+              },
+              checked:
+                getValue("enterprise-or-normal") ===
+                "https://microsoft365.com/?auth=2",
+            },
+            { type: "separator" },
+            {
+              label: "Open Websites in New Windows (Recommended)",
+              type: "radio",
+              click: () => {
+                setValue("websites-in-new-window", "true");
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Websites in New Windows",
+                  message:
+                    "Websites which are targeted to open in new tabs will now open in new windows.",
+                  buttons: ["OK"],
+                });
+              },
+              checked: getValue("websites-in-new-window")
+                ? getValue("websites-in-new-window") === "true"
+                : true,
+            },
+            {
+              label: "Open Websites in the Same Window",
+              type: "radio",
+              click: () => {
+                setValue("websites-in-new-window", "false");
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "Websites in New Windows",
+                  message:
+                    "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
+                  buttons: ["OK"],
+                });
+              },
+              checked: getValue("websites-in-new-window")
+                ? getValue("websites-in-new-window") === "false"
+                : false,
+            },
+            { type: "separator" },
+            {
+              label: "Enable Discord RPC",
+              type: "checkbox",
+              click: () => {
+                if (getValue("discordrpcstatus") === "true") {
+                  setValue("discordrpcstatus", "false");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Discord RPC",
+                    message: "Discord RPC has been disabled.",
+                    buttons: ["OK"],
+                  });
+                  clearActivity();
+                  return;
+                } else if (
+                  getValue("discordrpcstatus") === "false" ||
+                  getValue("discordrpcstatus") === undefined
+                ) {
+                  setValue("discordrpcstatus", "true");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Discord RPC",
+                    message: "Discord RPC has been enabled.",
+                    buttons: ["OK"],
+                  });
+                  setActivity(
+                    `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
+                  );
+                  return;
+                }
+              },
+              checked: getValue("discordrpcstatus") === "true",
+            },
+            {
+              label: "Enable Auto Updates",
+              type: "checkbox",
+              click: () => {
+                if (getValue("autoupdater") === "true") {
+                  setValue("autoupdater", "false");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Auto Updates",
+                    message: "Auto updates have been disabled.",
+                    buttons: ["OK"],
+                  });
+                  return;
+                } else if (
+                  getValue("autoupdater") === "false" ||
+                  getValue("autoupdater") === undefined
+                ) {
+                  setValue("autoupdater", "true");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Auto Updates",
+                    message: "Auto updates have been enabled.",
+                    buttons: ["OK"],
+                  });
+                  return;
+                }
+              },
+              checked: getValue("autoupdater") === "true",
+            },
+            {
+              label: "Enable Dynamic Icons",
+              type: "checkbox",
+              click: () => {
+                if (getValue("dynamicicons") === "true") {
+                  setValue("dynamicicons", "false");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Dynamic Icons",
+                    message: "Dynamic icons have been disabled.",
+                    buttons: ["OK"],
+                  });
+                  return;
+                } else if (
+                  getValue("dynamicicons") === "false" ||
+                  getValue("dynamicicons") === undefined
+                ) {
+                  setValue("dynamicicons", "true");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Dynamic Icons",
+                    message: "Dynamic icons have been enabled.",
+                    buttons: ["OK"],
+                  });
+                  return;
+                }
+              },
+              checked: getValue("dynamicicons") === "true",
+            },
+            { type: "separator" },
+            {
+              label: "Block Ads and Trackers",
+              type: "checkbox",
+              click: () => {
+                if (getValue("blockadsandtrackers") === "true") {
+                  setValue("blockadsandtrackers", "false");
+                  dialog.showMessageBoxSync({
+                    type: "info",
+                    title: "Block Ads and Trackers",
+                    message: "Ads and trackers will no longer be blocked.",
+                    buttons: ["OK"],
+                  });
+                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+                    (blocker) => {
+                      blocker.disableBlockingInSession(
+                        BrowserWindow.getFocusedWindow().webContents.session
+                      );
+                    }
+                  );
+                  return;
+                }
+                if (
+                  getValue("blockadsandtrackers") === "false" ||
+                  getValue("blockadsandtrackers") === undefined
+                ) {
+                  setValue("blockadsandtrackers", "true");
+                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
+                    (blocker) => {
+                      blocker.enableBlockingInSession(
+                        BrowserWindow.getFocusedWindow().webContents.session
+                      );
+                      dialog.showMessageBoxSync({
+                        type: "info",
+                        title: "Block Ads and Trackers",
+                        message: "Ads and trackers will now be blocked.",
+                        buttons: ["OK"],
+                      });
+                    }
+                  );
+                  return;
+                }
+              },
+              checked: getValue("blockadsandtrackers") === "true",
+            },
+            { type: "separator" },
+            {
+              label: "Windows User-Agent String",
+              type: "radio",
+              click: () => {
+                setUserAgent(useragents.Windows);
+              },
+              checked: getValue("useragentstring") === useragents.Windows,
+            },
+            {
+              label: "macOS User-Agent String",
+              type: "radio",
+              click: () => {
+                setUserAgent(useragents.macOS);
+              },
+              checked: getValue("useragentstring") === useragents.macOS,
+            },
+            {
+              label: "Linux User-Agent String",
+              type: "radio",
+              click: () => {
+                setValue("useragentstring", useragents.Linux);
+                dialog.showMessageBoxSync({
+                  type: "info",
+                  title: "User agent switcher",
+                  message:
+                    "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
+                  buttons: ["OK"],
+                });
+              },
+              checked: getValue("useragentstring") === useragents.Linux,
+            },
+            { type: "separator" },
+            ...(!process.platform === "darwin"
+              ? [
+                  {
+                    role: "quit",
+                    accelerator: "Ctrl+Q",
+                  },
+                ]
+              : []),
+          ],
+        }
+      : {}),
+  },
+  {
+    label: "Edit",
+    submenu: [
+      { role: "undo" },
+      { role: "redo" },
+      { type: "separator" },
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      ...(process.platform === "darwin"
+        ? [
+            { role: "pasteAndMatchStyle" },
+            { role: "delete" },
+            { role: "selectAll" },
+            { type: "separator" },
+            {
+              label: "Speech",
+              submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
             },
           ]
-        : []),
+        : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
+    ],
+  },
+  {
+    label: "Navigation",
+    submenu: [
+      {
+        label: "Back",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.goBack();
+        },
+        accelerator: "Alt+Left",
+      },
+      {
+        label: "Forward",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.goForward();
+        },
+        accelerator: "Alt+Right",
+      },
+      {
+        label: "Reload",
+        click: () => {
+          BrowserWindow.getFocusedWindow().webContents.reload();
+        },
+        accelerator: "CmdOrCtrl+R",
+      },
+      {
+        label: "Home",
+        click: () => {
+          BrowserWindow.getFocusedWindow().loadURL(
+            `${getValue("enterprise-or-normal")}`
+          );
+        },
+      },
+    ],
+  },
+  {
+    label: "View",
+    submenu: [
+      { role: "reload" },
+      { role: "forceReload" },
+      { type: "separator" },
+      { role: "resetZoom" },
+      {
+        role: "zoomIn",
+        accelerator: process.platform === "darwin" ? "Control+=" : "Control+=",
+      },
+      { role: "zoomOut" },
+      { type: "separator" },
+      { role: "togglefullscreen" },
     ],
   },
   {
@@ -796,79 +1184,6 @@ const menulayout = [
           }
         },
       },
-    ],
-  },
-  {
-    label: "Navigation",
-    submenu: [
-      {
-        label: "Back",
-        click: () => {
-          BrowserWindow.getFocusedWindow().webContents.goBack();
-        },
-        accelerator: "AltOrOption+Left",
-      },
-      {
-        label: "Forward",
-        click: () => {
-          BrowserWindow.getFocusedWindow().webContents.goForward();
-        },
-        accelerator: "AltOrOption+Right",
-      },
-      {
-        label: "Reload",
-        click: () => {
-          BrowserWindow.getFocusedWindow().webContents.reload();
-        },
-        accelerator: "CmdOrCtrl+R",
-      },
-      {
-        label: "Home",
-        click: () => {
-          BrowserWindow.getFocusedWindow().loadURL(
-            `${getValue("enterprise-or-normal")}`
-          );
-        },
-      },
-    ],
-  },
-  {
-    label: "Edit",
-    submenu: [
-      { role: "undo" },
-      { role: "redo" },
-      { type: "separator" },
-      { role: "cut" },
-      { role: "copy" },
-      { role: "paste" },
-      ...(process.platform === "darwin"
-        ? [
-            { role: "pasteAndMatchStyle" },
-            { role: "delete" },
-            { role: "selectAll" },
-            { type: "separator" },
-            {
-              label: "Speech",
-              submenu: [{ role: "startSpeaking" }, { role: "stopSpeaking" }],
-            },
-          ]
-        : [{ role: "delete" }, { type: "separator" }, { role: "selectAll" }]),
-    ],
-  },
-  {
-    label: "View",
-    submenu: [
-      { role: "reload" },
-      { role: "forceReload" },
-      { type: "separator" },
-      { role: "resetZoom" },
-      {
-        role: "zoomIn",
-        accelerator: process.platform === "darwin" ? "Control+=" : "Control+=",
-      },
-      { role: "zoomOut" },
-      { type: "separator" },
-      { role: "togglefullscreen" },
     ],
   },
   {

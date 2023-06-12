@@ -394,7 +394,7 @@ const menulayout = [
                   checked: getValue("useragentstring") === useragents.Linux,
                 },
                 { type: "separator" },
-                ...(!process.platform === "darwin"
+                ...(process.platform === "win32" || process.platform === "linux"
                   ? [
                       {
                         role: "quit",
@@ -415,113 +415,49 @@ const menulayout = [
         },
       ]
     : []),
-  {
-    label: "File",
-    submenu: [
-      {
-        label: "New Window",
-        accelerator: "CmdOrCtrl+N",
-        click: () => {
-          let newWindow = new BrowserWindow({
-            width: 1181,
-            height: 670,
-            webPreferences: {
-              nodeIntegration: true,
-              devTools: true,
-            },
-          });
-          newWindow.loadURL(getValue("enterprise-or-normal"));
-        },
-      },
-      { type: "separator" },
-      {
-        label: "Close Window",
-        accelerator: "CmdOrCtrl+W",
-        click: () => {
-          BrowserWindow.getFocusedWindow().close();
-        },
-      },
-      {
-        label: "Close All Windows",
-        accelerator: "CmdOrCtrl+Shift+W",
-        click: () => {
-          BrowserWindow.getAllWindows().forEach((window) => {
-            window.close();
-          });
-        },
-      },
-      { type: "separator" },
-      {
-        label: "Share...",
-        click: () => {
-          let sharemenu = new ShareMenu({
-            urls: [BrowserWindow.getFocusedWindow().webContents.getURL()],
-            texts: [BrowserWindow.getFocusedWindow().getTitle()],
-          });
-          sharemenu.popup();
-        },
-      },
-    ],
-    ...(process.platform === "win32" || process.platform === "linux"
-      ? {
-          label:
-            process.platform === "darwin" ? "Preferences" : "MS-365-Electron",
+  ...(process.platform === "win32" || process.platform === "linux"
+    ? [
+        {
+          label: "MS-365-Electron",
           submenu: [
-            ...(!process.platform === "darwin"
-              ? [
-                  {
-                    label: "About MS-365-Electron",
-                    click: () => {
-                      openAboutWindow({
-                        icon_path: path.join(__dirname, "../assets/about.png"),
-                        product_name: "MS-365-Electron",
-                        copyright:
-                          "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
-                        package_json_dir: __dirname + "/../",
-                        bug_report_url:
-                          "https://github.com/agam778/MS-365-Electron/issues/",
-                        bug_link_text: "Report an issue",
-                        adjust_window_size: "2",
-                        show_close_button: "Close",
-                      });
-                    },
-                  },
-                ]
-              : []),
-            ...(!process.platform === "darwin"
-              ? [
-                  {
-                    label: "Check for Updates...",
-                    id: "check-for-updates",
-                    click: async () => {
-                      await checkForUpdates();
-                    },
-                  },
-                ]
-              : []),
-            ...(!process.platform === "darwin" ? [{ type: "separator" }] : []),
-            ...(!process.platform === "darwin"
-              ? [
-                  {
-                    label: "Learn More",
-                    click: async () => {
-                      await openExternalLink(
-                        "https://github.com/agam778/MS-365-Electron"
-                      );
-                    },
-                  },
-                ]
-              : []),
-            ...(!process.platform === "darwin"
-              ? [
-                  {
-                    label: "Open Logs Folder",
-                    click: async () => {
-                      await openLogsFolder();
-                    },
-                  },
-                ]
-              : []),
+            {
+              label: "About MS-365-Electron",
+              click: () => {
+                openAboutWindow({
+                  icon_path: path.join(__dirname, "../assets/about.png"),
+                  product_name: "MS-365-Electron",
+                  copyright:
+                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
+                  package_json_dir: __dirname + "/../",
+                  bug_report_url:
+                    "https://github.com/agam778/MS-365-Electron/issues/",
+                  bug_link_text: "Report an issue",
+                  adjust_window_size: "2",
+                  show_close_button: "Close",
+                });
+              },
+            },
+            {
+              label: "Check for Updates...",
+              click: async () => {
+                await checkForUpdates();
+              },
+            },
+            { type: "separator" },
+            {
+              label: "Learn More",
+              click: async () => {
+                await openExternalLink(
+                  "https://github.com/agam778/MS-365-Electron"
+                );
+              },
+            },
+            {
+              label: "Open Logs Folder",
+              click: async () => {
+                await openLogsFolder();
+              },
+            },
             { type: "separator" },
             {
               label: "Open Normal version of MS 365",
@@ -764,7 +700,7 @@ const menulayout = [
               checked: getValue("useragentstring") === useragents.Linux,
             },
             { type: "separator" },
-            ...(!process.platform === "darwin"
+            ...(process.platform === "win32" || process.platform === "linux"
               ? [
                   {
                     role: "quit",
@@ -773,8 +709,60 @@ const menulayout = [
                 ]
               : []),
           ],
-        }
-      : {}),
+        },
+      ]
+    : []),
+  {
+    label: "File",
+    submenu: [
+      {
+        label: "New Window",
+        accelerator: "CmdOrCtrl+N",
+        click: () => {
+          let newWindow = new BrowserWindow({
+            width: 1181,
+            height: 670,
+            webPreferences: {
+              nodeIntegration: true,
+              devTools: true,
+            },
+          });
+          newWindow.loadURL(getValue("enterprise-or-normal"));
+        },
+      },
+      { type: "separator" },
+      {
+        label: "Close Window",
+        accelerator: "CmdOrCtrl+W",
+        click: () => {
+          BrowserWindow.getFocusedWindow().close();
+        },
+      },
+      {
+        label: "Close All Windows",
+        accelerator: "CmdOrCtrl+Shift+W",
+        click: () => {
+          BrowserWindow.getAllWindows().forEach((window) => {
+            window.close();
+          });
+        },
+      },
+      ...(process.platform === "darwin" ? [{ type: "separator" }] : []),
+      ...(process.platform === "darwin"
+        ? [
+            {
+              label: "Share...",
+              click: () => {
+                let sharemenu = new ShareMenu({
+                  urls: [BrowserWindow.getFocusedWindow().webContents.getURL()],
+                  texts: [BrowserWindow.getFocusedWindow().getTitle()],
+                });
+                sharemenu.popup();
+              },
+            },
+          ]
+        : []),
+    ],
   },
   {
     label: "Edit",
@@ -1186,7 +1174,7 @@ const menulayout = [
       ...(process.platform === "darwin"
         ? [{ type: "separator" }, { role: "front" }, { type: "separator" }]
         : [{ role: "close" }]),
-      ...(!process.platform === "darwin"
+      ...(process.platform === "win32" || process.platform === "linux"
         ? [
             { type: "separator" },
             {

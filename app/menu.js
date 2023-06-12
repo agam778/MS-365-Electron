@@ -195,7 +195,7 @@ const menulayout = [
                 },
                 { type: "separator" },
                 {
-                  label: "Open Websites in New Windows (Recommended)",
+                  label: "Open Websites in New Windows",
                   type: "radio",
                   click: () => {
                     setValue("websites-in-new-window", "true");
@@ -220,7 +220,7 @@ const menulayout = [
                       type: "info",
                       title: "Websites in New Windows",
                       message:
-                        "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
+                        "Websites which are targeted to open in new tabs will now open in the same window.",
                       buttons: ["OK"],
                     });
                   },
@@ -569,7 +569,7 @@ const menulayout = [
             },
             { type: "separator" },
             {
-              label: "Open Websites in New Windows (Recommended)",
+              label: "Open Websites in New Windows",
               type: "radio",
               click: () => {
                 setValue("websites-in-new-window", "true");
@@ -594,7 +594,7 @@ const menulayout = [
                   type: "info",
                   title: "Websites in New Windows",
                   message:
-                    "Websites which are targeted to open in new tabs will now open in the same window.\n\nNote: This will be buggy in some cases if you are using Enterprise version of MS 365.",
+                    "Websites which are targeted to open in new tabs will now open in the same window.",
                   buttons: ["OK"],
                 });
               },

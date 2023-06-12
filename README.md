@@ -72,6 +72,13 @@ Supported Platforms
 
 # List of Features
 
+- Discord RPC
+- Dynamic Icons:
+  - For macOS: Change icon in dock according to the app you've opened [[Preview]](https://github-production-user-asset-6210df.s3.amazonaws.com/68941022/245203309-3d0dfc1b-02e9-43a8-85d7-9493a2b86b56.mp4)
+  - For Windows: Set overlay icon [[Preview]](https://github.com/agam778/MS-365-Electron/assets/68941022/791b661b-2b7d-43a6-96df-ee9c30c9b18a)
+  - For Linux: Nothing, yet
+- Block Ads within the app
+- Directly open apps from the menu
 - Ability to use useragent strings of Windows, macOS or Linux
 - Switch between normal and enterprise/education/developer account in the same app
 - Back, Forward, Reload, and Home buttons
@@ -104,6 +111,13 @@ For Installing this app on Mac :-
 1. Visit the [Releases](https://github.com/agam778/MS-365-Electron/releases) page
 2. Scroll down and click the `.dmg` file (according to your system architecture).
 3. After it downloads, click on the file and mount it on your system. Now drag my app to the Applications Folder (There will be a shortcut in the opened window too) and your app will be installed. Open from Launchpad and enjoy.
+
+## 📸 macOS Preview
+
+<details>
+<summary>Click to expand</summary>
+<img src="https://github.com/agam778/MS-365-Electron/assets/68941022/fcc24409-7e4b-4802-9f3f-a7c420c0edcb" alt="macOS Preview">
+</details>
 
 # Linux
 
@@ -158,10 +172,6 @@ For Installing in Red Hat/Fedora based distribution :-
     ```bash
     sudo emerge -a ms-office-electron
     ```
-
-## 📸 Ubuntu Preview
-
-[Click Here](https://github.com/agam778/MS-365-Electron/blob/main/assets/screenshots/ubuntu.png?raw=true)
 
 # 💻 Developing Locally
 To build the app locally:<br>

@@ -207,9 +207,7 @@ const menulayout = [
                       buttons: ["OK"],
                     });
                   },
-                  checked: getValue("websites-in-new-window")
-                    ? getValue("websites-in-new-window") === "true"
-                    : true,
+                  checked: getValue("websites-in-new-window") === "true",
                 },
                 {
                   label: "Open Websites in the Same Window",
@@ -224,9 +222,7 @@ const menulayout = [
                       buttons: ["OK"],
                     });
                   },
-                  checked: getValue("websites-in-new-window")
-                    ? getValue("websites-in-new-window") === "false"
-                    : false,
+                  checked: getValue("websites-in-new-window") === "false",
                 },
                 { type: "separator" },
                 {
@@ -581,9 +577,7 @@ const menulayout = [
                   buttons: ["OK"],
                 });
               },
-              checked: getValue("websites-in-new-window")
-                ? getValue("websites-in-new-window") === "true"
-                : true,
+              checked: getValue("websites-in-new-window") === "true",
             },
             {
               label: "Open Websites in the Same Window",
@@ -598,9 +592,7 @@ const menulayout = [
                   buttons: ["OK"],
                 });
               },
-              checked: getValue("websites-in-new-window")
-                ? getValue("websites-in-new-window") === "false"
-                : false,
+              checked: getValue("websites-in-new-window") === "false",
             },
             { type: "separator" },
             {

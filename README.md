@@ -119,6 +119,15 @@ For Installing this app on Mac :-
 <img src="https://github.com/agam778/MS-365-Electron/assets/68941022/fcc24409-7e4b-4802-9f3f-a7c420c0edcb" alt="macOS Preview">
 </details>
 
+## ⚠️ Unable to launch the app
+As MS-365-Electron is not signed, you might face this error:<br>
+<img width="372" src="https://github.com/agam778/MS-365-Electron/assets/68941022/c44c8eb8-055e-48f4-be5f-5479a70228a1">
+- For Intel Macs: Open the "Applications" Folder in Finder, right click "MS-365-Electron" and then click Open
+- For M series Macs: 
+  - Make sure you have placed the app in Applications
+  - Run this command: `sudo spctl --master-disable && xattr -cr /Applications/MS-365-Electron.app`
+  - Launch the app again
+
 # Linux
 
 ## 💿 Installation on Linux

@@ -135,7 +135,10 @@ app.on("web-contents-created", (event, contents) => {
         if (
           BrowserWindow.getFocusedWindow()
             .webContents.getURL()
-            .includes("&ithint=file%2cpptx")
+            .includes("&ithint=file%2cpptx") ||
+          BrowserWindow.getFocusedWindow()
+            .webContents.getTitle()
+            .includes(".pptx")
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
@@ -152,7 +155,10 @@ app.on("web-contents-created", (event, contents) => {
         } else if (
           BrowserWindow.getFocusedWindow()
             .webContents.getURL()
-            .includes("&ithint=file%2cdocx")
+            .includes("&ithint=file%2cdocx") ||
+          BrowserWindow.getFocusedWindow()
+            .webContents.getTitle()
+            .includes(".docx")
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
@@ -169,7 +175,10 @@ app.on("web-contents-created", (event, contents) => {
         } else if (
           BrowserWindow.getFocusedWindow()
             .webContents.getURL()
-            .includes("&ithint=file%2cxlsx")
+            .includes("&ithint=file%2cxlsx") ||
+          BrowserWindow.getFocusedWindow()
+            .webContents.getTitle()
+            .includes(".xlsx")
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
@@ -186,7 +195,10 @@ app.on("web-contents-created", (event, contents) => {
         } else if (
           BrowserWindow.getFocusedWindow()
             .webContents.getURL()
-            .includes("outlook.live.com")
+            .includes("outlook.live.com") ||
+          BrowserWindow.getFocusedWindow()
+            .webContents.getURL()
+            .includes("outlook.office.com")
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
@@ -203,7 +215,10 @@ app.on("web-contents-created", (event, contents) => {
         } else if (
           BrowserWindow.getFocusedWindow()
             .webContents.getURL()
-            .includes("onedrive.live.com")
+            .includes("onedrive.live.com") ||
+          BrowserWindow.getFocusedWindow()
+            .webContents.getURL()
+            .includes("onedrive.aspx")
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(

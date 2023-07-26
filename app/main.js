@@ -67,12 +67,6 @@ function createWindow() {
 ElectronDl({
   dlPath: "./downloads",
   onStarted: (item) => {
-    BrowserWindow.getAllWindows().forEach((window) => {
-      window.setOverlayIcon(
-        __dirname + "/assets/icons/download.png",
-        "Downloading"
-      );
-    });
     dialog.showMessageBox({
       type: "info",
       title: "Downloading File",
@@ -81,23 +75,12 @@ ElectronDl({
     });
   },
   onCompleted: () => {
-    BrowserWindow.getAllWindows().forEach((window) => {
-      window.setOverlayIcon(
-        __dirname + "/assets/icons/download-success.png",
-        "Download Successful"
-      );
-    });
     dialog.showMessageBox({
       type: "info",
       title: "Download Completed",
       message: `Downloading Completed! Please check your "Downloads" folder.`,
       buttons: ["OK"],
     });
-    setTimeout(() => {
-      BrowserWindow.getAllWindows().forEach((window) => {
-        window.setOverlayIcon(null, "");
-      });
-    }, 7000);
   },
   onError: (item) => {
     dialog.showMessageBox({
@@ -106,17 +89,6 @@ ElectronDl({
       message: `Downloading "${item.getFilename()}" failed :(`,
       buttons: ["OK"],
     });
-    BrowserWindow.getAllWindows().forEach((window) => {
-      window.setOverlayIcon(
-        __dirname + "/download-fail.png",
-        "Download Failed"
-      );
-    });
-    setTimeout(() => {
-      BrowserWindow.getAllWindows().forEach((window) => {
-        window.setOverlayIcon(null, "");
-      });
-    }, 7000);
   },
 });
 

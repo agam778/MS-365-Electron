@@ -109,7 +109,11 @@ app.on("web-contents-created", (event, contents) => {
       if (url.includes("page=Download")) {
         return { action: "allow" };
       } else {
-        BrowserWindow.getFocusedWindow().loadURL(url);
+        BrowserWindow.getFocusedWindow()
+          .loadURL(url)
+          .catch((err) => {
+            // do not show error
+          });
         if (getValue("discordrpcstatus") === "true") {
           setActivity(
             `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`

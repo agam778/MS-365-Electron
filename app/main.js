@@ -38,7 +38,6 @@ function createWindow() {
     height: 610,
     transparent: true,
     frame: false,
-    alwaysOnTop: true,
     icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
   });
 

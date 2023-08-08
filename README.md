@@ -18,9 +18,6 @@
 <a href="https://github.com/agam778/MS-365-Electron/releases/">
  <img align="center" src="https://img.shields.io/github/downloads/agam778/MS-365-Electron/total?label=Downloads&style=style=flat">
  </a>
- <a href="https://github.com/agam778/MS-365-Electron/releases/latest/">
- <img align="center" src="https://img.shields.io/github/downloads/agam778/MS-365-Electron/latest/total?label=Downloads%40Latest">
- </a>
  <a href="https://github.com/agam778/MS-365-Electron/actions/workflows/build.yml">
   <img align="center" src="https://github.com/agam778/MS-365-Electron/actions/workflows/build.yml/badge.svg">
  </a>

@@ -84,5 +84,5 @@
     "electron-updater": "^6.1.4",
     "node-gyp": "^9.4.0"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.3"
 }

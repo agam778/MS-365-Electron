@@ -539,13 +539,12 @@ __metadata:
   linkType: hard
 
 "@xhayper/discord-rpc@npm:^1.0.21":
-  version: 1.0.22
-  resolution: "@xhayper/discord-rpc@npm:1.0.22"
+  version: 1.1.1
+  resolution: "@xhayper/discord-rpc@npm:1.1.1"
   dependencies:
-    axios: ^1.4.0
-    discord-api-types: ^0.37.52
-    ws: ^8.13.0
-  checksum: c35daa23fe9514392606d09a12e2104b00390106dc800137b440586019db3c6bd702050dfd946f4a88d4ff1e2a04e41b87254faf4ec6ec5f9c00b5620f034b2c
+    axios: ^1.6.2
+    ws: ^8.14.2
+  checksum: f3e6e3337a453801e5990c996f2ac6e7d138e752b8a8e35840ea4e0c6d59f6e15ad5d0ade993ff055f232e7525afe6c3b5a3012816338aaf30b67d91c2ca9396
   languageName: node
   linkType: hard
 
@@ -820,7 +819,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.4.0":
+"axios@npm:^1.4.0, axios@npm:^1.6.2":
   version: 1.6.2
   resolution: "axios@npm:1.6.2"
   dependencies:
@@ -1323,13 +1322,6 @@ __metadata:
     buffer-equal: ^1.0.0
     minimatch: ^3.0.4
   checksum: 05e7381509b17cb4e6791bd9569c12ce4267f44b1ee36594946ed895ed7ad24da9285130dc42af3a60707d58c76307bb3a1cbae2acd0a9cce8c74664e6a26828
-  languageName: node
-  linkType: hard
-
-"discord-api-types@npm:^0.37.52":
-  version: 0.37.52
-  resolution: "discord-api-types@npm:0.37.52"
-  checksum: ecd62d054bac7517e58c3229f4f126e88fc228acfadd42cd4121702ae0c60fab809955f195aa49efd381a00e6e99a9c1b86d90157a2cf04d632bf5b6ab5d4d94
   languageName: node
   linkType: hard
 
@@ -4101,9 +4093,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.13.0":
-  version: 8.13.0
-  resolution: "ws@npm:8.13.0"
+"ws@npm:^8.14.2":
+  version: 8.14.2
+  resolution: "ws@npm:8.14.2"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -4112,7 +4104,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
+  checksum: 3ca0dad26e8cc6515ff392b622a1467430814c463b3368b0258e33696b1d4bed7510bc7030f7b72838b9fdeb8dbd8839cbf808367d6aae2e1d668ce741d4308b
   languageName: node
   linkType: hard
 

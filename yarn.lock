@@ -917,16 +917,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"builder-util-runtime@npm:9.2.1":
-  version: 9.2.1
-  resolution: "builder-util-runtime@npm:9.2.1"
-  dependencies:
-    debug: ^4.3.4
-    sax: ^1.2.4
-  checksum: 6933e086b8ff9902cbd6d4c08d21d4a0437663ac849bc0939ec20a59cb2b084d7ab655c4dc2c71f854e77da152ff1f8e1240372665cb70e7b954afbfbf4d525a
-  languageName: node
-  linkType: hard
-
 "builder-util-runtime@npm:9.2.3":
   version: 9.2.3
   resolution: "builder-util-runtime@npm:9.2.3"
@@ -1495,10 +1485,10 @@ __metadata:
   linkType: hard
 
 "electron-updater@npm:^6.1.4":
-  version: 6.1.4
-  resolution: "electron-updater@npm:6.1.4"
+  version: 6.1.7
+  resolution: "electron-updater@npm:6.1.7"
   dependencies:
-    builder-util-runtime: 9.2.1
+    builder-util-runtime: 9.2.3
     fs-extra: ^10.1.0
     js-yaml: ^4.1.0
     lazy-val: ^1.0.5
@@ -1506,7 +1496,7 @@ __metadata:
     lodash.isequal: ^4.5.0
     semver: ^7.3.8
     tiny-typed-emitter: ^2.1.0
-  checksum: 39d67a24103c24c75e8f0dd172c6f3bae71aa3b9e7b120ba7ce1838981b92f55b616e05b97c529da3db4e28e9db4ac749de450c2fb4d25f119671adfb08e3bd9
+  checksum: 84ca265df837620a991d2d1eeb84a5bc06a5b5373f7bbfeb3bd9efe48873c1c6b6a21b783a3ccb5d175aa4d4cc6dd40542469bf7ad51a6b1311e63cd6ed922f3
   languageName: node
   linkType: hard
 

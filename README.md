@@ -1,5 +1,5 @@
-<p align="center"><img src="https://github.com/agam778/MS-365-Electron/blob/main/assets/banner.png?raw=true" alt="Intro Image"></p>
-<p align="center">Thanks a lot to <a href="https://t.me/NextWorksGFX">@NextWorksGFX</a> for this amazing banner!</p>
+<p align="center"><img src="https://github.com/agam778/MS-365-Electron/blob/main/assets/banner.png?raw=true" alt="Credits: "></p>
+<p align="center">Thanks to <a href="https://t.me/NextWorksGFX">@NextWorksGFX</a> for this amazing banner!</p>
 <p align="center">Unofficial Microsoft 365 Web Desktop Wrapper made with Electron</p>
 
 <p align="center">
@@ -39,32 +39,29 @@
   - [💿 Installation on Linux](#-installation-on-linux)
     - [Installation on Ubuntu/Debian based distributions](#installation-on-ubuntudebian-based-distributions)
     - [Installation on Red Hat/Fedora based distributions](#installation-on-red-hatfedora-based-distributions)
-    - [Installation on Arch/Manjaro Linux based distributions](#installation-on-archmanjaro-linux-based-distributions)
-    - [Installation on Gentoo Linux](#installation-on-gentoo-linux)
+    - [Installation on Arch Linux based distributions](#installation-on-arch-linux-based-distributions)
+    - [Installation on Gentoo Linux (Unmaintained)](#installation-on-gentoo-linux-unmaintained)
 - [💻 Developing Locally](#-developing-locally)
 - [📃 MIT License](#-mit-license)
-      - [*Disclaimer: Not affiliated with Microsoft. Office, the name, website, images/icons are the intellectual properties of Microsoft.*](#disclaimer-not-affiliated-with-microsoft-office-the-name-website-imagesicons-are-the-intellectual-properties-of-microsoft)
 
 # Introduction
 
-This project is basically a Desktop wrapper for the web version of [Microsoft 365](https://microsoft365.com), which is free but with some basic limits.
+MS-365-Electron streamlines your workflow by offering a dedicated desktop interface for the free, web-based version of [Microsoft 365](https://microsoft365.com). Think of it as a convenient launchpad for web applications like Word, Excel, and PowerPoint, eliminating the need to navigate through browser tabs.
 
 I initially made this project because I wanted to use Microsoft 365 on my Linux system with a native experience. Later, I decided to make it public so that others can enjoy this too!
 
-Don't expect this to be a full-fledged Microsoft 365 Desktop Suite (like we have for Windows/macOS), it's just a wrapper of the web version of Microsoft 365.
+This is not a full-fledged Microsoft 365 Suite, but just a web wrapper for Microsoft 365 Web, made with Electron.
 
-Note - Windows Hello or Sign in with Security key is **not** supported and will show you an error. You will have to manually sign in with your E-Mail and Password.
-
-***Do Expect bugs***
+***Do expect bugs***
 
 Supported Platforms
 
-1. Windows x64 (EXE File)
-2. macOS x64 (DMG File)
+1. Windows - x64 (EXE File)
+2. macOS - x64 and M-series Macs (DMG File)
 3. Ubuntu/Debian based distributions (DEB File)
 4. Red Hat Linux/Fedora based distributions (RPM File)
-5. Arch/Manjaro Linux based distributions (Uploaded on AUR)
-6. Gentoo Linux (Unofficial overlay)
+5. Arch Linux based distributions (Uploaded on AUR)
+6. Gentoo Linux (Unofficial overlay) **[MAINTAINER NEEDED]**
 7. All Distributions supporting AppImage (AppImage File); and
 8. All Distributions supporting Snap (Uploaded on Snap Store)
 
@@ -72,10 +69,10 @@ Supported Platforms
 
 - Discord RPC
 - Dynamic Icons:
-  - For macOS: Change icon in dock according to the app you've opened [[Preview]](https://github-production-user-asset-6210df.s3.amazonaws.com/68941022/245203309-3d0dfc1b-02e9-43a8-85d7-9493a2b86b56.mp4)
-  - For Windows: Set overlay icon [[Preview]](https://github.com/agam778/MS-365-Electron/assets/68941022/791b661b-2b7d-43a6-96df-ee9c30c9b18a)
+  - For macOS: App's icon in dock changes according to the app you've opened [[Preview]](https://github-production-user-asset-6210df.s3.amazonaws.com/68941022/245203309-3d0dfc1b-02e9-43a8-85d7-9493a2b86b56.mp4)
+  - For Windows: Sets overlay icon [[Preview]](https://github.com/agam778/MS-365-Electron/assets/68941022/791b661b-2b7d-43a6-96df-ee9c30c9b18a)
   - For Linux: Nothing, yet
-- Block Ads within the app
+- Block Ads and Trackers within the app, preventing ads in websites like Outlook
 - Directly open apps from the menu
 - Ability to use useragent strings of Windows, macOS or Linux
 - Switch between normal and enterprise/education/developer account in the same app
@@ -150,9 +147,9 @@ For Installing in Red Hat/Fedora based distribution :-
 2) Scroll down and click the `.rpm` file to download it.
 3) Then run the rpm file and click Install to install the App. Launch it from the Applications Menu.
 
-### Installation on Arch/Manjaro Linux based distributions
+### Installation on Arch Linux based distributions
 
-1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay)
+1. Install any AUR helper like [`yay`](https://github.com/Jguer/yay) or [paru](https://github.com/Morganamilo/paru)
 
 2. There are 2 packages in the AUR
    - `ms-365-electron-bin`: For installing pre-built releases
@@ -166,7 +163,9 @@ For Installing in Red Hat/Fedora based distribution :-
 
 4. Wait for it to install and tada! The app is installed.
 
-### Installation on Gentoo Linux
+### Installation on Gentoo Linux (Unmaintained)
+
+_Maintainer needed_
 
 1. This is supported by an ebuild uploaded on my unofficial overlay. First, enable the overlay on your system:
 
@@ -191,16 +190,10 @@ yarn install
 ```
 ```bash
 $ yarn run
-yarn run v1.22.18
-info Commands available from binary scripts: asar, dircompare, ejs, electron, electron-builder, electron-osx-flat, electron-osx-sign, extract-zip, install-app-deps, is-ci, jake, js-yaml, json5, mime, mkdirp, node-which, rc, rimraf, semver
-info Project commands
-   - dist
-      electron-builder
-   - pack
-      electron-builder --dir
-   - start
-      electron .
-question Which command would you like to run?:
+➤ YN0000: start   'electron .'
+➤ YN0000: pack    'electron-builder --dir'
+➤ YN0000: dist    'electron-builder'
+➤ YN0000: Done in 0s 2ms
 ```
 
 To start the app, run `yarn start`<br>
@@ -208,4 +201,6 @@ To build the app, run `yarn dist`
 
 # 📃 MIT License
 
-#### *Disclaimer: Not affiliated with Microsoft. Office, the name, website, images/icons are the intellectual properties of Microsoft.*
+View the [LICENSE](./LICENSE)
+
+*Disclaimer: Not affiliated with Microsoft. Office, the name, website, images/icons are the intellectual properties of Microsoft.*

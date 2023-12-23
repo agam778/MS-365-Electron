@@ -281,6 +281,11 @@ app.on("web-contents-created", (event, contents) => {
 });
 
 app.on("browser-window-created", (event, window) => {
+  if (getValue("autohide-menubar") === "true") {
+    window.setAutoHideMenuBar(true);
+  } else {
+    window.setAutoHideMenuBar(false);
+  }
   window.webContents.on("did-finish-load", () => {
     if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${window.webContents.getTitle()}"`);

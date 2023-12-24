@@ -1469,9 +1469,9 @@ __metadata:
   linkType: hard
 
 "electron-log@npm:^5.0.0-beta.25":
-  version: 5.0.1
-  resolution: "electron-log@npm:5.0.1"
-  checksum: c235094cfcef03988754dbfa8900a3ec433e9d6c08dba7234688696ba3a5f94a983ec28e01eea4042344071e7313ac8ce723f6d99e2208d9054e9c337ba4227d
+  version: 5.0.2
+  resolution: "electron-log@npm:5.0.2"
+  checksum: 97349b7bbc722de00035345c04a0db5c7044b0b342072640ad0343cc203cfd43eda1a772beedd2fa6bd627f80bda2e44cc9649d8b9d677f54aca0a9e40208a16
   languageName: node
   linkType: hard
 

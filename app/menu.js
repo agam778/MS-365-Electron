@@ -103,6 +103,7 @@ function setUserAgent(useragent) {
 }
 
 getValueOrDefault("enterprise-or-normal", "https://microsoft365.com/?auth=1");
+getValueOrDefault("websites-in-new-window", "true");
 getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
 getValueOrDefault("discordrpcstatus", "false");

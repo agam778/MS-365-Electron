@@ -880,8 +880,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -900,8 +900,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -926,8 +926,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -948,8 +948,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -976,8 +976,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -998,8 +998,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1026,8 +1026,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1046,8 +1046,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1074,8 +1074,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1096,8 +1096,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1124,8 +1124,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1146,8 +1146,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1172,8 +1172,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -1192,8 +1192,8 @@ const menulayout = [
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
-                width: 800,
-                height: 600,
+                width: 1081,
+                height: 570,
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,

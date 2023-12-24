@@ -759,7 +759,11 @@ const menulayout = [
         label: "Close Window",
         accelerator: "CmdOrCtrl+W",
         click: () => {
-          BrowserWindow.getFocusedWindow().close();
+          try {
+            BrowserWindow.getFocusedWindow().close();
+          } catch {
+            return;
+          }
         },
       },
       {

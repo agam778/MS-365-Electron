@@ -722,18 +722,35 @@ const menulayout = [
     label: "File",
     submenu: [
       {
-        label: "New Window",
+        label: "New Window (Personal)",
         accelerator: "CmdOrCtrl+N",
         click: () => {
           let newWindow = new BrowserWindow({
-            width: 1181,
-            height: 670,
+            width: 1081,
+            height: 570,
             webPreferences: {
               nodeIntegration: true,
               devTools: true,
+              partition: "persist:personal",
             },
           });
-          newWindow.loadURL(getValue("enterprise-or-normal"));
+          newWindow.loadURL("https://microsoft365.com/?auth=1");
+        },
+      },
+      {
+        label: "New Window (Work/School)",
+        accelerator: "CmdOrCtrl+Shift+N",
+        click: () => {
+          let newWindow = new BrowserWindow({
+            width: 1081,
+            height: 570,
+            webPreferences: {
+              nodeIntegration: true,
+              devTools: true,
+              partition: "persist:work",
+            },
+          });
+          newWindow.loadURL("https://microsoft365.com/?auth=2");
         },
       },
       { type: "separator" },
@@ -868,6 +885,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               wordwindow.loadURL("https://microsoft365.com/launch/word?auth=2");
@@ -887,6 +905,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               wordwindow.loadURL("https://microsoft365.com/launch/word?auth=1");
@@ -912,6 +931,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               excelwindow.loadURL(
@@ -933,6 +953,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               excelwindow.loadURL(
@@ -960,6 +981,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               powerpointwindow.loadURL(
@@ -981,6 +1003,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               powerpointwindow.loadURL(
@@ -1008,6 +1031,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               outlookwindow.loadURL("https://outlook.office.com/mail/");
@@ -1027,6 +1051,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               outlookwindow.loadURL(
@@ -1054,6 +1079,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               onedrivewindow.loadURL(
@@ -1075,6 +1101,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               onedrivewindow.loadURL(
@@ -1102,6 +1129,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               onenotewindow.loadURL(
@@ -1123,6 +1151,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               onenotewindow.loadURL("https://www.onenote.com/notebooks?auth=1");
@@ -1148,6 +1177,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:work",
                 },
               });
               allappswindow.loadURL("https://www.microsoft365.com/apps?auth=2");
@@ -1167,6 +1197,7 @@ const menulayout = [
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
+                  partition: "persist:personal",
                 },
               });
               allappswindow.loadURL("https://www.microsoft365.com/apps?auth=1");

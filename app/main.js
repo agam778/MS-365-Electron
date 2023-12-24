@@ -16,16 +16,33 @@ console.log = log.log;
 Object.assign(console, log.functions);
 
 function createWindow() {
-  const win = new BrowserWindow({
-    width: 1181,
-    height: 670,
-    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
-    show: false,
-    webPreferences: {
-      nodeIntegration: true,
-      devTools: true,
-    },
-  });
+  if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
+    var win = new BrowserWindow({
+      width: 1181,
+      height: 670,
+      icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+      show: false,
+      webPreferences: {
+        nodeIntegration: true,
+        devTools: true,
+        partition: "persist:personal",
+      },
+    });
+  } else if (
+    getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2"
+  ) {
+    var win = new BrowserWindow({
+      width: 1181,
+      height: 670,
+      icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+      show: false,
+      webPreferences: {
+        nodeIntegration: true,
+        devTools: true,
+        partition: "persist:work",
+      },
+    });
+  }
 
   if (getValue("autohide-menubar") === "true") {
     win.setAutoHideMenuBar(true);

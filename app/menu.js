@@ -160,7 +160,7 @@ const menulayout = [
               label: "Preferences",
               submenu: [
                 {
-                  label: "Open Normal version of MS 365",
+                  label: "Open MS 365 with Personal Account",
                   type: "radio",
                   click() {
                     setValue(
@@ -169,9 +169,9 @@ const menulayout = [
                     );
                     dialog.showMessageBoxSync({
                       type: "info",
-                      title: "Normal version of MS 365",
+                      title: "MS 365 with Personal Account",
                       message:
-                        "The normal version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
+                        "MS 365 will now open with your Personal Account.\n\nPlease restart the app to apply the changes.",
                       buttons: ["OK"],
                     });
                   },
@@ -180,7 +180,7 @@ const menulayout = [
                     "https://microsoft365.com/?auth=1",
                 },
                 {
-                  label: "Open Enterprise version of MS 365",
+                  label: "Open MS 365 with Work/School Account",
                   type: "radio",
                   click() {
                     setValue(
@@ -189,9 +189,9 @@ const menulayout = [
                     );
                     dialog.showMessageBoxSync({
                       type: "info",
-                      title: "Enterprise version of MS 365",
+                      title: "MS 365 with Work/School Account",
                       message:
-                        "The enterprise version of MS 365 will be opened.\n\nPlease restart the app to apply the changes.",
+                        "MS 365 will now open with your Work/School account.\n\nPlease restart the app to apply the changes.",
                       buttons: ["OK"],
                     });
                   },

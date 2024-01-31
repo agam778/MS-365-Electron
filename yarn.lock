@@ -717,9 +717,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app-builder-lib@npm:24.11.0":
-  version: 24.11.0
-  resolution: "app-builder-lib@npm:24.11.0"
+"app-builder-lib@npm:24.12.0":
+  version: 24.12.0
+  resolution: "app-builder-lib@npm:24.12.0"
   dependencies:
     "@develar/schema-utils": "npm:~2.6.5"
     "@electron/notarize": "npm:2.1.0"
@@ -748,7 +748,7 @@ __metadata:
     semver: "npm:^7.3.8"
     tar: "npm:^6.1.12"
     temp-file: "npm:^3.4.0"
-  checksum: 88f0d166e2f91fb879d490da6f1fe9818c5706ebbd6e67de3bd2aaf45d96b2ab84878dc8a2cbfdab088d10dc054cb0494408a2db29ff33ca03ae1d9f01f1dc75
+  checksum: e0d1c691eb079f3798de82e1c2ec4b5a624a6c0ddde560b7b82fd016f32feb5ba9ca94aaa42ff7b133f29da20383ad59913b776a20be9f734fb04e0981bd3c73
   languageName: node
   linkType: hard
 
@@ -1331,11 +1331,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dmg-builder@npm:24.11.0":
-  version: 24.11.0
-  resolution: "dmg-builder@npm:24.11.0"
+"dmg-builder@npm:24.12.0":
+  version: 24.12.0
+  resolution: "dmg-builder@npm:24.12.0"
   dependencies:
-    app-builder-lib: "npm:24.11.0"
+    app-builder-lib: "npm:24.12.0"
     builder-util: "npm:24.9.4"
     builder-util-runtime: "npm:9.2.3"
     dmg-license: "npm:^1.0.11"
@@ -1345,7 +1345,7 @@ __metadata:
   dependenciesMeta:
     dmg-license:
       optional: true
-  checksum: 573381d99c5212439e038ce049e5ee9a455f1f4c25ba49e71f0f309d807b5f74c4c6227274ee43c61d5315ad7e71f12765eb92941fd24199f4b999baf57e0290
+  checksum: d87da0ac8e8bd691300f242a52500f98a1564ce052fff9f8364f4403888a96f7b50eb021d2038f54c71c9b3850471ddf53093741afdeb1ab608a978baab79457
   languageName: node
   linkType: hard
 
@@ -1418,14 +1418,14 @@ __metadata:
   linkType: hard
 
 "electron-builder@npm:^24.6.3":
-  version: 24.11.0
-  resolution: "electron-builder@npm:24.11.0"
+  version: 24.12.0
+  resolution: "electron-builder@npm:24.12.0"
   dependencies:
-    app-builder-lib: "npm:24.11.0"
+    app-builder-lib: "npm:24.12.0"
     builder-util: "npm:24.9.4"
     builder-util-runtime: "npm:9.2.3"
     chalk: "npm:^4.1.2"
-    dmg-builder: "npm:24.11.0"
+    dmg-builder: "npm:24.12.0"
     fs-extra: "npm:^10.1.0"
     is-ci: "npm:^3.0.0"
     lazy-val: "npm:^1.0.5"
@@ -1435,7 +1435,7 @@ __metadata:
   bin:
     electron-builder: cli.js
     install-app-deps: install-app-deps.js
-  checksum: 8f8e58aad4e34869052978302d449b780ae44027b84fdadbc28ece429d294f9137a960a3652133a10549a9b678b5036a7b8b9a7418bc3fa8ebbb52f96f7a3ff8
+  checksum: 4cbfd54dbd557f4900ba0e66b8916f003fce6e6354d2028fa09bf6d5766cf54a1f935ec394b6e6c968f18ed2c6d07f948d45c72e55720f3b17e7e381a3647697
   languageName: node
   linkType: hard
 

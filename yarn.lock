@@ -1451,13 +1451,13 @@ __metadata:
   linkType: hard
 
 "electron-dl@npm:^3.2.1, electron-dl@npm:^3.5.0":
-  version: 3.5.1
-  resolution: "electron-dl@npm:3.5.1"
+  version: 3.5.2
+  resolution: "electron-dl@npm:3.5.2"
   dependencies:
     ext-name: "npm:^5.0.0"
     pupa: "npm:^2.0.1"
     unused-filename: "npm:^2.1.0"
-  checksum: 10c0/2ca9182fb4d101b564a454b2056483bfe241bdeb4fe611f0fdd4592eca9bc3a9043b0548190a55b04f52b203de27bfdde27179f5ab6cd191569e80ae574e8fb3
+  checksum: 10c0/1141188c66b187917050cca1954d2abc9922b6687efc81d85a4e9c8c14948a64791c338d9713f48133666db71fd464113d4661e886ed92f2f469eda5c6eaafa1
   languageName: node
   linkType: hard
 

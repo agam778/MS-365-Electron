@@ -1491,12 +1491,12 @@ __metadata:
   linkType: hard
 
 "electron-store@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "electron-store@npm:8.1.0"
+  version: 8.2.0
+  resolution: "electron-store@npm:8.2.0"
   dependencies:
     conf: "npm:^10.2.0"
     type-fest: "npm:^2.17.0"
-  checksum: 10c0/19963178850a564baa29532da09475a9253b555d7821a391832ff46bec42639409d52cc52fd527d9803413a61d0809ecc8d8a8f743e480677736baee7714f253
+  checksum: 10c0/a4d19827e96ab67bf6c2a375910f51b147b23f4a0468da5cfeeb069acdfdbcd3a9f5650248a62a05aa0967149e4d1c47f2d0ba7582205e5eb38952c93b6882e1
   languageName: node
   linkType: hard
 

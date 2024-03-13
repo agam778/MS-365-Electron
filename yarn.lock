@@ -489,10 +489,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.18":
-  version: 18.16.16
-  resolution: "@types/node@npm:18.16.16"
-  checksum: 10c0/880d80f98ea4ab443dbb7af06e778dd4058e7c005f76cd36329dfe76296852388571b7948996342e26b8636b851407aac7eb1543de965c182af4e43242edf769
+"@types/node@npm:^20.9.0":
+  version: 20.11.19
+  resolution: "@types/node@npm:20.11.19"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10c0/f451ef0a1d78f29c57bad7b77e49ebec945f2a6d0d7a89851d7e185ee9fe7ad94d651c0dfbcb7858c9fa791310c8b40a881e2260f56bd3c1b7e7ae92723373ae
   languageName: node
   linkType: hard
 
@@ -1516,16 +1518,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron@npm:^28.0.0":
-  version: 28.2.2
-  resolution: "electron@npm:28.2.2"
+"electron@npm:^29.0.0":
+  version: 29.0.0
+  resolution: "electron@npm:29.0.0"
   dependencies:
     "@electron/get": "npm:^2.0.0"
-    "@types/node": "npm:^18.11.18"
+    "@types/node": "npm:^20.9.0"
     extract-zip: "npm:^2.0.1"
   bin:
     electron: cli.js
-  checksum: 10c0/1bdcec2274f719f7a471530b9df8db0f70a73df9a6a64c9f568cd0dad33103e374b2fa135bcd38e7886576be76e9518a2409b5f3ee26709454cd19c0b67b2025
+  checksum: 10c0/0af7ae45225ad117130e43cbd08db3e5f42aed2a74ee329b4a65df63728793d3d7322c2db7eaffbbfa198aa1d092012bd07414fbb305e00bdf3a2762ce7bd043
   languageName: node
   linkType: hard
 
@@ -2940,7 +2942,7 @@ __metadata:
     axios: "npm:^1.4.0"
     check-internet-connected: "npm:^2.0.6"
     cross-fetch: "npm:^4.0.0"
-    electron: "npm:^28.0.0"
+    electron: "npm:^29.0.0"
     electron-builder: "npm:^24.6.3"
     electron-context-menu: "npm:^3.6.1"
     electron-dl: "npm:^3.5.0"
@@ -3954,6 +3956,13 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/e3333f887c6829dfe0ab6c1dbe0dd1e3e2aeb56c66460cb85c5440c566f900c833d370ca34eb47558c0c69e78ced4bfe09b8f4f98b6de7afed9b84b8d1dd06a1
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 10c0/bb673d7876c2d411b6eb6c560e0c571eef4a01c1c19925175d16e3a30c4c428181fb8d7ae802a261f283e4166a0ac435e2f505743aa9e45d893f9a3df017b501
   languageName: node
   linkType: hard
 

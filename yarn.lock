@@ -1522,15 +1522,15 @@ __metadata:
   linkType: hard
 
 "electron@npm:^29.0.0":
-  version: 29.1.4
-  resolution: "electron@npm:29.1.4"
+  version: 29.1.5
+  resolution: "electron@npm:29.1.5"
   dependencies:
     "@electron/get": "npm:^2.0.0"
     "@types/node": "npm:^20.9.0"
     extract-zip: "npm:^2.0.1"
   bin:
     electron: cli.js
-  checksum: 10c0/aa74131a22399026e041d2ea2b47827b7707b3f2daba72b4058047b48e88edbb08a472f4babe13b83bc47d269470a8d9bc7dae02cbd3fef64924d347558a32e8
+  checksum: 10c0/eeb04b2500edffaec6d5a58ab92a2df57315537502860f2e02f67559d121f3f87ab449ceccf4628bee491911e479ce76707bdc79d46e27a960bf3463c47c0d44
   languageName: node
   linkType: hard
 

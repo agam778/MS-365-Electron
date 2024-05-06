@@ -77,7 +77,7 @@
     "axios": "^1.4.0",
     "check-internet-connected": "^2.0.6",
     "cross-fetch": "^4.0.0",
-    "electron-context-menu": "^3.6.1",
+    "electron-context-menu": "^4.0.0",
     "electron-dl": "^4.0.0",
     "electron-log": "^5.0.0-beta.25",
     "electron-store": "^9.0.0",

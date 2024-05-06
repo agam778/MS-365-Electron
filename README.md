@@ -40,6 +40,8 @@
     - [Installation on Ubuntu/Debian based distributions](#installation-on-ubuntudebian-based-distributions)
     - [Installation on Red Hat/Fedora based distributions](#installation-on-red-hatfedora-based-distributions)
     - [Installation on Arch Linux based distributions](#installation-on-arch-linux-based-distributions)
+    - [Installation on Void Linux](#installation-on-void-linux)
+      - [Maintained by: @xHyroM](#maintained-by-xhyrom)
     - [Installation on Gentoo Linux (Unmaintained)](#installation-on-gentoo-linux-unmaintained)
 - [💻 Developing Locally](#-developing-locally)
 - [📃 MIT License](#-mit-license)
@@ -162,6 +164,29 @@ For Installing in Red Hat/Fedora based distribution :-
    To install the package accordingly.
 
 4. Wait for it to install and tada! The app is installed.
+
+### Installation on Void Linux
+#### Maintained by: [@xHyroM](https://github.com/xHyroM)
+
+1. In order to install the package, create a new .conf file in the /etc/xbps.d directory containing the repository URL:
+
+    ```bash
+    $ sudo nano /etc/xbps.d/99-xhyrom-dev.conf
+
+    repository=https://void-repo.xhyrom.dev
+    ```
+
+2. Synchronize the repository and import the RSA key:
+
+    ```bash
+    sudo xbps-install -S
+    ```
+
+3. Install the package:
+   
+    ```bash
+    sudo xbps-install -S ms-365-electron
+    ```
 
 ### Installation on Gentoo Linux (Unmaintained)
 

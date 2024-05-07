@@ -155,7 +155,7 @@ app.on("web-contents-created", (event, contents) => {
           `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
         );
       }
-      return { action: "allow" };
+      return { action: "allow", overrideBrowserWindowOptions: { width: 1081, height: 610 } };
     }
   });
   contents.on("did-finish-load", () => {

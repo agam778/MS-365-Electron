@@ -1,5 +1,6 @@
 import { app, Menu, BrowserWindow, dialog, nativeImage } from "electron";
 import { clearActivity, setActivity, loginToRPC } from './rpc.js';
+import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
 import { getValue } from './store.js';
 import { fileURLToPath } from 'url';
@@ -22,6 +23,8 @@ const { autoUpdater } = updaterpkg;
 transports.file.level = "verbose";
 console.log = _log;
 Object.assign(console, functions);
+
+initialize("A-US-2528580917");
 
 function createWindow() {
   if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
@@ -77,6 +80,7 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
+    trackEvent("app_started");
     if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }

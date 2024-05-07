@@ -19,6 +19,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aptabase/electron@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@aptabase/electron@npm:0.3.1"
+  peerDependencies:
+    electron: ">= 3.x"
+  checksum: 10c0/f26e48f2e3449faf19c36d2ad2a3eb13269ad851187c93f1f095d39d11153108628faa3c70cd3e24ad760f5f0bf8b24d1b7675b2dcc652f500bf46b2c31db2e1
+  languageName: node
+  linkType: hard
+
 "@cliqz/adblocker-content@npm:^1.27.2":
   version: 1.27.2
   resolution: "@cliqz/adblocker-content@npm:1.27.2"
@@ -2771,6 +2780,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ms-365-electron@workspace:."
   dependencies:
+    "@aptabase/electron": "npm:^0.3.1"
     "@cliqz/adblocker-electron": "npm:^1.26.6"
     "@xhayper/discord-rpc": "npm:^1.0.21"
     about-window: "npm:^1.15.2"

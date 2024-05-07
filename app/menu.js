@@ -7,7 +7,6 @@ import { shell } from "electron";
 import { dirname } from 'path';
 
 import useragents from "./useragents.json" with { type: "json" }
-import openAboutWindow from "about-window";
 import updaterpkg from "electron-updater";
 import fetch from "cross-fetch";
 import axios from "axios";
@@ -119,19 +118,10 @@ const menulayout = [
           submenu: [
             {
               label: "About MS-365-Electron",
-              click: () => {
-                openAboutWindow({
-                  icon_path: path.join(__dirname, "../assets/about.png"),
-                  product_name: "MS-365-Electron",
-                  copyright:
-                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
-                  package_json_dir: __dirname + "/../",
-                  bug_report_url:
-                    "https://github.com/agam778/MS-365-Electron/issues/",
-                  bug_link_text: "Report an issue",
-                  adjust_window_size: "2",
-                  show_close_button: "Close",
-                });
+              click: async () => {
+                await openExternalLink(
+                  "https://github.com/agam778/MS-365-Electron"
+                );
               },
             },
             {
@@ -142,14 +132,6 @@ const menulayout = [
               },
             },
             { type: "separator" },
-            {
-              label: "Learn More",
-              click: async () => {
-                await openExternalLink(
-                  "https://github.com/agam778/MS-365-Electron"
-                );
-              },
-            },
             {
               label: "Open Logs Folder",
               click: async () => {
@@ -429,19 +411,10 @@ const menulayout = [
           submenu: [
             {
               label: "About MS-365-Electron",
-              click: () => {
-                openAboutWindow({
-                  icon_path: path.join(__dirname, "../assets/about.png"),
-                  product_name: "MS-365-Electron",
-                  copyright:
-                    "Copyright (c) 2021-2023 Agampreet Singh\nMicrosoft 365, the name, website, images/icons\nare the intellectual properties of Microsoft.",
-                  package_json_dir: __dirname + "/../",
-                  bug_report_url:
-                    "https://github.com/agam778/MS-365-Electron/issues/",
-                  bug_link_text: "Report an issue",
-                  adjust_window_size: "2",
-                  show_close_button: "Close",
-                });
+              click: async () => {
+                await openExternalLink(
+                  "https://github.com/agam778/MS-365-Electron"
+                );
               },
             },
             {
@@ -451,14 +424,6 @@ const menulayout = [
               },
             },
             { type: "separator" },
-            {
-              label: "Learn More",
-              click: async () => {
-                await openExternalLink(
-                  "https://github.com/agam778/MS-365-Electron"
-                );
-              },
-            },
             {
               label: "Open Logs Folder",
               click: async () => {

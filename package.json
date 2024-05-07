@@ -72,9 +72,9 @@
     "eslint": "^9.0.0"
   },
   "dependencies": {
+    "@aptabase/electron": "^0.3.1",
     "@cliqz/adblocker-electron": "^1.26.6",
     "@xhayper/discord-rpc": "^1.0.21",
-    "about-window": "^1.15.2",
     "axios": "^1.4.0",
     "check-internet-connected": "^2.0.6",
     "cross-fetch": "^4.0.0",

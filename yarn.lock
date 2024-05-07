@@ -573,13 +573,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"about-window@npm:^1.15.2":
-  version: 1.15.2
-  resolution: "about-window@npm:1.15.2"
-  checksum: 10c0/a21ab2ff6c0399bd29b828f97354a7add0d75f1417ca132876f6b5a0bbd41095a57e20161cda478d540f26d33732ed7172731c54e65d44cefd80c8c6370eeb5d
-  languageName: node
-  linkType: hard
-
 "acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -2783,7 +2776,6 @@ __metadata:
     "@aptabase/electron": "npm:^0.3.1"
     "@cliqz/adblocker-electron": "npm:^1.26.6"
     "@xhayper/discord-rpc": "npm:^1.0.21"
-    about-window: "npm:^1.15.2"
     axios: "npm:^1.4.0"
     check-internet-connected: "npm:^2.0.6"
     cross-fetch: "npm:^4.0.0"

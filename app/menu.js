@@ -67,7 +67,6 @@ async function checkForUpdates() {
 }
 
 async function openExternalLink(url) {
-  const { shell } = require("electron");
   await shell.openExternal(url);
 }
 

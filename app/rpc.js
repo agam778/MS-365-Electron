@@ -1,12 +1,12 @@
-const { Client } = require("@xhayper/discord-rpc");
-const { dialog, BrowserWindow } = require("electron");
-const { setValue } = require("./store");
+import { dialog, BrowserWindow } from "electron";
+import { Client } from "@xhayper/discord-rpc";
+import { setValue } from "./store.js";
 
 const client = new Client({
   clientId: "942637872530460742",
 });
 
-async function rpcError(status) {
+export async function rpcError(status) {
   const rpcerror = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), {
     type: "error",
     title: "Discord RPC Error",
@@ -19,14 +19,14 @@ async function rpcError(status) {
   }
 }
 
-async function clearActivity() {
+export async function clearActivity() {
   await client.user?.clearActivity().catch((err) => {
     rpcError("clearing");
     console.error(err);
   });
 }
 
-async function setActivity(details) {
+export async function setActivity(details) {
   if (!client.user) {
     await loginToRPC();
   }
@@ -43,15 +43,9 @@ async function setActivity(details) {
     });
 }
 
-async function loginToRPC() {
+export async function loginToRPC() {
   await client.login().catch((err) => {
     rpcError("logging into");
     console.error(err);
   });
 }
-
-module.exports = {
-  clearActivity,
-  setActivity,
-  loginToRPC,
-};

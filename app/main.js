@@ -1,26 +1,34 @@
-const { app, Menu, BrowserWindow, dialog, nativeImage } = require("electron");
-const { autoUpdater } = require("electron-updater");
-const checkInternetConnected = require("check-internet-connected");
-const ElectronDl = require("electron-dl");
-const contextMenu = require("electron-context-menu");
-const path = require("path");
-const log = require("electron-log");
-const { setActivity, loginToRPC, clearActivity } = require("./rpc");
-const useragents = require("./useragents.json");
-const { ElectronBlocker } = require("@cliqz/adblocker-electron");
-const { getValue } = require("./store");
-const { menulayout } = require("./menu");
+import { app, Menu, BrowserWindow, dialog, nativeImage } from "electron";
+import { clearActivity, setActivity, loginToRPC } from './rpc.js';
+import { ElectronBlocker } from "@cliqz/adblocker-electron";
+import { getValue } from './store.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { join } from "path";
 
-log.transports.file.level = "verbose";
-console.log = log.log;
-Object.assign(console, log.functions);
+import Windows from "./useragents.json" with { type: "json" };
+import checkInternetConnected from "check-internet-connected";
+import contextMenu from "electron-context-menu";
+import updaterpkg from "electron-updater";
+import ElectronDl from "electron-dl";
+import menulayout from './menu.js'
+import logpkg from 'electron-log';
+
+const { transports, log: _log, functions } = logpkg;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const { autoUpdater } = updaterpkg;
+
+transports.file.level = "verbose";
+console.log = _log;
+Object.assign(console, functions);
 
 function createWindow() {
   if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
     var win = new BrowserWindow({
       width: 1181,
       height: 670,
-      icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+      icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
       show: false,
       webPreferences: {
         nodeIntegration: true,
@@ -34,7 +42,7 @@ function createWindow() {
     var win = new BrowserWindow({
       width: 1181,
       height: 670,
-      icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+      icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
       show: false,
       webPreferences: {
         nodeIntegration: true,
@@ -55,14 +63,14 @@ function createWindow() {
     height: 610,
     transparent: true,
     frame: false,
-    icon: path.join(__dirname, "/assets/icons/png/1024x1024.png"),
+    icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
   });
 
   splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
   win.loadURL(
     `${getValue("enterprise-or-normal") || "https://microsoft365.com/?auth=1"}`,
     {
-      userAgent: getValue("useragentstring") || useragents.Windows,
+      userAgent: getValue("useragentstring") || Windows,
     }
   );
 
@@ -159,11 +167,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
+              join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/powerpoint.png")
+              join(__dirname, "../assets/icons/apps/powerpoint.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "PowerPoint");
@@ -179,11 +187,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/word-mac.png")
+              join(__dirname, "../assets/icons/apps/word-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/word.png")
+              join(__dirname, "../assets/icons/apps/word.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "Word");
@@ -199,11 +207,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/excel-mac.png")
+              join(__dirname, "../assets/icons/apps/excel-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/excel.png")
+              join(__dirname, "../assets/icons/apps/excel.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "Excel");
@@ -219,11 +227,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/outlook-mac.png")
+              join(__dirname, "../assets/icons/apps/outlook-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/outlook.png")
+              join(__dirname, "../assets/icons/apps/outlook.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "Outlook");
@@ -239,11 +247,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/onedrive-mac.png")
+              join(__dirname, "../assets/icons/apps/onedrive-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/onedrive.png")
+              join(__dirname, "../assets/icons/apps/onedrive.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "OneDrive");
@@ -256,11 +264,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/teams-mac.png")
+              join(__dirname, "../assets/icons/apps/teams-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/teams.png")
+              join(__dirname, "../assets/icons/apps/teams.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "Teams");
@@ -273,11 +281,11 @@ app.on("web-contents-created", (event, contents) => {
         ) {
           if (process.platform === "darwin") {
             app.dock.setIcon(
-              path.join(__dirname, "../assets/icons/apps/onenote-mac.png")
+              join(__dirname, "../assets/icons/apps/onenote-mac.png")
             );
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
-              path.join(__dirname, "../assets/icons/apps/onenote.png")
+              join(__dirname, "../assets/icons/apps/onenote.png")
             );
             BrowserWindow.getAllWindows().forEach((window) => {
               window.setOverlayIcon(nimage, "OneNote");

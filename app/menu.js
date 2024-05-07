@@ -1,20 +1,22 @@
-const useragents = require("./useragents.json");
-const {
-  app,
-  dialog,
-  BrowserWindow,
-  ShareMenu,
-  clipboard,
-} = require("electron");
-const axios = require("axios");
-const { clearActivity, setActivity } = require("./rpc");
-const { shell } = require("electron");
-const { autoUpdater } = require("electron-updater");
-const { ElectronBlocker } = require("@cliqz/adblocker-electron");
-const fetch = require("cross-fetch");
-const openAboutWindow = require("about-window").default;
-const path = require("path");
-const { getValue, setValue, getValueOrDefault } = require("./store");
+import { app, dialog, BrowserWindow, ShareMenu, clipboard } from "electron";
+import { getValue, setValue, getValueOrDefault } from './store.js';
+import { ElectronBlocker } from "@cliqz/adblocker-electron";
+import { clearActivity, setActivity } from './rpc.js';
+import { fileURLToPath } from 'url';
+import { shell } from "electron";
+import { dirname } from 'path';
+
+import useragents from "./useragents.json" with { type: "json" }
+import openAboutWindow from "about-window";
+import updaterpkg from "electron-updater";
+import fetch from "cross-fetch";
+import axios from "axios";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const { autoUpdater } = updaterpkg;
+
 
 async function checkForUpdates() {
   try {
@@ -70,7 +72,6 @@ async function openExternalLink(url) {
 }
 
 async function openLogsFolder() {
-  const { shell } = require("electron");
   if (process.platform === "win32") {
     await shell.openPath(
       "C:\\Users\\" +
@@ -1262,4 +1263,5 @@ const menulayout = [
     ],
   },
 ];
-module.exports = { menulayout };
+
+export default menulayout;

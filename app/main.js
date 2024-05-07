@@ -27,39 +27,22 @@ Object.assign(console, functions);
 initialize("A-US-2528580917");
 
 function createWindow() {
-  if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
-    var win = new BrowserWindow({
-      width: 1181,
-      height: 670,
-      icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
-      show: false,
-      webPreferences: {
-        nodeIntegration: true,
-        devTools: true,
-        partition: "persist:personal",
-      },
-    });
-  } else if (
-    getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2"
-  ) {
-    var win = new BrowserWindow({
-      width: 1181,
-      height: 670,
-      icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
-      show: false,
-      webPreferences: {
-        nodeIntegration: true,
-        devTools: true,
-        partition: "persist:work",
-      },
-    });
-  }
-
-  if (getValue("autohide-menubar") === "true") {
-    win.setAutoHideMenuBar(true);
-  } else {
-    win.setAutoHideMenuBar(false);
-  }
+  const enterpriseOrNormal = getValue("enterprise-or-normal");
+  const partition = enterpriseOrNormal === "https://microsoft365.com/?auth=1" ? "persist:personal" : "persist:work";
+  
+  const win = new BrowserWindow({
+    width: 1181,
+    height: 670,
+    icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+      devTools: true,
+      partition: partition,
+    },
+  });  
+  
+  win.setAutoHideMenuBar(getValue("autohide-menubar") === "true");
 
   const splash = new BrowserWindow({
     width: 810,

@@ -28,7 +28,8 @@ initialize("A-US-2528580917");
 
 function createWindow() {
   const enterpriseOrNormal = getValue("enterprise-or-normal");
-  const partition = enterpriseOrNormal === "https://microsoft365.com/?auth=1" ? "persist:personal" : "persist:work";
+  const custompage = getValue("custompage");
+  const partition = enterpriseOrNormal === "?auth=1" ? "persist:personal" : "persist:work";
   
   const win = new BrowserWindow({
     width: 1181,
@@ -53,12 +54,10 @@ function createWindow() {
   });
 
   splash.loadURL(`https://agam778.github.io/MS-365-Electron/loading`);
-  win.loadURL(
-    `${getValue("enterprise-or-normal") || "https://microsoft365.com/?auth=1"}`,
-    {
-      userAgent: getValue("useragentstring") || Windows,
-    }
-  );
+
+  win.loadURL(`https://microsoft365.com/${custompage}/${enterpriseOrNormal}`, {
+    userAgent: getValue("useragentstring") || Windows,
+  });
 
   win.webContents.on("did-finish-load", () => {
     splash.destroy();

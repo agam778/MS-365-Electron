@@ -101,7 +101,7 @@ function setUserAgent(useragent) {
   }
 }
 
-getValueOrDefault("enterprise-or-normal", "https://microsoft365.com/?auth=1");
+getValueOrDefault("enterprise-or-normal", "?auth=1");
 getValueOrDefault("websites-in-new-window", "true");
 getValueOrDefault("autohide-menubar", "false");
 getValueOrDefault("useragentstring", useragents.Windows);
@@ -109,6 +109,16 @@ getValueOrDefault("discordrpcstatus", "false");
 getValueOrDefault("blockadsandtrackers", "false");
 getValueOrDefault("dynamicicons", "true");
 getValueOrDefault("autoupdater", "true");
+getValueOrDefault("custompage", "home");
+
+// temporary code to change the value of enterprise-or-normal to the new values for the update, will be removed in the next update.
+if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
+  setValue("enterprise-or-normal", "?auth=1");
+} else if (
+  getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2"
+) {
+  setValue("enterprise-or-normal", "?auth=2");
+}
 
 const menulayout = [
   ...(process.platform === "darwin"
@@ -148,7 +158,7 @@ const menulayout = [
                   click() {
                     setValue(
                       "enterprise-or-normal",
-                      "https://microsoft365.com/?auth=1"
+                      "?auth=1"
                     );
                     dialog.showMessageBoxSync({
                       type: "info",
@@ -160,7 +170,7 @@ const menulayout = [
                   },
                   checked:
                     getValue("enterprise-or-normal") ===
-                    "https://microsoft365.com/?auth=1",
+                    "?auth=1",
                 },
                 {
                   label: "Open MS 365 with Work/School Account",
@@ -168,7 +178,7 @@ const menulayout = [
                   click() {
                     setValue(
                       "enterprise-or-normal",
-                      "https://microsoft365.com/?auth=2"
+                      "?auth=2"
                     );
                     dialog.showMessageBoxSync({
                       type: "info",
@@ -180,7 +190,7 @@ const menulayout = [
                   },
                   checked:
                     getValue("enterprise-or-normal") ===
-                    "https://microsoft365.com/?auth=2",
+                    "?auth=2",
                 },
                 { type: "separator" },
                 {
@@ -212,6 +222,72 @@ const menulayout = [
                     });
                   },
                   checked: getValue("websites-in-new-window") === "false",
+                },
+                { type: "separator" },
+                {
+                  label: "Custom Home Page",
+                  submenu: [
+                    {
+                      label: "Home (Default)",
+                      type: "radio",
+                      click: () => {
+                        setValue("custompage", "home");
+                        dialog.showMessageBoxSync({
+                          type: "info",
+                          title: "Custom Home Page",
+                          message:
+                            "You have set the home page to the default home page. Please restart the app to apply the changes.",
+                          buttons: ["OK"],
+                        });
+                      },
+                      checked: getValue("custompage") === "home",
+                    },
+                    {
+                      label: "Create",
+                      type: "radio",
+                      click: () => {
+                        setValue("custompage", "create");
+                        dialog.showMessageBoxSync({
+                          type: "info",
+                          title: "Custom Home Page",
+                          message:
+                            "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
+                          buttons: ["OK"],
+                        });
+                      },
+                      checked: getValue("custompage") === "create",
+                    },
+                    {
+                      label: "My Content",
+                      type: "radio",
+                      click: () => {
+                        setValue("custompage", "mycontent");
+                        dialog.showMessageBoxSync({
+                          type: "info",
+                          title: "Custom Home Page",
+                          message:
+                            "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
+                          buttons: ["OK"],
+                        });
+                      },
+                      checked: getValue("custompage") === "mycontent",
+                    },
+                    {
+                      label: "Apps",
+                      type: "radio",
+                      click: () => {
+                        setValue("custompage", "apps");
+                        dialog.showMessageBoxSync({
+                          type: "info",
+                          title: "Custom Home Page",
+                          message:
+                            "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
+                          buttons: ["OK"],
+                        });
+                      },
+                      checked: getValue("custompage") === "apps",
+                    },
+                  ],
                 },
                 { type: "separator" },
                 {
@@ -437,7 +513,7 @@ const menulayout = [
               click() {
                 setValue(
                   "enterprise-or-normal",
-                  "https://microsoft365.com/?auth=1"
+                  "?auth=1"
                 );
                 dialog.showMessageBoxSync({
                   type: "info",
@@ -449,7 +525,7 @@ const menulayout = [
               },
               checked:
                 getValue("enterprise-or-normal") ===
-                "https://microsoft365.com/?auth=1",
+                "?auth=1",
             },
             {
               label: "Open MS 365 with Work/School Account",
@@ -457,7 +533,7 @@ const menulayout = [
               click() {
                 setValue(
                   "enterprise-or-normal",
-                  "https://microsoft365.com/?auth=2"
+                  "?auth=2"
                 );
                 dialog.showMessageBoxSync({
                   type: "info",
@@ -469,7 +545,7 @@ const menulayout = [
               },
               checked:
                 getValue("enterprise-or-normal") ===
-                "https://microsoft365.com/?auth=2",
+                "?auth=2",
             },
             { type: "separator" },
             {
@@ -501,6 +577,72 @@ const menulayout = [
                 });
               },
               checked: getValue("websites-in-new-window") === "false",
+            },
+            { type: "separator" },
+            {
+              label: "Custom Home Page",
+              submenu: [
+                {
+                  label: "Home (Default)",
+                  type: "radio",
+                  click: () => {
+                    setValue("custompage", "home");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Custom Home Page",
+                      message:
+                        "You have set the home page to the default home page. Please restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("custompage") === "home",
+                },
+                {
+                  label: "Create",
+                  type: "radio",
+                  click: () => {
+                    setValue("custompage", "create");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Custom Home Page",
+                      message:
+                        "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("custompage") === "create",
+                },
+                {
+                  label: "My Content",
+                  type: "radio",
+                  click: () => {
+                    setValue("custompage", "mycontent");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Custom Home Page",
+                      message:
+                        "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("custompage") === "mycontent",
+                },
+                {
+                  label: "Apps",
+                  type: "radio",
+                  click: () => {
+                    setValue("custompage", "apps");
+                    dialog.showMessageBoxSync({
+                      type: "info",
+                      title: "Custom Home Page",
+                      message:
+                        "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
+                      buttons: ["OK"],
+                    });
+                  },
+                  checked: getValue("custompage") === "apps",
+                },
+              ],
             },
             { type: "separator" },
             {
@@ -700,7 +842,7 @@ const menulayout = [
               partition: "persist:personal",
             },
           });
-          newWindow.loadURL("https://microsoft365.com/?auth=1");
+          newWindow.loadURL(`https://microsoft365.com/${getValue("custompage")}/?auth=1`);
         },
       },
       {
@@ -716,7 +858,7 @@ const menulayout = [
               partition: "persist:work",
             },
           });
-          newWindow.loadURL("https://microsoft365.com/?auth=2");
+          newWindow.loadURL(`https://microsoft365.com/${getValue("custompage")}/?auth=2`);
         },
       },
       { type: "separator" },
@@ -846,7 +988,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
@@ -866,7 +1008,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
@@ -892,7 +1034,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
@@ -914,7 +1056,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
@@ -942,7 +1084,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
@@ -964,7 +1106,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
@@ -992,7 +1134,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
@@ -1012,7 +1154,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
@@ -1040,7 +1182,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
@@ -1062,7 +1204,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
@@ -1090,7 +1232,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
@@ -1112,7 +1254,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
@@ -1138,7 +1280,7 @@ const menulayout = [
         click: () => {
           if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=2"
+            "?auth=2"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
@@ -1158,7 +1300,7 @@ const menulayout = [
             }
           } else if (
             getValue("enterprise-or-normal") ===
-            "https://microsoft365.com/?auth=1"
+            "?auth=1"
           ) {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({

@@ -289,6 +289,27 @@ app.on("web-contents-created", (event, contents) => {
         }
       }
     }
+    contents.insertCSS(
+      `
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }      
+      `
+    );
   });
 });
 

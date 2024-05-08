@@ -63,9 +63,10 @@ Supported Platforms
 3. Ubuntu/Debian based distributions (DEB File)
 4. Red Hat Linux/Fedora based distributions (RPM File)
 5. Arch Linux based distributions (Uploaded on AUR)
-6. Gentoo Linux (Unofficial overlay) **[MAINTAINER NEEDED]**
-7. All Distributions supporting AppImage (AppImage File); and
-8. All Distributions supporting Snap (Uploaded on Snap Store)
+6. Void Linux (Maintained by: [@xHyroM](https://github.com/xHyroM))
+7. Gentoo Linux (Unofficial overlay) **[MAINTAINER NEEDED]**
+8. All Distributions supporting AppImage (AppImage File); and
+9. All Distributions supporting Snap (Uploaded on Snap Store)
 
 # List of Features
 

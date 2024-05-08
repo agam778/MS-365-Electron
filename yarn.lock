@@ -19,68 +19,59 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aptabase/electron@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@aptabase/electron@npm:0.3.1"
-  peerDependencies:
-    electron: ">= 3.x"
-  checksum: 10c0/f26e48f2e3449faf19c36d2ad2a3eb13269ad851187c93f1f095d39d11153108628faa3c70cd3e24ad760f5f0bf8b24d1b7675b2dcc652f500bf46b2c31db2e1
+"@cliqz/adblocker-content@npm:^1.27.3":
+  version: 1.27.3
+  resolution: "@cliqz/adblocker-content@npm:1.27.3"
+  dependencies:
+    "@cliqz/adblocker-extended-selectors": "npm:^1.27.3"
+  checksum: 10c0/456ab713af5fe7b30833841e37d0097f15d92db47110daed7dfe3b45d8f164070f91623827abc76bdb1691fe773f55c614c3ac9e4a72e93411f07c3eccb360eb
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker-content@npm:^1.27.2":
-  version: 1.27.2
-  resolution: "@cliqz/adblocker-content@npm:1.27.2"
+"@cliqz/adblocker-electron-preload@npm:^1.27.3":
+  version: 1.27.3
+  resolution: "@cliqz/adblocker-electron-preload@npm:1.27.3"
   dependencies:
-    "@cliqz/adblocker-extended-selectors": "npm:^1.27.2"
-  checksum: 10c0/88bad2063aedb98b2118cc6f20ceead89768ba5ee6b6cd1794f27293c8d0d94d32afa72bf83544a93bafe20686fe5baeef24a38b5a922d948b546a03d3db1cbc
-  languageName: node
-  linkType: hard
-
-"@cliqz/adblocker-electron-preload@npm:^1.27.2":
-  version: 1.27.2
-  resolution: "@cliqz/adblocker-electron-preload@npm:1.27.2"
-  dependencies:
-    "@cliqz/adblocker-content": "npm:^1.27.2"
+    "@cliqz/adblocker-content": "npm:^1.27.3"
   peerDependencies:
     electron: ">11"
-  checksum: 10c0/61416b94013c4e5a214618a413c6e7ba4702091a1a0c0abd86eae80974c4ff286c1721d3c38ae3a555753d307fa3eed13efa9ed5ed24212f690e71ece6e71981
+  checksum: 10c0/e875c1ab1b8a8d7a22a230f18b1e47eebecdecff7ef2308013dab7860b6e2e2dc9b608496d7f7ccb23e4d936cb37b1b8fafef0b08bc62469624c5109c3ed5161
   languageName: node
   linkType: hard
 
 "@cliqz/adblocker-electron@npm:^1.26.6":
-  version: 1.27.2
-  resolution: "@cliqz/adblocker-electron@npm:1.27.2"
+  version: 1.27.3
+  resolution: "@cliqz/adblocker-electron@npm:1.27.3"
   dependencies:
-    "@cliqz/adblocker": "npm:^1.27.2"
-    "@cliqz/adblocker-electron-preload": "npm:^1.27.2"
+    "@cliqz/adblocker": "npm:^1.27.3"
+    "@cliqz/adblocker-electron-preload": "npm:^1.27.3"
     tldts-experimental: "npm:^6.0.14"
   peerDependencies:
     electron: ">11"
-  checksum: 10c0/eaef2f721fc09c49afacdc274c5a2144d88f07ef1b5d407155930f190e2878b61a6510239924abc6c3cf545f8b9e3083f898b642a739c558b9168ffc27a18ea0
+  checksum: 10c0/9d4481bd4e22fcb593cef322a6831de40484546cf4d5757f84451198814461e85fe56c0c80e90c6ff436029a595aa54825f25068bb0d87b3dceb15ac2c8dfeef
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker-extended-selectors@npm:^1.27.2":
-  version: 1.27.2
-  resolution: "@cliqz/adblocker-extended-selectors@npm:1.27.2"
-  checksum: 10c0/3337285873ae21c05c3f4060a5b3c85f79cf225d36bc0c57fe1244e7b727037ae828dbb5c9ed64368e53fc73942c96f9d83cfe19afdc60f47dd94c42515a4230
+"@cliqz/adblocker-extended-selectors@npm:^1.27.3":
+  version: 1.27.3
+  resolution: "@cliqz/adblocker-extended-selectors@npm:1.27.3"
+  checksum: 10c0/b893fa9d9e26766cbb82c20cf114c82f2a48a75c602906696a394d9f876639478d0c02fe3be51c6e15c025191890c103ad557ea93ef710660c714515b62c88a2
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker@npm:^1.27.2":
-  version: 1.27.2
-  resolution: "@cliqz/adblocker@npm:1.27.2"
+"@cliqz/adblocker@npm:^1.27.3":
+  version: 1.27.3
+  resolution: "@cliqz/adblocker@npm:1.27.3"
   dependencies:
-    "@cliqz/adblocker-content": "npm:^1.27.2"
-    "@cliqz/adblocker-extended-selectors": "npm:^1.27.2"
+    "@cliqz/adblocker-content": "npm:^1.27.3"
+    "@cliqz/adblocker-extended-selectors": "npm:^1.27.3"
     "@remusao/guess-url-type": "npm:^1.2.1"
     "@remusao/small": "npm:^1.2.1"
     "@remusao/smaz": "npm:^1.9.1"
-    "@types/chrome": "npm:^0.0.266"
+    "@types/chrome": "npm:^0.0.267"
     "@types/firefox-webext-browser": "npm:^120.0.0"
     tldts-experimental: "npm:^6.0.14"
-  checksum: 10c0/df92e48f13aeea46787cf6ef95463d0d40c25960d14c937d35e5d777fda9beb68a38cdf6b2338b5f470af7900a794f1d9de83fe99755e4043af1a1be79066632
+  checksum: 10c0/8e2292052e305fd91ca462cd2bba1632a78c909c4a8009e32aa8670bc820bddf955c5ffc498c338615e5a59c970af10b95854de29222ad11053425e279155a29
   languageName: node
   linkType: hard
 
@@ -417,13 +408,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.266":
-  version: 0.0.266
-  resolution: "@types/chrome@npm:0.0.266"
+"@types/chrome@npm:^0.0.267":
+  version: 0.0.267
+  resolution: "@types/chrome@npm:0.0.267"
   dependencies:
     "@types/filesystem": "npm:*"
     "@types/har-format": "npm:*"
-  checksum: 10c0/ef279c9344b346a2f0c798a91079d5d0243755f480401894848acbe628e9f92affade4dabc144099b55b0c0a5f6978b014ac693cb8bba73822a435f1e82c7e4f
+  checksum: 10c0/baa2e526c86e0c092668eff8fdca35c3eea09f0cded9bab86d692ae3834955bfa49d3c064c51b003406099cce73060872c8c824ceef526c72a446c863a2b520c
   languageName: node
   linkType: hard
 
@@ -2773,7 +2764,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ms-365-electron@workspace:."
   dependencies:
-    "@aptabase/electron": "npm:^0.3.1"
     "@cliqz/adblocker-electron": "npm:^1.26.6"
     "@xhayper/discord-rpc": "npm:^1.0.21"
     axios: "npm:^1.4.0"

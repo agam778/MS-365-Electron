@@ -394,13 +394,15 @@ const menulayout = [
                         message: "Ads and trackers will no longer be blocked.",
                         buttons: ["OK"],
                       });
-                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-                        (blocker) => {
-                          blocker.disableBlockingInSession(
-                            BrowserWindow.getFocusedWindow().webContents.session
-                          );
+                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+                        BrowserWindow.getAllWindows().forEach(window => {
+                            blocker.disableBlockingInSession(window.webContents.session);
+                        });
+                    }).catch((error) => {
+                        if (error.message !== "Trying to disable blocking which was not enabled") {
+                          console.error(error);
                         }
-                      );
+                      });
                       return;
                     }
                     if (
@@ -408,11 +410,10 @@ const menulayout = [
                       getValue("blockadsandtrackers") === undefined
                     ) {
                       setValue("blockadsandtrackers", "true");
-                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-                        (blocker) => {
-                          blocker.enableBlockingInSession(
-                            BrowserWindow.getFocusedWindow().webContents.session
-                          );
+                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+                        BrowserWindow.getAllWindows().forEach(window => {
+                            blocker.enableBlockingInSession(window.webContents.session);
+                        })
                           dialog.showMessageBoxSync({
                             type: "info",
                             title: "Block Ads and Trackers",
@@ -749,13 +750,15 @@ const menulayout = [
                     message: "Ads and trackers will no longer be blocked.",
                     buttons: ["OK"],
                   });
-                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-                    (blocker) => {
-                      blocker.disableBlockingInSession(
-                        BrowserWindow.getFocusedWindow().webContents.session
-                      );
+                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+                    BrowserWindow.getAllWindows().forEach(window => {
+                        blocker.disableBlockingInSession(window.webContents.session);
+                    });
+                }).catch((error) => {
+                    if (error.message !== "Trying to disable blocking which was not enabled") {
+                      console.error(error);
                     }
-                  );
+                  });
                   return;
                 }
                 if (
@@ -763,11 +766,10 @@ const menulayout = [
                   getValue("blockadsandtrackers") === undefined
                 ) {
                   setValue("blockadsandtrackers", "true");
-                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then(
-                    (blocker) => {
-                      blocker.enableBlockingInSession(
-                        BrowserWindow.getFocusedWindow().webContents.session
-                      );
+                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+                    BrowserWindow.getAllWindows().forEach(window => {
+                        blocker.enableBlockingInSession(window.webContents.session);
+                    })
                       dialog.showMessageBoxSync({
                         type: "info",
                         title: "Block Ads and Trackers",

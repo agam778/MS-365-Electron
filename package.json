@@ -1,6 +1,6 @@
 {
   "name": "ms-365-electron",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "type": "module",
   "description": "Unofficial Microsoft 365 Web Desktop Wrapper made with Electron",
   "main": "./app/main.js",

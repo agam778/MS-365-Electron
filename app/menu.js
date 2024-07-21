@@ -1,5 +1,5 @@
 import { app, dialog, BrowserWindow, ShareMenu, clipboard } from "electron";
-import { getValue, setValue, getValueOrDefault } from './store.js';
+import { getValue, setValue } from './store.js';
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
 import { clearActivity, setActivity } from './rpc.js';
 import { fileURLToPath } from 'url';
@@ -97,25 +97,6 @@ function setUserAgent(useragent) {
     app.relaunch();
     app.exit();
   }
-}
-
-getValueOrDefault("enterprise-or-normal", "?auth=1");
-getValueOrDefault("websites-in-new-window", "true");
-getValueOrDefault("autohide-menubar", "false");
-getValueOrDefault("useragentstring", useragents.Windows);
-getValueOrDefault("discordrpcstatus", "false");
-getValueOrDefault("blockadsandtrackers", "false");
-getValueOrDefault("dynamicicons", "true");
-getValueOrDefault("autoupdater", "true");
-getValueOrDefault("custompage", "home");
-
-// temporary code to change the value of enterprise-or-normal to the new values for the update, will be removed in the next update.
-if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
-  setValue("enterprise-or-normal", "?auth=1");
-} else if (
-  getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2"
-) {
-  setValue("enterprise-or-normal", "?auth=2");
 }
 
 const commonPreferencesSubmenu = [

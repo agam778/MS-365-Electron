@@ -10,12 +10,10 @@ import useragents from "./useragents.json" with { type: "json" }
 import updaterpkg from "electron-updater";
 import fetch from "cross-fetch";
 import axios from "axios";
-import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const { autoUpdater } = updaterpkg;
-
 
 async function checkForUpdates() {
   try {
@@ -120,12 +118,321 @@ if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
   setValue("enterprise-or-normal", "?auth=2");
 }
 
-const menulayout = [
-  ...(process.platform === "darwin"
+const commonPreferencesSubmenu = [
+  {
+    label: "Open MS 365 with Personal Account",
+    type: "radio",
+    click() {
+      setValue("enterprise-or-normal", "?auth=1");
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "MS 365 with Personal Account",
+        message:
+          "MS 365 will now open with your Personal Account.\n\nPlease restart the app to apply the changes.",
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("enterprise-or-normal") === "?auth=1",
+  },
+  {
+    label: "Open MS 365 with Work/School Account",
+    type: "radio",
+    click() {
+      setValue("enterprise-or-normal", "?auth=2");
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "MS 365 with Work/School Account",
+        message:
+          "MS 365 will now open with your Work/School account.\n\nPlease restart the app to apply the changes.",
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("enterprise-or-normal") === "?auth=2",
+  },
+  { type: "separator" },
+  {
+    label: "Open Websites in New Windows",
+    type: "radio",
+    click: () => {
+      setValue("websites-in-new-window", "true");
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "Websites in New Windows",
+        message:
+          "Websites which are targeted to open in new tabs will now open in new windows.",
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("websites-in-new-window") === "true",
+  },
+  {
+    label: "Open Websites in the Same Window",
+    type: "radio",
+    click: () => {
+      setValue("websites-in-new-window", "false");
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "Websites in New Windows",
+        message:
+          "Websites which are targeted to open in new tabs will now open in the same window.",
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("websites-in-new-window") === "false",
+  },
+  { type: "separator" },
+  {
+    label: "Custom Home Page",
+    submenu: [
+      {
+        label: "Home (Default)",
+        type: "radio",
+        click: () => {
+          setValue("custompage", "home");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Home Page",
+            message:
+              "You have set the home page to the default home page. Please restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: getValue("custompage") === "home",
+      },
+      {
+        label: "Create",
+        type: "radio",
+        click: () => {
+          setValue("custompage", "create");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Home Page",
+            message:
+              "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: getValue("custompage") === "create",
+      },
+      {
+        label: "My Content",
+        type: "radio",
+        click: () => {
+          setValue("custompage", "mycontent");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Home Page",
+            message:
+              "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: getValue("custompage") === "mycontent",
+      },
+      {
+        label: "Apps",
+        type: "radio",
+        click: () => {
+          setValue("custompage", "apps");
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Home Page",
+            message:
+              "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked: getValue("custompage") === "apps",
+      },
+    ],
+  },
+  { type: "separator" },
+  {
+    label: "Enable Discord RPC",
+    type: "checkbox",
+    click: () => {
+      if (getValue("discordrpcstatus") === "true") {
+        setValue("discordrpcstatus", "false");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Discord RPC",
+          message: "Discord RPC has been disabled.",
+          buttons: ["OK"],
+        });
+        clearActivity();
+        return;
+      } else if (
+        getValue("discordrpcstatus") === "false" ||
+        getValue("discordrpcstatus") === undefined
+      ) {
+        setValue("discordrpcstatus", "true");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Discord RPC",
+          message: "Discord RPC has been enabled.",
+          buttons: ["OK"],
+        });
+        setActivity(
+          `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
+        );
+        return;
+      }
+    },
+    checked: getValue("discordrpcstatus") === "true",
+  },
+  {
+    label: "Enable Auto Updates",
+    type: "checkbox",
+    click: () => {
+      if (getValue("autoupdater") === "true") {
+        setValue("autoupdater", "false");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Auto Updates",
+          message: "Auto updates have been disabled.",
+          buttons: ["OK"],
+        });
+        return;
+      } else if (
+        getValue("autoupdater") === "false" ||
+        getValue("autoupdater") === undefined
+      ) {
+        setValue("autoupdater", "true");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Auto Updates",
+          message: "Auto updates have been enabled.",
+          buttons: ["OK"],
+        });
+        return;
+      }
+    },
+    checked: getValue("autoupdater") === "true",
+  },
+  {
+    label: "Enable Dynamic Icons",
+    type: "checkbox",
+    click: () => {
+      if (getValue("dynamicicons") === "true") {
+        setValue("dynamicicons", "false");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Dynamic Icons",
+          message: "Dynamic icons have been disabled.",
+          buttons: ["OK"],
+        });
+        return;
+      } else if (
+        getValue("dynamicicons") === "false" ||
+        getValue("dynamicicons") === undefined
+      ) {
+        setValue("dynamicicons", "true");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Dynamic Icons",
+          message: "Dynamic icons have been enabled.",
+          buttons: ["OK"],
+        });
+        return;
+      }
+    },
+    checked: getValue("dynamicicons") === "true",
+  },
+  { type: "separator" },
+  {
+    label: "Block Ads and Trackers",
+    type: "checkbox",
+    click: () => {
+      if (getValue("blockadsandtrackers") === "true") {
+        setValue("blockadsandtrackers", "false");
+        dialog.showMessageBoxSync({
+          type: "info",
+          title: "Block Ads and Trackers",
+          message: "Ads and trackers will no longer be blocked.",
+          buttons: ["OK"],
+        });
+        ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+          BrowserWindow.getAllWindows().forEach(window => {
+              blocker.disableBlockingInSession(window.webContents.session);
+          });
+        }).catch((error) => {
+          if (error.message !== "Trying to disable blocking which was not enabled") {
+            console.error(error);
+          }
+        });
+        return;
+      }
+      if (
+        getValue("blockadsandtrackers") === "false" ||
+        getValue("blockadsandtrackers") === undefined
+      ) {
+        setValue("blockadsandtrackers", "true");
+        ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+          BrowserWindow.getAllWindows().forEach(window => {
+              blocker.enableBlockingInSession(window.webContents.session);
+          })
+            dialog.showMessageBoxSync({
+              type: "info",
+              title: "Block Ads and Trackers",
+              message: "Ads and trackers will now be blocked.",
+              buttons: ["OK"],
+            });
+          }
+        );
+        return;
+      }
+    },
+    checked: getValue("blockadsandtrackers") === "true",
+  },
+  { type: "separator" },
+  {
+    label: "Windows User-Agent String",
+    type: "radio",
+    click: () => {
+      setUserAgent(useragents.Windows);
+    },
+    checked: getValue("useragentstring") === useragents.Windows,
+  },
+  {
+    label: "macOS User-Agent String",
+    type: "radio",
+    click: () => {
+      setUserAgent(useragents.macOS);
+    },
+    checked: getValue("useragentstring") === useragents.macOS,
+  },
+  {
+    label: "Linux User-Agent String",
+    type: "radio",
+    click: () => {
+      setUserAgent(useragents.Linux);
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "User agent switcher",
+        message:
+          "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("useragentstring") === useragents.Linux,
+  },
+  { type: "separator" },
+  ...(process.platform === "win32" || process.platform === "linux"
     ? [
         {
-          label: app.name,
-          submenu: [
+          role: "quit",
+          accelerator: "Ctrl+Q",
+        },
+      ]
+    : []),
+];
+
+const menulayout = [
+  {
+    label: "MS-365-Electron",
+    submenu: [
+      ...(process.platform === "darwin"
+        ? [
             {
               label: "About MS-365-Electron",
               click: async () => {
@@ -136,7 +443,6 @@ const menulayout = [
             },
             {
               label: "Check for Updates",
-              id: "check-for-updates",
               click: async () => {
                 await checkForUpdates();
               },
@@ -151,324 +457,7 @@ const menulayout = [
             { type: "separator" },
             {
               label: "Preferences",
-              submenu: [
-                {
-                  label: "Open MS 365 with Personal Account",
-                  type: "radio",
-                  click() {
-                    setValue(
-                      "enterprise-or-normal",
-                      "?auth=1"
-                    );
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "MS 365 with Personal Account",
-                      message:
-                        "MS 365 will now open with your Personal Account.\n\nPlease restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked:
-                    getValue("enterprise-or-normal") ===
-                    "?auth=1",
-                },
-                {
-                  label: "Open MS 365 with Work/School Account",
-                  type: "radio",
-                  click() {
-                    setValue(
-                      "enterprise-or-normal",
-                      "?auth=2"
-                    );
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "MS 365 with Work/School Account",
-                      message:
-                        "MS 365 will now open with your Work/School account.\n\nPlease restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked:
-                    getValue("enterprise-or-normal") ===
-                    "?auth=2",
-                },
-                { type: "separator" },
-                {
-                  label: "Open Websites in New Windows",
-                  type: "radio",
-                  click: () => {
-                    setValue("websites-in-new-window", "true");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Websites in New Windows",
-                      message:
-                        "Websites which are targeted to open in new tabs will now open in new windows.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("websites-in-new-window") === "true",
-                },
-                {
-                  label: "Open Websites in the Same Window",
-                  type: "radio",
-                  click: () => {
-                    setValue("websites-in-new-window", "false");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Websites in New Windows",
-                      message:
-                        "Websites which are targeted to open in new tabs will now open in the same window.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("websites-in-new-window") === "false",
-                },
-                { type: "separator" },
-                {
-                  label: "Custom Home Page",
-                  submenu: [
-                    {
-                      label: "Home (Default)",
-                      type: "radio",
-                      click: () => {
-                        setValue("custompage", "home");
-                        dialog.showMessageBoxSync({
-                          type: "info",
-                          title: "Custom Home Page",
-                          message:
-                            "You have set the home page to the default home page. Please restart the app to apply the changes.",
-                          buttons: ["OK"],
-                        });
-                      },
-                      checked: getValue("custompage") === "home",
-                    },
-                    {
-                      label: "Create",
-                      type: "radio",
-                      click: () => {
-                        setValue("custompage", "create");
-                        dialog.showMessageBoxSync({
-                          type: "info",
-                          title: "Custom Home Page",
-                          message:
-                            "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
-                          buttons: ["OK"],
-                        });
-                      },
-                      checked: getValue("custompage") === "create",
-                    },
-                    {
-                      label: "My Content",
-                      type: "radio",
-                      click: () => {
-                        setValue("custompage", "mycontent");
-                        dialog.showMessageBoxSync({
-                          type: "info",
-                          title: "Custom Home Page",
-                          message:
-                            "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
-                          buttons: ["OK"],
-                        });
-                      },
-                      checked: getValue("custompage") === "mycontent",
-                    },
-                    {
-                      label: "Apps",
-                      type: "radio",
-                      click: () => {
-                        setValue("custompage", "apps");
-                        dialog.showMessageBoxSync({
-                          type: "info",
-                          title: "Custom Home Page",
-                          message:
-                            "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
-                          buttons: ["OK"],
-                        });
-                      },
-                      checked: getValue("custompage") === "apps",
-                    },
-                  ],
-                },
-                { type: "separator" },
-                {
-                  label: "Enable Discord RPC",
-                  type: "checkbox",
-                  click: () => {
-                    if (getValue("discordrpcstatus") === "true") {
-                      setValue("discordrpcstatus", "false");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Discord RPC",
-                        message: "Discord RPC has been disabled.",
-                        buttons: ["OK"],
-                      });
-                      clearActivity();
-                      return;
-                    } else if (
-                      getValue("discordrpcstatus") === "false" ||
-                      getValue("discordrpcstatus") === undefined
-                    ) {
-                      setValue("discordrpcstatus", "true");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Discord RPC",
-                        message: "Discord RPC has been enabled.",
-                        buttons: ["OK"],
-                      });
-                      setActivity(
-                        `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
-                      );
-                      return;
-                    }
-                  },
-                  checked: getValue("discordrpcstatus") === "true",
-                },
-                {
-                  label: "Enable Auto Updates",
-                  type: "checkbox",
-                  click: () => {
-                    if (getValue("autoupdater") === "true") {
-                      setValue("autoupdater", "false");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Auto Updates",
-                        message: "Auto updates have been disabled.",
-                        buttons: ["OK"],
-                      });
-                      return;
-                    } else if (
-                      getValue("autoupdater") === "false" ||
-                      getValue("autoupdater") === undefined
-                    ) {
-                      setValue("autoupdater", "true");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Auto Updates",
-                        message: "Auto updates have been enabled.",
-                        buttons: ["OK"],
-                      });
-                      return;
-                    }
-                  },
-                  checked: getValue("autoupdater") === "true",
-                },
-                {
-                  label: "Enable Dynamic Icons",
-                  type: "checkbox",
-                  click: () => {
-                    if (getValue("dynamicicons") === "true") {
-                      setValue("dynamicicons", "false");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Dynamic Icons",
-                        message: "Dynamic icons have been disabled.",
-                        buttons: ["OK"],
-                      });
-                      return;
-                    } else if (
-                      getValue("dynamicicons") === "false" ||
-                      getValue("dynamicicons") === undefined
-                    ) {
-                      setValue("dynamicicons", "true");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Dynamic Icons",
-                        message: "Dynamic icons have been enabled.",
-                        buttons: ["OK"],
-                      });
-                      return;
-                    }
-                  },
-                  checked: getValue("dynamicicons") === "true",
-                },
-                { type: "separator" },
-                {
-                  label: "Block Ads and Trackers",
-                  type: "checkbox",
-                  click: () => {
-                    if (getValue("blockadsandtrackers") === "true") {
-                      setValue("blockadsandtrackers", "false");
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Block Ads and Trackers",
-                        message: "Ads and trackers will no longer be blocked.",
-                        buttons: ["OK"],
-                      });
-                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-                        BrowserWindow.getAllWindows().forEach(window => {
-                            blocker.disableBlockingInSession(window.webContents.session);
-                        });
-                    }).catch((error) => {
-                        if (error.message !== "Trying to disable blocking which was not enabled") {
-                          console.error(error);
-                        }
-                      });
-                      return;
-                    }
-                    if (
-                      getValue("blockadsandtrackers") === "false" ||
-                      getValue("blockadsandtrackers") === undefined
-                    ) {
-                      setValue("blockadsandtrackers", "true");
-                      ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-                        BrowserWindow.getAllWindows().forEach(window => {
-                            blocker.enableBlockingInSession(window.webContents.session);
-                        })
-                          dialog.showMessageBoxSync({
-                            type: "info",
-                            title: "Block Ads and Trackers",
-                            message: "Ads and trackers will now be blocked.",
-                            buttons: ["OK"],
-                          });
-                        }
-                      );
-                      return;
-                    }
-                  },
-                  checked: getValue("blockadsandtrackers") === "true",
-                },
-                { type: "separator" },
-                {
-                  label: "Windows User-Agent String",
-                  type: "radio",
-                  click: () => {
-                    setUserAgent(useragents.Windows);
-                  },
-                  checked: getValue("useragentstring") === useragents.Windows,
-                },
-                {
-                  label: "macOS User-Agent String",
-                  type: "radio",
-                  click: () => {
-                    setUserAgent(useragents.macOS);
-                  },
-                  checked: getValue("useragentstring") === useragents.macOS,
-                },
-                {
-                  label: "Linux User-Agent String",
-                  type: "radio",
-                  click: () => {
-                    setValue("useragentstring", useragents.Linux);
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "User agent switcher",
-                      message:
-                        "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("useragentstring") === useragents.Linux,
-                },
-                { type: "separator" },
-                ...(process.platform === "win32" || process.platform === "linux"
-                  ? [
-                      {
-                        role: "quit",
-                        accelerator: "Ctrl+Q",
-                      },
-                    ]
-                  : []),
-              ],
+              submenu: commonPreferencesSubmenu,
             },
             { role: "services" },
             { type: "separator" },
@@ -477,15 +466,8 @@ const menulayout = [
             { role: "unhide" },
             { type: "separator" },
             { label: "Quit MS-365-Electron", role: "quit" },
-          ],
-        },
-      ]
-    : []),
-  ...(process.platform === "win32" || process.platform === "linux"
-    ? [
-        {
-          label: "MS-365-Electron",
-          submenu: [
+          ]
+        : [
             {
               label: "About MS-365-Electron",
               click: async () => {
@@ -508,326 +490,10 @@ const menulayout = [
               },
             },
             { type: "separator" },
-            {
-              label: "Open MS 365 with Personal Account",
-              type: "radio",
-              click() {
-                setValue(
-                  "enterprise-or-normal",
-                  "?auth=1"
-                );
-                dialog.showMessageBoxSync({
-                  type: "info",
-                  title: "MS 365 with Personal Account",
-                  message:
-                    "MS 365 will now open with your Personal Account.\n\nPlease restart the app to apply the changes.",
-                  buttons: ["OK"],
-                });
-              },
-              checked:
-                getValue("enterprise-or-normal") ===
-                "?auth=1",
-            },
-            {
-              label: "Open MS 365 with Work/School Account",
-              type: "radio",
-              click() {
-                setValue(
-                  "enterprise-or-normal",
-                  "?auth=2"
-                );
-                dialog.showMessageBoxSync({
-                  type: "info",
-                  title: "MS 365 with Work/School Account",
-                  message:
-                    "MS 365 will now open with your Work/School account.\n\nPlease restart the app to apply the changes.",
-                  buttons: ["OK"],
-                });
-              },
-              checked:
-                getValue("enterprise-or-normal") ===
-                "?auth=2",
-            },
-            { type: "separator" },
-            {
-              label: "Open Websites in New Windows",
-              type: "radio",
-              click: () => {
-                setValue("websites-in-new-window", "true");
-                dialog.showMessageBoxSync({
-                  type: "info",
-                  title: "Websites in New Windows",
-                  message:
-                    "Websites which are targeted to open in new tabs will now open in new windows.",
-                  buttons: ["OK"],
-                });
-              },
-              checked: getValue("websites-in-new-window") === "true",
-            },
-            {
-              label: "Open Websites in the Same Window",
-              type: "radio",
-              click: () => {
-                setValue("websites-in-new-window", "false");
-                dialog.showMessageBoxSync({
-                  type: "info",
-                  title: "Websites in New Windows",
-                  message:
-                    "Websites which are targeted to open in new tabs will now open in the same window.",
-                  buttons: ["OK"],
-                });
-              },
-              checked: getValue("websites-in-new-window") === "false",
-            },
-            { type: "separator" },
-            {
-              label: "Custom Home Page",
-              submenu: [
-                {
-                  label: "Home (Default)",
-                  type: "radio",
-                  click: () => {
-                    setValue("custompage", "home");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Custom Home Page",
-                      message:
-                        "You have set the home page to the default home page. Please restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("custompage") === "home",
-                },
-                {
-                  label: "Create",
-                  type: "radio",
-                  click: () => {
-                    setValue("custompage", "create");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Custom Home Page",
-                      message:
-                        "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("custompage") === "create",
-                },
-                {
-                  label: "My Content",
-                  type: "radio",
-                  click: () => {
-                    setValue("custompage", "mycontent");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Custom Home Page",
-                      message:
-                        "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("custompage") === "mycontent",
-                },
-                {
-                  label: "Apps",
-                  type: "radio",
-                  click: () => {
-                    setValue("custompage", "apps");
-                    dialog.showMessageBoxSync({
-                      type: "info",
-                      title: "Custom Home Page",
-                      message:
-                        "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
-                      buttons: ["OK"],
-                    });
-                  },
-                  checked: getValue("custompage") === "apps",
-                },
-              ],
-            },
-            { type: "separator" },
-            {
-              label: "Enable Discord RPC",
-              type: "checkbox",
-              click: () => {
-                if (getValue("discordrpcstatus") === "true") {
-                  setValue("discordrpcstatus", "false");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Discord RPC",
-                    message: "Discord RPC has been disabled.",
-                    buttons: ["OK"],
-                  });
-                  clearActivity();
-                  return;
-                } else if (
-                  getValue("discordrpcstatus") === "false" ||
-                  getValue("discordrpcstatus") === undefined
-                ) {
-                  setValue("discordrpcstatus", "true");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Discord RPC",
-                    message: "Discord RPC has been enabled.",
-                    buttons: ["OK"],
-                  });
-                  setActivity(
-                    `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
-                  );
-                  return;
-                }
-              },
-              checked: getValue("discordrpcstatus") === "true",
-            },
-            {
-              label: "Enable Auto Updates",
-              type: "checkbox",
-              click: () => {
-                if (getValue("autoupdater") === "true") {
-                  setValue("autoupdater", "false");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Auto Updates",
-                    message: "Auto updates have been disabled.",
-                    buttons: ["OK"],
-                  });
-                  return;
-                } else if (
-                  getValue("autoupdater") === "false" ||
-                  getValue("autoupdater") === undefined
-                ) {
-                  setValue("autoupdater", "true");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Auto Updates",
-                    message: "Auto updates have been enabled.",
-                    buttons: ["OK"],
-                  });
-                  return;
-                }
-              },
-              checked: getValue("autoupdater") === "true",
-            },
-            {
-              label: "Enable Dynamic Icons",
-              type: "checkbox",
-              click: () => {
-                if (getValue("dynamicicons") === "true") {
-                  setValue("dynamicicons", "false");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Dynamic Icons",
-                    message: "Dynamic icons have been disabled.",
-                    buttons: ["OK"],
-                  });
-                  return;
-                } else if (
-                  getValue("dynamicicons") === "false" ||
-                  getValue("dynamicicons") === undefined
-                ) {
-                  setValue("dynamicicons", "true");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Dynamic Icons",
-                    message: "Dynamic icons have been enabled.",
-                    buttons: ["OK"],
-                  });
-                  return;
-                }
-              },
-              checked: getValue("dynamicicons") === "true",
-            },
-            { type: "separator" },
-            {
-              label: "Block Ads and Trackers",
-              type: "checkbox",
-              click: () => {
-                if (getValue("blockadsandtrackers") === "true") {
-                  setValue("blockadsandtrackers", "false");
-                  dialog.showMessageBoxSync({
-                    type: "info",
-                    title: "Block Ads and Trackers",
-                    message: "Ads and trackers will no longer be blocked.",
-                    buttons: ["OK"],
-                  });
-                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-                    BrowserWindow.getAllWindows().forEach(window => {
-                        blocker.disableBlockingInSession(window.webContents.session);
-                    });
-                }).catch((error) => {
-                    if (error.message !== "Trying to disable blocking which was not enabled") {
-                      console.error(error);
-                    }
-                  });
-                  return;
-                }
-                if (
-                  getValue("blockadsandtrackers") === "false" ||
-                  getValue("blockadsandtrackers") === undefined
-                ) {
-                  setValue("blockadsandtrackers", "true");
-                  ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-                    BrowserWindow.getAllWindows().forEach(window => {
-                        blocker.enableBlockingInSession(window.webContents.session);
-                    })
-                      dialog.showMessageBoxSync({
-                        type: "info",
-                        title: "Block Ads and Trackers",
-                        message: "Ads and trackers will now be blocked.",
-                        buttons: ["OK"],
-                      });
-                    }
-                  );
-                  return;
-                }
-              },
-              checked: getValue("blockadsandtrackers") === "true",
-            },
-            { type: "separator" },
-            {
-              label: "Windows User-Agent String",
-              type: "radio",
-              click: () => {
-                setUserAgent(useragents.Windows);
-              },
-              checked: getValue("useragentstring") === useragents.Windows,
-            },
-            {
-              label: "macOS User-Agent String",
-              type: "radio",
-              click: () => {
-                setUserAgent(useragents.macOS);
-              },
-              checked: getValue("useragentstring") === useragents.macOS,
-            },
-            {
-              label: "Linux User-Agent String",
-              type: "radio",
-              click: () => {
-                setValue("useragentstring", useragents.Linux);
-                dialog.showMessageBoxSync({
-                  type: "info",
-                  title: "User agent switcher",
-                  message:
-                    "You have switched to Linux Useragent.\n\nPlease restart the app to apply the changes.",
-                  buttons: ["OK"],
-                });
-              },
-              checked: getValue("useragentstring") === useragents.Linux,
-            },
-            { type: "separator" },
-            ...(process.platform === "win32" || process.platform === "linux"
-              ? [
-                  {
-                    role: "quit",
-                    accelerator: "Ctrl+Q",
-                  },
-                ]
-              : []),
-          ],
-        },
-      ]
-    : []),
+            ...commonPreferencesSubmenu,
+          ]),
+    ],
+  },
   {
     label: "File",
     submenu: [
@@ -988,10 +654,7 @@ const menulayout = [
       {
         label: "Word",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
                 width: 1081,
@@ -1008,10 +671,7 @@ const menulayout = [
                 "https://microsoft365.com/launch/word?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
                 width: 1081,
@@ -1034,10 +694,7 @@ const menulayout = [
       {
         label: "Excel",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
                 width: 1081,
@@ -1056,10 +713,7 @@ const menulayout = [
                 "https://microsoft365.com/launch/excel?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
                 width: 1081,
@@ -1084,10 +738,7 @@ const menulayout = [
       {
         label: "PowerPoint",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
                 width: 1081,
@@ -1106,10 +757,7 @@ const menulayout = [
                 "https://microsoft365.com/launch/powerpoint?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
                 width: 1081,
@@ -1134,10 +782,7 @@ const menulayout = [
       {
         label: "Outlook",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
                 width: 1081,
@@ -1154,10 +799,7 @@ const menulayout = [
                 "https://outlook.office.com/mail/"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
                 width: 1081,
@@ -1182,10 +824,7 @@ const menulayout = [
       {
         label: "OneDrive",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
                 width: 1081,
@@ -1204,10 +843,7 @@ const menulayout = [
                 "https://microsoft365.com/launch/onedrive?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
                 width: 1081,
@@ -1232,10 +868,7 @@ const menulayout = [
       {
         label: "OneNote",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
                 width: 1081,
@@ -1254,10 +887,7 @@ const menulayout = [
                 "https://www.microsoft365.com/launch/onenote?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
                 width: 1081,
@@ -1280,10 +910,7 @@ const menulayout = [
       {
         label: "All Apps",
         click: () => {
-          if (
-            getValue("enterprise-or-normal") ===
-            "?auth=2"
-          ) {
+          if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
                 width: 1081,
@@ -1300,10 +927,7 @@ const menulayout = [
                 "https://www.microsoft365.com/apps?auth=2"
               );
             }
-          } else if (
-            getValue("enterprise-or-normal") ===
-            "?auth=1"
-          ) {
+          } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
                 width: 1081,

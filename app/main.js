@@ -1,10 +1,10 @@
 import { app, Menu, BrowserWindow, dialog, nativeImage } from "electron";
-import { clearActivity, setActivity, loginToRPC } from './rpc.js';
+import { clearActivity, setActivity, loginToRPC } from "./rpc.js";
 import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
-import { getValue } from './store.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { getValue } from "./store.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import { join } from "path";
 
 import Windows from "./useragents.json" with { type: "json" };
@@ -12,8 +12,8 @@ import checkInternetConnected from "check-internet-connected";
 import contextMenu from "electron-context-menu";
 import updaterpkg from "electron-updater";
 import ElectronDl from "electron-dl";
-import menulayout from './menu.js'
-import logpkg from 'electron-log';
+import menulayout from "./menu.js";
+import logpkg from "electron-log";
 
 const { transports, log: _log, functions } = logpkg;
 const __filename = fileURLToPath(import.meta.url);
@@ -30,7 +30,7 @@ function createWindow() {
   const enterpriseOrNormal = getValue("enterprise-or-normal");
   const custompage = getValue("custompage");
   const partition = enterpriseOrNormal === "?auth=1" ? "persist:personal" : "persist:work";
-  
+
   const win = new BrowserWindow({
     width: 1181,
     height: 670,
@@ -41,8 +41,8 @@ function createWindow() {
       devTools: true,
       partition: partition,
     },
-  });  
-  
+  });
+
   win.setAutoHideMenuBar(getValue("autohide-menubar") === "true");
 
   const splash = new BrowserWindow({
@@ -125,17 +125,13 @@ app.on("web-contents-created", (event, contents) => {
             // do not show error
           });
         if (getValue("discordrpcstatus") === "true") {
-          setActivity(
-            `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
-          );
+          setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
         }
         return { action: "deny" };
       }
     } else {
       if (getValue("discordrpcstatus") === "true") {
-        setActivity(
-          `On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`
-        );
+        setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
       }
       return { action: "allow", overrideBrowserWindowOptions: { width: 1081, height: 610 } };
     }
@@ -144,17 +140,11 @@ app.on("web-contents-created", (event, contents) => {
     if (getValue("dynamicicons") === "true") {
       if (BrowserWindow.getFocusedWindow()) {
         if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("&ithint=file%2cpptx") ||
-          BrowserWindow.getFocusedWindow()
-            .webContents.getTitle()
-            .includes(".pptx")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("&ithint=file%2cpptx") ||
+          BrowserWindow.getFocusedWindow().webContents.getTitle().includes(".pptx")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/powerpoint-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/powerpoint-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/powerpoint.png")
@@ -164,17 +154,11 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("&ithint=file%2cdocx") ||
-          BrowserWindow.getFocusedWindow()
-            .webContents.getTitle()
-            .includes(".docx")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("&ithint=file%2cdocx") ||
+          BrowserWindow.getFocusedWindow().webContents.getTitle().includes(".docx")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/word-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/word-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/word.png")
@@ -184,17 +168,11 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("&ithint=file%2cxlsx") ||
-          BrowserWindow.getFocusedWindow()
-            .webContents.getTitle()
-            .includes(".xlsx")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("&ithint=file%2cxlsx") ||
+          BrowserWindow.getFocusedWindow().webContents.getTitle().includes(".xlsx")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/excel-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/excel-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/excel.png")
@@ -204,17 +182,11 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("outlook.live.com") ||
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("outlook.office.com")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("outlook.live.com") ||
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("outlook.office.com")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/outlook-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/outlook-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/outlook.png")
@@ -224,17 +196,11 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("onedrive.live.com") ||
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("onedrive.aspx")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("onedrive.live.com") ||
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("onedrive.aspx")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/onedrive-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/onedrive-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/onedrive.png")
@@ -244,14 +210,10 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("teams.live.com")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("teams.live.com")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/teams-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/teams-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/teams.png")
@@ -261,14 +223,10 @@ app.on("web-contents-created", (event, contents) => {
             });
           }
         } else if (
-          BrowserWindow.getFocusedWindow()
-            .webContents.getURL()
-            .includes("&ithint=onenote")
+          BrowserWindow.getFocusedWindow().webContents.getURL().includes("&ithint=onenote")
         ) {
           if (process.platform === "darwin") {
-            app.dock.setIcon(
-              join(__dirname, "../assets/icons/apps/onenote-mac.png")
-            );
+            app.dock.setIcon(join(__dirname, "../assets/icons/apps/onenote-mac.png"));
           } else if (process.platform === "win32") {
             let nimage = nativeImage.createFromPath(
               join(__dirname, "../assets/icons/apps/onenote.png")

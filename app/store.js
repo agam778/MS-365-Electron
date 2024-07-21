@@ -1,4 +1,4 @@
-import useragents from "./useragents.json" with { type: "json" }
+import useragents from "./useragents.json" with { type: "json" };
 import Store from "electron-store";
 
 const store = new Store();
@@ -32,8 +32,6 @@ getValueOrDefault("custompage", "home");
 
 if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
   setValue("enterprise-or-normal", "?auth=1");
-} else if (
-  getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2"
-) {
+} else if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=2") {
   setValue("enterprise-or-normal", "?auth=2");
 }

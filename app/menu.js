@@ -1,12 +1,12 @@
 import { app, dialog, BrowserWindow, ShareMenu, clipboard } from "electron";
-import { getValue, setValue } from './store.js';
+import { getValue, setValue } from "./store.js";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
-import { clearActivity, setActivity } from './rpc.js';
-import { fileURLToPath } from 'url';
+import { clearActivity, setActivity } from "./rpc.js";
+import { fileURLToPath } from "url";
 import { shell } from "electron";
-import { dirname } from 'path';
+import { dirname } from "path";
 
-import useragents from "./useragents.json" with { type: "json" }
+import useragents from "./useragents.json" with { type: "json" };
 import updaterpkg from "electron-updater";
 import fetch from "cross-fetch";
 import axios from "axios";
@@ -45,9 +45,7 @@ async function checkForUpdates() {
           buttons: ["Download", "Close"],
         });
         if (updatedialog === 0) {
-          shell.openExternal(
-            "https://github.com/agam778/MS-365-Electron/releases/latest"
-          );
+          shell.openExternal("https://github.com/agam778/MS-365-Electron/releases/latest");
         }
       }
     } else {
@@ -70,18 +68,12 @@ async function openExternalLink(url) {
 async function openLogsFolder() {
   if (process.platform === "win32") {
     await shell.openPath(
-      "C:\\Users\\" +
-        process.env.USERNAME +
-        "\\AppData\\Roaming\\ms-365-electron\\logs\\"
+      "C:\\Users\\" + process.env.USERNAME + "\\AppData\\Roaming\\ms-365-electron\\logs\\"
     );
   } else if (process.platform === "darwin") {
-    await shell.openPath(
-      "/Users/" + process.env.USER + "/Library/Logs/ms-365-electron/"
-    );
+    await shell.openPath("/Users/" + process.env.USER + "/Library/Logs/ms-365-electron/");
   } else if (process.platform === "linux") {
-    await shell.openPath(
-      "/home/" + process.env.USER + "/.config/ms-365-electron/logs/"
-    );
+    await shell.openPath("/home/" + process.env.USER + "/.config/ms-365-electron/logs/");
   }
 }
 
@@ -139,8 +131,7 @@ const commonPreferencesSubmenu = [
       dialog.showMessageBoxSync({
         type: "info",
         title: "Websites in New Windows",
-        message:
-          "Websites which are targeted to open in new tabs will now open in new windows.",
+        message: "Websites which are targeted to open in new tabs will now open in new windows.",
         buttons: ["OK"],
       });
     },
@@ -189,7 +180,7 @@ const commonPreferencesSubmenu = [
             type: "info",
             title: "Custom Home Page",
             message:
-              "You have set the home page to the \"Create\" page. Please restart the app to apply the changes.",
+              'You have set the home page to the "Create" page. Please restart the app to apply the changes.',
             buttons: ["OK"],
           });
         },
@@ -204,7 +195,7 @@ const commonPreferencesSubmenu = [
             type: "info",
             title: "Custom Home Page",
             message:
-              "You have set the home page to the \"My Content\" page. Please restart the app to apply the changes.",
+              'You have set the home page to the "My Content" page. Please restart the app to apply the changes.',
             buttons: ["OK"],
           });
         },
@@ -219,7 +210,7 @@ const commonPreferencesSubmenu = [
             type: "info",
             title: "Custom Home Page",
             message:
-              "You have set the home page to the \"Apps\" page. Please restart the app to apply the changes.",
+              'You have set the home page to the "Apps" page. Please restart the app to apply the changes.',
             buttons: ["OK"],
           });
         },
@@ -253,9 +244,7 @@ const commonPreferencesSubmenu = [
           message: "Discord RPC has been enabled.",
           buttons: ["OK"],
         });
-        setActivity(
-          `On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`
-        );
+        setActivity(`On ${BrowserWindow.getFocusedWindow().webContents.getTitle()}`);
         return;
       }
     },
@@ -274,10 +263,7 @@ const commonPreferencesSubmenu = [
           buttons: ["OK"],
         });
         return;
-      } else if (
-        getValue("autoupdater") === "false" ||
-        getValue("autoupdater") === undefined
-      ) {
+      } else if (getValue("autoupdater") === "false" || getValue("autoupdater") === undefined) {
         setValue("autoupdater", "true");
         dialog.showMessageBoxSync({
           type: "info",
@@ -303,10 +289,7 @@ const commonPreferencesSubmenu = [
           buttons: ["OK"],
         });
         return;
-      } else if (
-        getValue("dynamicicons") === "false" ||
-        getValue("dynamicicons") === undefined
-      ) {
+      } else if (getValue("dynamicicons") === "false" || getValue("dynamicicons") === undefined) {
         setValue("dynamicicons", "true");
         dialog.showMessageBoxSync({
           type: "info",
@@ -332,15 +315,17 @@ const commonPreferencesSubmenu = [
           message: "Ads and trackers will no longer be blocked.",
           buttons: ["OK"],
         });
-        ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-          BrowserWindow.getAllWindows().forEach(window => {
+        ElectronBlocker.fromPrebuiltAdsAndTracking(fetch)
+          .then((blocker) => {
+            BrowserWindow.getAllWindows().forEach((window) => {
               blocker.disableBlockingInSession(window.webContents.session);
+            });
+          })
+          .catch((error) => {
+            if (error.message !== "Trying to disable blocking which was not enabled") {
+              console.error(error);
+            }
           });
-        }).catch((error) => {
-          if (error.message !== "Trying to disable blocking which was not enabled") {
-            console.error(error);
-          }
-        });
         return;
       }
       if (
@@ -349,17 +334,16 @@ const commonPreferencesSubmenu = [
       ) {
         setValue("blockadsandtrackers", "true");
         ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
-          BrowserWindow.getAllWindows().forEach(window => {
-              blocker.enableBlockingInSession(window.webContents.session);
-          })
-            dialog.showMessageBoxSync({
-              type: "info",
-              title: "Block Ads and Trackers",
-              message: "Ads and trackers will now be blocked.",
-              buttons: ["OK"],
-            });
-          }
-        );
+          BrowserWindow.getAllWindows().forEach((window) => {
+            blocker.enableBlockingInSession(window.webContents.session);
+          });
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Block Ads and Trackers",
+            message: "Ads and trackers will now be blocked.",
+            buttons: ["OK"],
+          });
+        });
         return;
       }
     },
@@ -417,9 +401,7 @@ const menulayout = [
             {
               label: "About MS-365-Electron",
               click: async () => {
-                await openExternalLink(
-                  "https://github.com/agam778/MS-365-Electron"
-                );
+                await openExternalLink("https://github.com/agam778/MS-365-Electron");
               },
             },
             {
@@ -452,9 +434,7 @@ const menulayout = [
             {
               label: "About MS-365-Electron",
               click: async () => {
-                await openExternalLink(
-                  "https://github.com/agam778/MS-365-Electron"
-                );
+                await openExternalLink("https://github.com/agam778/MS-365-Electron");
               },
             },
             {
@@ -606,9 +586,7 @@ const menulayout = [
       {
         label: "Home",
         click: () => {
-          BrowserWindow.getFocusedWindow().loadURL(
-            `${getValue("enterprise-or-normal")}`
-          );
+          BrowserWindow.getFocusedWindow().loadURL(`${getValue("enterprise-or-normal")}`);
         },
       },
     ],
@@ -686,9 +664,7 @@ const menulayout = [
                   partition: "persist:work",
                 },
               });
-              excelwindow.loadURL(
-                "https://microsoft365.com/launch/excel?auth=2"
-              );
+              excelwindow.loadURL("https://microsoft365.com/launch/excel?auth=2");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/excel?auth=2"
@@ -705,9 +681,7 @@ const menulayout = [
                   partition: "persist:personal",
                 },
               });
-              excelwindow.loadURL(
-                "https://microsoft365.com/launch/excel?auth=1"
-              );
+              excelwindow.loadURL("https://microsoft365.com/launch/excel?auth=1");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/excel?auth=1"
@@ -730,9 +704,7 @@ const menulayout = [
                   partition: "persist:work",
                 },
               });
-              powerpointwindow.loadURL(
-                "https://microsoft365.com/launch/powerpoint?auth=2"
-              );
+              powerpointwindow.loadURL("https://microsoft365.com/launch/powerpoint?auth=2");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/powerpoint?auth=2"
@@ -749,9 +721,7 @@ const menulayout = [
                   partition: "persist:personal",
                 },
               });
-              powerpointwindow.loadURL(
-                "https://microsoft365.com/launch/powerpoint?auth=1"
-              );
+              powerpointwindow.loadURL("https://microsoft365.com/launch/powerpoint?auth=1");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/powerpoint?auth=1"
@@ -776,9 +746,7 @@ const menulayout = [
               });
               outlookwindow.loadURL("https://outlook.office.com/mail/");
             } else {
-              BrowserWindow.getFocusedWindow().loadURL(
-                "https://outlook.office.com/mail/"
-              );
+              BrowserWindow.getFocusedWindow().loadURL("https://outlook.office.com/mail/");
             }
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
@@ -791,9 +759,7 @@ const menulayout = [
                   partition: "persist:personal",
                 },
               });
-              outlookwindow.loadURL(
-                "https://office.live.com/start/Outlook.aspx"
-              );
+              outlookwindow.loadURL("https://office.live.com/start/Outlook.aspx");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://office.live.com/start/Outlook.aspx"
@@ -816,9 +782,7 @@ const menulayout = [
                   partition: "persist:work",
                 },
               });
-              onedrivewindow.loadURL(
-                "https://microsoft365.com/launch/onedrive?auth=2"
-              );
+              onedrivewindow.loadURL("https://microsoft365.com/launch/onedrive?auth=2");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/onedrive?auth=2"
@@ -835,9 +799,7 @@ const menulayout = [
                   partition: "persist:personal",
                 },
               });
-              onedrivewindow.loadURL(
-                "https://microsoft365.com/launch/onedrive?auth=1"
-              );
+              onedrivewindow.loadURL("https://microsoft365.com/launch/onedrive?auth=1");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://microsoft365.com/launch/onedrive?auth=1"
@@ -860,9 +822,7 @@ const menulayout = [
                   partition: "persist:work",
                 },
               });
-              onenotewindow.loadURL(
-                "https://www.microsoft365.com/launch/onenote?auth=2"
-              );
+              onenotewindow.loadURL("https://www.microsoft365.com/launch/onenote?auth=2");
             } else {
               BrowserWindow.getFocusedWindow().loadURL(
                 "https://www.microsoft365.com/launch/onenote?auth=2"
@@ -881,9 +841,7 @@ const menulayout = [
               });
               onenotewindow.loadURL("https://www.onenote.com/notebooks?auth=1");
             } else {
-              BrowserWindow.getFocusedWindow().loadURL(
-                "https://www.onenote.com/notebooks?auth=1"
-              );
+              BrowserWindow.getFocusedWindow().loadURL("https://www.onenote.com/notebooks?auth=1");
             }
           }
         },
@@ -904,9 +862,7 @@ const menulayout = [
               });
               allappswindow.loadURL("https://www.microsoft365.com/apps?auth=2");
             } else {
-              BrowserWindow.getFocusedWindow().loadURL(
-                "https://www.microsoft365.com/apps?auth=2"
-              );
+              BrowserWindow.getFocusedWindow().loadURL("https://www.microsoft365.com/apps?auth=2");
             }
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
@@ -921,9 +877,7 @@ const menulayout = [
               });
               allappswindow.loadURL("https://www.microsoft365.com/apps?auth=1");
             } else {
-              BrowserWindow.getFocusedWindow().loadURL(
-                "https://www.microsoft365.com/apps?auth=1"
-              );
+              BrowserWindow.getFocusedWindow().loadURL("https://www.microsoft365.com/apps?auth=1");
             }
           }
         },

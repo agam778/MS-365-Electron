@@ -15,8 +15,7 @@
       var c = arguments[b];
       if (c)
         for (var d in c)
-          c.hasOwnProperty(d) &&
-            ("object" == typeof c[d] ? deepExtend(a[d], c[d]) : (a[d] = c[d]));
+          c.hasOwnProperty(d) && ("object" == typeof c[d] ? deepExtend(a[d], c[d]) : (a[d] = c[d]));
     }
     return a;
   }
@@ -29,11 +28,7 @@
           d.insertBefore(r, d.firstChild),
           (s = r.getContext("2d")),
           i();
-        for (
-          var c = Math.round((r.width * r.height) / g.density), e = 0;
-          c > e;
-          e++
-        ) {
+        for (var c = Math.round((r.width * r.height) / g.density), e = 0; c > e; e++) {
           var f = new n();
           f.setStackPos(e), z.push(f);
         }
@@ -74,9 +69,7 @@
     }
     function j() {
       if (y) {
-        (u = a.innerWidth),
-          (v = a.innerHeight),
-          s.clearRect(0, 0, r.width, r.height);
+        (u = a.innerWidth), (v = a.innerHeight), s.clearRect(0, 0, r.width, r.height);
         for (var b = 0; b < z.length; b++) z[b].updatePosition();
         for (var b = 0; b < z.length; b++) z[b].draw();
         G || (t = requestAnimationFrame(j));
@@ -84,11 +77,7 @@
     }
     function k() {
       i();
-      for (
-        var a = d.offsetWidth, b = d.offsetHeight, c = z.length - 1;
-        c >= 0;
-        c--
-      )
+      for (var a = d.offsetWidth, b = d.offsetHeight, c = z.length - 1; c >= 0; c--)
         (z[c].position.x > a || z[c].position.y > b) && z.splice(c, 1);
       var e = Math.round((r.width * r.height) / g.density);
       if (e > z.length)
@@ -120,42 +109,24 @@
         g.directionX)
       ) {
         case "left":
-          this.speed.x = +(
-            -g.maxSpeedX +
-            Math.random() * g.maxSpeedX -
-            g.minSpeedX
-          ).toFixed(2);
+          this.speed.x = +(-g.maxSpeedX + Math.random() * g.maxSpeedX - g.minSpeedX).toFixed(2);
           break;
         case "right":
-          this.speed.x = +(Math.random() * g.maxSpeedX + g.minSpeedX).toFixed(
-            2
-          );
+          this.speed.x = +(Math.random() * g.maxSpeedX + g.minSpeedX).toFixed(2);
           break;
         default:
-          (this.speed.x = +(
-            -g.maxSpeedX / 2 +
-            Math.random() * g.maxSpeedX
-          ).toFixed(2)),
+          (this.speed.x = +(-g.maxSpeedX / 2 + Math.random() * g.maxSpeedX).toFixed(2)),
             (this.speed.x += this.speed.x > 0 ? g.minSpeedX : -g.minSpeedX);
       }
       switch (g.directionY) {
         case "up":
-          this.speed.y = +(
-            -g.maxSpeedY +
-            Math.random() * g.maxSpeedY -
-            g.minSpeedY
-          ).toFixed(2);
+          this.speed.y = +(-g.maxSpeedY + Math.random() * g.maxSpeedY - g.minSpeedY).toFixed(2);
           break;
         case "down":
-          this.speed.y = +(Math.random() * g.maxSpeedY + g.minSpeedY).toFixed(
-            2
-          );
+          this.speed.y = +(Math.random() * g.maxSpeedY + g.minSpeedY).toFixed(2);
           break;
         default:
-          (this.speed.y = +(
-            -g.maxSpeedY / 2 +
-            Math.random() * g.maxSpeedY
-          ).toFixed(2)),
+          (this.speed.y = +(-g.maxSpeedY / 2 + Math.random() * g.maxSpeedY).toFixed(2)),
             (this.speed.x += this.speed.y > 0 ? g.minSpeedY : -g.minSpeedY);
       }
     }
@@ -221,10 +192,7 @@
                   b.position.x + b.parallaxOffsetX,
                   b.position.y + b.parallaxOffsetY
                 )
-              : s.lineTo(
-                  b.position.x + b.parallaxOffsetX,
-                  b.position.y + b.parallaxOffsetY
-                ));
+              : s.lineTo(b.position.x + b.parallaxOffsetX, b.position.y + b.parallaxOffsetY));
         }
         s.stroke(), s.closePath();
       }),
@@ -236,14 +204,10 @@
             var b = (v - 0) / 60;
             x = (F - -30) * b + 0;
           } else (w = A), (x = B);
-          (this.parallaxTargX =
-            (w - u / 2) / (g.parallaxMultiplier * this.layer)),
-            (this.parallaxOffsetX +=
-              (this.parallaxTargX - this.parallaxOffsetX) / 10),
-            (this.parallaxTargY =
-              (x - v / 2) / (g.parallaxMultiplier * this.layer)),
-            (this.parallaxOffsetY +=
-              (this.parallaxTargY - this.parallaxOffsetY) / 10);
+          (this.parallaxTargX = (w - u / 2) / (g.parallaxMultiplier * this.layer)),
+            (this.parallaxOffsetX += (this.parallaxTargX - this.parallaxOffsetX) / 10),
+            (this.parallaxTargY = (x - v / 2) / (g.parallaxMultiplier * this.layer)),
+            (this.parallaxOffsetY += (this.parallaxTargY - this.parallaxOffsetY) / 10);
         }
         var c = d.offsetWidth,
           e = d.offsetHeight;
@@ -326,8 +290,7 @@
         return "object" != typeof a && a
           ? void 0
           : this.each(function () {
-              f.data(this, "plugin_" + e) ||
-                f.data(this, "plugin_" + e, new d(this, a));
+              f.data(this, "plugin_" + e) || f.data(this, "plugin_" + e, new d(this, a));
             });
       });
 })(window, document),
@@ -344,8 +307,7 @@
     )
       (window.requestAnimationFrame = window[b[c] + "RequestAnimationFrame"]),
         (window.cancelAnimationFrame =
-          window[b[c] + "CancelAnimationFrame"] ||
-          window[b[c] + "CancelRequestAnimationFrame"]);
+          window[b[c] + "CancelAnimationFrame"] || window[b[c] + "CancelRequestAnimationFrame"]);
     window.requestAnimationFrame ||
       (window.requestAnimationFrame = function (b) {
         var c = new Date().getTime(),

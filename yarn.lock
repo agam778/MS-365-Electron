@@ -21,59 +21,59 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker-content@npm:^1.27.6":
-  version: 1.27.6
-  resolution: "@cliqz/adblocker-content@npm:1.27.6"
+"@cliqz/adblocker-content@npm:^1.30.0":
+  version: 1.30.0
+  resolution: "@cliqz/adblocker-content@npm:1.30.0"
   dependencies:
-    "@cliqz/adblocker-extended-selectors": "npm:^1.27.6"
-  checksum: 10c0/71052ae2ed0110148c71b65ad59de0484def07af45083219064a79fe2b7026d07357b4888c59b8e070dae4782ac964526c2f1ae7690f1dacaeda03382077bd52
+    "@cliqz/adblocker-extended-selectors": "npm:^1.30.0"
+  checksum: 10c0/cb8f9d824cb9db1e1baf820461cef011008a3466a94da716238bc36abf2ac089e5cccc591e9caee4c363ac680443a149677411d57f35e3088301b7465797d0d6
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker-electron-preload@npm:^1.27.6":
-  version: 1.27.6
-  resolution: "@cliqz/adblocker-electron-preload@npm:1.27.6"
+"@cliqz/adblocker-electron-preload@npm:^1.30.0":
+  version: 1.30.0
+  resolution: "@cliqz/adblocker-electron-preload@npm:1.30.0"
   dependencies:
-    "@cliqz/adblocker-content": "npm:^1.27.6"
+    "@cliqz/adblocker-content": "npm:^1.30.0"
   peerDependencies:
     electron: ">11"
-  checksum: 10c0/c140543aa916b074a413890436d7fbc15f2670dad2169b6894b4f884654cbad019059c01db0db9dd380b1812ce9f61013bc49a3b411922f42cb58b6ce323be27
+  checksum: 10c0/42a4e037452d34a302fba8f6ff7c842655541b30d96ca7f6eca5527b6ffe300629461f39e44d5f704cafd4e6f91234cacb8745f5b8dfc136d1921dd170b4f204
   languageName: node
   linkType: hard
 
 "@cliqz/adblocker-electron@npm:^1.26.6":
-  version: 1.27.6
-  resolution: "@cliqz/adblocker-electron@npm:1.27.6"
+  version: 1.30.0
+  resolution: "@cliqz/adblocker-electron@npm:1.30.0"
   dependencies:
-    "@cliqz/adblocker": "npm:^1.27.6"
-    "@cliqz/adblocker-electron-preload": "npm:^1.27.6"
+    "@cliqz/adblocker": "npm:^1.30.0"
+    "@cliqz/adblocker-electron-preload": "npm:^1.30.0"
     tldts-experimental: "npm:^6.0.14"
   peerDependencies:
     electron: ">11"
-  checksum: 10c0/707a71db615f7585615528589082492310b576915d18393a8da3add038b58dc77e165781d5e14293a0a25f0b3b75b6f7926d4e3532f062f7407471630c60223e
+  checksum: 10c0/cc088740f26e6804318a9b268dee19fcc1714b128370d6f1820ba99b1a772db611b230616906573bb1e808d097c460fb204577da3560ce9a4107bfb95b9775dc
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker-extended-selectors@npm:^1.27.6":
-  version: 1.27.6
-  resolution: "@cliqz/adblocker-extended-selectors@npm:1.27.6"
-  checksum: 10c0/2c8961aed99a82c8aeea74f2c9394351a2cedbb5d80959abcfbd9220bff0e4077c636bb495bc4b1a358f4c58f1a142392a6758246c4ba84497d23c25502f53c9
+"@cliqz/adblocker-extended-selectors@npm:^1.30.0":
+  version: 1.30.0
+  resolution: "@cliqz/adblocker-extended-selectors@npm:1.30.0"
+  checksum: 10c0/6167ccb014120cbfe4948e17f326b8a461bdaba0a78877ea5d74fa276549e6631a4da185ce8910e52872041ea6c956494284f28c4c33a5f79157913fe12174a0
   languageName: node
   linkType: hard
 
-"@cliqz/adblocker@npm:^1.27.6":
-  version: 1.27.6
-  resolution: "@cliqz/adblocker@npm:1.27.6"
+"@cliqz/adblocker@npm:^1.30.0":
+  version: 1.30.0
+  resolution: "@cliqz/adblocker@npm:1.30.0"
   dependencies:
-    "@cliqz/adblocker-content": "npm:^1.27.6"
-    "@cliqz/adblocker-extended-selectors": "npm:^1.27.6"
-    "@remusao/guess-url-type": "npm:^1.2.1"
+    "@cliqz/adblocker-content": "npm:^1.30.0"
+    "@cliqz/adblocker-extended-selectors": "npm:^1.30.0"
+    "@remusao/guess-url-type": "npm:^1.3.0"
     "@remusao/small": "npm:^1.2.1"
     "@remusao/smaz": "npm:^1.9.1"
     "@types/chrome": "npm:^0.0.268"
     "@types/firefox-webext-browser": "npm:^120.0.0"
     tldts-experimental: "npm:^6.0.14"
-  checksum: 10c0/96b7dfc0efa451f414f7b6e6f0b21a3334d1da8e38120b743d5b4405f1133880b77bd8f4ebdf40d89946ade780f6fba3251ffcf95c438efb918909d74e2f3424
+  checksum: 10c0/134b1256ab69c57b99125448a036d293cbb005d2c462a5676b559b4cf47df641655f1427b1a541b5a6a9d040301d738044e10a2681220d1d4e88c2180310d688
   languageName: node
   linkType: hard
 
@@ -327,10 +327,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remusao/guess-url-type@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@remusao/guess-url-type@npm:1.2.1"
-  checksum: 10c0/bd53c7c6a85e23272ea98fc16cc4ae04ad09db22a7de11d2b8c73e83d86bd9fe03ecd5de030866bcb1a50b34d33cb00912adddbc3fd9e50129652b2b79d17511
+"@remusao/guess-url-type@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@remusao/guess-url-type@npm:1.3.0"
+  checksum: 10c0/a9d5b63ad2f5822a744c24b9fd7867ee342eb403f28330bbdcc3522762ab61b566578830e5ab8e6c5c0d183a311461b34392e7f7b5f15db0d0b75498a7b52b9c
   languageName: node
   linkType: hard
 

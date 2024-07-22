@@ -1,4 +1,4 @@
-import useragents from "./useragents.json" with { type: "json" };
+import useragents from "../useragents.json" with { type: "json" };
 import Store from "electron-store";
 
 const store = new Store();

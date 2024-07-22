@@ -1,19 +1,19 @@
 import { app, Menu, BrowserWindow, dialog, nativeImage, screen } from "electron";
-import { clearActivity, setActivity, loginToRPC } from "./rpc.js";
+import { clearActivity, setActivity, loginToRPC } from "./config/rpc.js";
 import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
-import { getValue } from "./store.js";
+import { getValue } from "./config/store.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { join } from "path";
 
-import { getScreenWidth, getScreenHeight } from "./dimensions.js";
+import { getScreenWidth, getScreenHeight } from "./config/dimensions.js";
 import Windows from "./useragents.json" with { type: "json" };
 import checkInternetConnected from "check-internet-connected";
 import contextMenu from "electron-context-menu";
 import updaterpkg from "electron-updater";
 import ElectronDl from "electron-dl";
-import menulayout from "./menu.js";
+import menulayout from "./config/menu.js";
 import logpkg from "electron-log";
 
 const { transports, log: _log, functions } = logpkg;
@@ -122,11 +122,7 @@ app.on("web-contents-created", (event, contents) => {
       if (url.includes("page=Download")) {
         return { action: "allow" };
       } else {
-        BrowserWindow.getFocusedWindow()
-          .loadURL(url)
-          .catch((err) => {
-            // do not show error
-          });
+        BrowserWindow.getFocusedWindow().loadURL(url).catch();
         if (getValue("discordrpcstatus") === "true") {
           setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
         }

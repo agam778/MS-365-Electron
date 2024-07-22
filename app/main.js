@@ -1,4 +1,4 @@
-import { app, Menu, BrowserWindow, dialog, nativeImage } from "electron";
+import { app, Menu, BrowserWindow, dialog, nativeImage, screen } from "electron";
 import { clearActivity, setActivity, loginToRPC } from "./rpc.js";
 import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { join } from "path";
 
+import { getScreenWidth, getScreenHeight } from "./dimensions.js";
 import Windows from "./useragents.json" with { type: "json" };
 import checkInternetConnected from "check-internet-connected";
 import contextMenu from "electron-context-menu";
@@ -17,6 +18,8 @@ import logpkg from "electron-log";
 
 const { transports, log: _log, functions } = logpkg;
 const __filename = fileURLToPath(import.meta.url);
+const windowHeight = getValue("windowHeight");
+const windowWidth = getValue("windowWidth");
 const __dirname = dirname(__filename);
 const { autoUpdater } = updaterpkg;
 
@@ -32,8 +35,8 @@ function createWindow() {
   const partition = enterpriseOrNormal === "?auth=1" ? "persist:personal" : "persist:work";
 
   const win = new BrowserWindow({
-    width: 1181,
-    height: 670,
+    width: Math.round(getScreenWidth() * getValue("windowWidth")),
+    height: Math.round(getScreenHeight() * getValue("windowHeight")),
     icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
     show: false,
     webPreferences: {
@@ -46,8 +49,8 @@ function createWindow() {
   win.setAutoHideMenuBar(getValue("autohide-menubar") === "true");
 
   const splash = new BrowserWindow({
-    width: 810,
-    height: 610,
+    width: Math.round(getScreenWidth() * 0.49),
+    height: Math.round(getScreenHeight() * 0.65),
     transparent: true,
     frame: false,
     icon: join(__dirname, "/assets/icons/png/1024x1024.png"),
@@ -133,7 +136,13 @@ app.on("web-contents-created", (event, contents) => {
       if (getValue("discordrpcstatus") === "true") {
         setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
       }
-      return { action: "allow", overrideBrowserWindowOptions: { width: 1081, height: 610 } };
+      return {
+        action: "allow",
+        overrideBrowserWindowOptions: {
+          width: Math.round(getScreenWidth() * (windowWidth - 0.07)),
+          height: Math.round(getScreenHeight() * (windowHeight - 0.07)),
+        },
+      };
     }
   });
   contents.on("did-finish-load", () => {

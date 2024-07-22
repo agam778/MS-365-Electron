@@ -83,6 +83,7 @@
     "electron-context-menu": "^4.0.0",
     "electron-dl": "^4.0.0",
     "electron-log": "^5.0.0-beta.25",
+    "electron-prompt": "^1.7.0",
     "electron-store": "^10.0.0",
     "electron-updater": "^6.1.4",
     "node-gyp": "^10.0.0"

@@ -1578,6 +1578,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"electron-prompt@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "electron-prompt@npm:1.7.0"
+  checksum: 10c0/5c2be70739838257944c8e9ade800b13b8efe4f908d46d3fd28740c8f4460150df70a80acd8138e66bd782befb64ccf8d30c616ad2762644d8998d5a6bdd34da
+  languageName: node
+  linkType: hard
+
 "electron-publish@npm:24.13.1":
   version: 24.13.1
   resolution: "electron-publish@npm:24.13.1"
@@ -3047,6 +3054,7 @@ __metadata:
     electron-context-menu: "npm:^4.0.0"
     electron-dl: "npm:^4.0.0"
     electron-log: "npm:^5.0.0-beta.25"
+    electron-prompt: "npm:^1.7.0"
     electron-store: "npm:^10.0.0"
     electron-updater: "npm:^6.1.4"
     eslint: "npm:^8.52.0"

@@ -2,10 +2,12 @@ import { app, dialog, BrowserWindow, ShareMenu, clipboard } from "electron";
 import { getValue, setValue } from "./store.js";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
 import { clearActivity, setActivity } from "./rpc.js";
+import prompt from "electron-prompt";
 import { fileURLToPath } from "url";
 import { shell } from "electron";
 import { dirname } from "path";
 
+import { getScreenWidth, getScreenHeight } from "./dimensions.js";
 import useragents from "./useragents.json" with { type: "json" };
 import updaterpkg from "electron-updater";
 import fetch from "cross-fetch";
@@ -153,6 +155,165 @@ const commonPreferencesSubmenu = [
     checked: getValue("websites-in-new-window") === "false",
   },
   { type: "separator" },
+  {
+    label: "Custom Main Window Size",
+    submenu: [
+      {
+        label: "Default",
+        type: "radio",
+        click: () => {
+          setValue("customWindowSize", false);
+          setValue("windowWidth", 0.71);
+          setValue("windowHeight", 0.74);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to the default size.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 0.71 &&
+          getValue("windowHeight") === 0.74 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "60%",
+        type: "radio",
+        click: () => {
+          setValue("customWindowSize", false);
+          setValue("windowWidth", 0.6);
+          setValue("windowHeight", 0.6);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to 60% of your screen size.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 0.6 &&
+          getValue("windowHeight") === 0.6 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "70%",
+        type: "radio",
+        click: () => {
+          setValue("windowWidth", 0.7);
+          setValue("windowHeight", 0.7);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to 70% of your screen size.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 0.7 &&
+          getValue("windowHeight") === 0.7 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "80%",
+        type: "radio",
+        click: () => {
+          setValue("customWindowSize", false);
+          setValue("windowWidth", 0.8);
+          setValue("windowHeight", 0.8);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to 80% of your screen size.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 0.8 &&
+          getValue("windowHeight") === 0.8 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "90%",
+        type: "radio",
+        click: () => {
+          setValue("customWindowSize", false);
+          setValue("windowWidth", 0.9);
+          setValue("windowHeight", 0.9);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to 90% of your screen size.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 0.9 &&
+          getValue("windowHeight") === 0.9 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "100% (Maximize)",
+        type: "radio",
+        click: () => {
+          setValue("customWindowSize", false);
+          setValue("windowWidth", 1);
+          setValue("windowHeight", 1);
+          dialog.showMessageBoxSync({
+            type: "info",
+            title: "Custom Main Window Size",
+            message:
+              "You have set the main window size to 100% of your screen size, which will maximise the window.\n\nPlease restart the app to apply the changes.",
+            buttons: ["OK"],
+          });
+        },
+        checked:
+          getValue("windowWidth") === 1 &&
+          getValue("windowHeight") === 1 &&
+          getValue("customWindowSize") === false,
+      },
+      {
+        label: "Custom",
+        type: "radio",
+        click: () => {
+          prompt({
+            title: "Custom Main Window Size",
+            label: "Enter size in percentage (without % sign)",
+            value: "10",
+            inputAttrs: {
+              type: "number",
+              required: true,
+              min: 10,
+              max: 100,
+            },
+            type: "input",
+          })
+            .then((r) => {
+              if (r === null) {
+                return;
+              }
+              const size = r / 100;
+              setValue("customWindowSize", true);
+              setValue("windowWidth", size);
+              setValue("windowHeight", size);
+              dialog.showMessageBoxSync({
+                type: "info",
+                title: "Custom Main Window Size",
+                message: `You have set the main window size to ${r}% of your screen size.\n\nPlease restart the app to apply the changes.`,
+                buttons: ["OK"],
+              });
+            })
+            .catch(console.error);
+        },
+        checked: getValue("customWindowSize") === true,
+      },
+    ],
+  },
   {
     label: "Custom Home Page",
     submenu: [
@@ -463,8 +624,8 @@ const menulayout = [
         accelerator: "CmdOrCtrl+N",
         click: () => {
           let newWindow = new BrowserWindow({
-            width: 1081,
-            height: 570,
+            width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+            height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
             webPreferences: {
               nodeIntegration: true,
               devTools: true,
@@ -479,8 +640,8 @@ const menulayout = [
         accelerator: "CmdOrCtrl+Shift+N",
         click: () => {
           let newWindow = new BrowserWindow({
-            width: 1081,
-            height: 570,
+            width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+            height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
             webPreferences: {
               nodeIntegration: true,
               devTools: true,
@@ -616,8 +777,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -633,8 +794,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let wordwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -656,8 +817,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -673,8 +834,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let excelwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -696,8 +857,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -713,8 +874,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let powerpointwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -736,8 +897,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -751,8 +912,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let outlookwindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -774,8 +935,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -791,8 +952,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let onedrivewindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -814,8 +975,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -831,8 +992,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let onenotewindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -852,8 +1013,8 @@ const menulayout = [
           if (getValue("enterprise-or-normal") === "?auth=2") {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,
@@ -867,8 +1028,8 @@ const menulayout = [
           } else if (getValue("enterprise-or-normal") === "?auth=1") {
             if (getValue("websites-in-new-window") === "true") {
               let allappswindow = new BrowserWindow({
-                width: 1081,
-                height: 570,
+                width: Math.round(getScreenWidth() * (getValue("windowWidth") - 0.07)),
+                height: Math.round(getScreenHeight() * (getValue("windowHeight") - 0.07)),
                 webPreferences: {
                   nodeIntegration: false,
                   contextIsolation: true,

@@ -2,7 +2,7 @@ import { app, Menu, BrowserWindow, dialog, nativeImage, screen } from "electron"
 import { clearActivity, setActivity, loginToRPC } from "./config/rpc.js";
 import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
-import { getValue } from "./config/store.js";
+import { setValue, getValue } from "./config/store.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { join } from "path";
@@ -27,9 +27,11 @@ transports.file.level = "verbose";
 console.log = _log;
 Object.assign(console, functions);
 
-initialize("A-US-2528580917").catch((error) => {
-  console.error("Error initializing:", error);
-});
+if (getValue("aptabaseTracking") === true) {
+  initialize("A-US-2528580917").catch((error) => {
+    console.error("Error initializing:", error);
+  });
+}
 
 function createWindow() {
   const enterpriseOrNormal = getValue("enterprise-or-normal");
@@ -67,9 +69,11 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
-    trackEvent("app_started").catch((error) => {
-      console.error("Error tracking event:", error);
-    });
+    if (getValue("aptabaseTracking") === true) {
+      trackEvent("app_started").catch((error) => {
+        console.error("Error tracking event:", error);
+      });
+    }
     if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }
@@ -118,6 +122,21 @@ Menu.setApplicationMenu(Menu.buildFromTemplate(menulayout));
 
 app.on("ready", () => {
   createWindow();
+  if (getValue("aptabaseTracking") === null) {
+    const aptabasedialog = dialog.showMessageBoxSync({
+      type: "question",
+      buttons: ["Yes", "No"],
+      title: "Enable Aptabase Tracking",
+      message: "Would you like to enable Aptabase Tracking?",
+      detail:
+        "Aptabase Tracking helps us improve the app by collecting anonymous usage data. No personal information is collected.\n\nYou can always enable or disable this in the app menu.",
+    });
+    if (aptabasedialog === 0) {
+      setValue("aptabaseTracking", true);
+    } else {
+      setValue("aptabaseTracking", false);
+    }
+  }
 });
 
 app.on("web-contents-created", (event, contents) => {

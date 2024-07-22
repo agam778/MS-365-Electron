@@ -27,7 +27,9 @@ transports.file.level = "verbose";
 console.log = _log;
 Object.assign(console, functions);
 
-initialize("A-US-2528580917");
+initialize("A-US-2528580917").catch((error) => {
+  console.error("Error initializing:", error);
+});
 
 function createWindow() {
   const enterpriseOrNormal = getValue("enterprise-or-normal");
@@ -65,7 +67,9 @@ function createWindow() {
   win.webContents.on("did-finish-load", () => {
     splash.destroy();
     win.show();
-    trackEvent("app_started");
+    trackEvent("app_started").catch((error) => {
+      console.error("Error tracking event:", error);
+    });
     if (getValue("discordrpcstatus") === "true") {
       setActivity(`On "${win.webContents.getTitle()}"`);
     }

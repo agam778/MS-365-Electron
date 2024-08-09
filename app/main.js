@@ -311,6 +311,39 @@ app.on("web-contents-created", (event, contents) => {
         }
       }
     }
+    BrowserWindow.getAllWindows().forEach((window) => {
+      if (window.webContents.getURL().includes("outlook.live.com")) {
+        window.webContents
+          .executeJavaScript(
+            `
+            const observer = new MutationObserver((mutationsList) => {
+              let adElementFound = false;
+              for (const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                  const adElement = document.querySelector('div.GssDD');
+                  if (adElement) {
+                    adElement.remove();
+                    adElementFound = true;
+                  }
+                }
+              }
+              if (adElementFound) {
+                observer.disconnect();
+              }
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            const adElement = document.querySelector('div.GssDD');
+            if (adElement) {
+              adElement.remove();
+              observer.disconnect();
+            }
+            `
+          )
+          .catch();
+      }
+    });
     contents.insertCSS(
       `
       ::-webkit-scrollbar {

@@ -33,6 +33,7 @@ getValueOrDefault("windowWidth", 0.71);
 getValueOrDefault("windowHeight", 0.74);
 getValueOrDefault("customWindowSize", false);
 getValueOrDefault("aptabaseTracking", null);
+getValueOrDefault("externalLinks", "true");
 
 if (getValue("enterprise-or-normal") === "https://microsoft365.com/?auth=1") {
   setValue("enterprise-or-normal", "?auth=1");

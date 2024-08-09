@@ -454,6 +454,20 @@ const commonPreferencesSubmenu = [
     },
     checked: getValue("blockadsandtrackers") === "true",
   },
+  {
+    label: "Open External Links in Default Browser",
+    type: "checkbox",
+    click: () => {
+      setValue("externalLinks", getValue("externalLinks") === "true" ? "false" : "true");
+      dialog.showMessageBoxSync({
+        type: "info",
+        title: "External Links in Default Browser",
+        message: `External links will now open in ${getValue("externalLinks") === "true" ? "your default browser" : "MS-365-Electron"}`,
+        buttons: ["OK"],
+      });
+    },
+    checked: getValue("externalLinks") === "true",
+  },
   { type: "separator" },
   {
     label: "Windows User-Agent String",

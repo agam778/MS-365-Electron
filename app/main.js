@@ -1,15 +1,15 @@
-import { app, Menu, BrowserWindow, dialog, nativeImage, screen } from "electron";
+import { app, Menu, BrowserWindow, dialog, nativeImage, shell } from "electron";
 import { clearActivity, setActivity, loginToRPC } from "./config/rpc.js";
 import { initialize, trackEvent } from "@aptabase/electron/main";
 import { ElectronBlocker } from "@cliqz/adblocker-electron";
 import { setValue, getValue } from "./config/store.js";
+import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
-import { join } from "path";
 
 import { getScreenWidth, getScreenHeight } from "./config/dimensions.js";
 import Windows from "./useragents.json" with { type: "json" };
 import checkInternetConnected from "check-internet-connected";
+import domains from "./domains.json" with { type: "json" };
 import contextMenu from "electron-context-menu";
 import updaterpkg from "electron-updater";
 import ElectronDl from "electron-dl";
@@ -141,27 +141,64 @@ app.on("ready", () => {
 
 app.on("web-contents-created", (event, contents) => {
   contents.setWindowOpenHandler(({ url }) => {
-    if (getValue("websites-in-new-window") === "false") {
-      if (url.includes("page=Download")) {
-        return { action: "allow" };
+    const urlObject = new URL(url);
+    const domain = urlObject.hostname;
+    const protocol = urlObject.protocol;
+
+    if (getValue("externalLinks") === "true") {
+      if (protocol === "http:" || protocol === "https:") {
+        const isAllowedDomain = domains.domains.some((allowedDomain) =>
+          new RegExp(`^${allowedDomain.replace("*.", ".*")}$`).test(domain)
+        );
+
+        if (isAllowedDomain) {
+          if (getValue("websites-in-new-window") === "false") {
+            if (url.includes("page=Download")) return { action: "allow" };
+            BrowserWindow.getFocusedWindow().loadURL(url).catch();
+            if (getValue("discordrpcstatus") === "true") {
+              setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
+            }
+            return { action: "deny" };
+          } else {
+            if (getValue("discordrpcstatus") === "true") {
+              setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
+            }
+            return {
+              action: "allow",
+              overrideBrowserWindowOptions: {
+                width: Math.round(getScreenWidth() * (windowWidth - 0.07)),
+                height: Math.round(getScreenHeight() * (windowHeight - 0.07)),
+              },
+            };
+          }
+        } else {
+          shell.openExternal(url);
+          return { action: "deny" };
+        }
       } else {
+        shell.openExternal(url);
+        return { action: "deny" };
+      }
+    } else {
+      if (getValue("websites-in-new-window") === "false") {
+        if (url.includes("page=Download")) return { action: "allow" };
         BrowserWindow.getFocusedWindow().loadURL(url).catch();
         if (getValue("discordrpcstatus") === "true") {
           setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
         }
         return { action: "deny" };
+      } else {
+        if (getValue("discordrpcstatus") === "true") {
+          setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
+        }
+        return {
+          action: "allow",
+          overrideBrowserWindowOptions: {
+            width: Math.round(getScreenWidth() * (windowWidth - 0.07)),
+            height: Math.round(getScreenHeight() * (windowHeight - 0.07)),
+          },
+        };
       }
-    } else {
-      if (getValue("discordrpcstatus") === "true") {
-        setActivity(`On "${BrowserWindow.getFocusedWindow().webContents.getTitle()}"`);
-      }
-      return {
-        action: "allow",
-        overrideBrowserWindowOptions: {
-          width: Math.round(getScreenWidth() * (windowWidth - 0.07)),
-          height: Math.round(getScreenHeight() * (windowHeight - 0.07)),
-        },
-      };
     }
   });
   contents.on("did-finish-load", () => {

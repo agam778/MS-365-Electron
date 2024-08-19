@@ -176,7 +176,6 @@ app.on("web-contents-created", (event, contents) => {
           return { action: "deny" };
         }
       } else {
-        shell.openExternal(url);
         return { action: "deny" };
       }
     } else {

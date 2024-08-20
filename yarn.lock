@@ -1726,16 +1726,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron@npm:^31.0.0":
-  version: 31.4.0
-  resolution: "electron@npm:31.4.0"
+"electron@npm:^32.0.0":
+  version: 32.0.0
+  resolution: "electron@npm:32.0.0"
   dependencies:
     "@electron/get": "npm:^2.0.0"
     "@types/node": "npm:^20.9.0"
     extract-zip: "npm:^2.0.1"
   bin:
     electron: cli.js
-  checksum: 10c0/9ed10f363f864912bb9be0a387309babb476df20473ed7ea3f8df609daf19125763fe9ba4b9f5b422673b688e00b31afc52b308623829b7cced28f99687a9d03
+  checksum: 10c0/f5d63c3e8025c528b9c09e909e6219696621ee428fee533de3d00d1767abc3997d7fde41461157e0756a392177825bf9441800c9ed6be815c1becc19285f6c0e
   languageName: node
   linkType: hard
 
@@ -3259,7 +3259,7 @@ __metadata:
     axios: "npm:^1.4.0"
     check-internet-connected: "npm:^2.0.6"
     cross-fetch: "npm:^4.0.0"
-    electron: "npm:^31.0.0"
+    electron: "npm:^32.0.0"
     electron-builder: "npm:^24.6.3"
     electron-context-menu: "npm:^4.0.0"
     electron-dl: "npm:^4.0.0"

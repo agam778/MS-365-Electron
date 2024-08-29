@@ -1643,13 +1643,13 @@ __metadata:
   linkType: hard
 
 "electron-context-menu@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "electron-context-menu@npm:4.0.1"
+  version: 4.0.4
+  resolution: "electron-context-menu@npm:4.0.4"
   dependencies:
     cli-truncate: "npm:^4.0.0"
     electron-dl: "npm:^4.0.0"
     electron-is-dev: "npm:^3.0.1"
-  checksum: 10c0/2ebc564617af2bf965e9487e5c96f2e9262ffa0c0ba0413f3127707def68660b8230caf13bf8f63ec530bfbabd565fae7ddc7bfc55d0d2851aaac3af3d18c0eb
+  checksum: 10c0/b67b67b23916615723828324d3b97fe3b70cea04beef74c2ddc1d06399c799ab25fcbd8b192881668eec9cbbe600953af1040a144c481666bab99da53b8c5365
   languageName: node
   linkType: hard
 

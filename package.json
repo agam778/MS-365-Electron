@@ -67,7 +67,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "electron": "^32.0.0",
+    "electron": "^33.0.0",
     "electron-builder": "^25.0.0",
     "eslint": "^9.0.0",
     "prettier": "^3.1.0",

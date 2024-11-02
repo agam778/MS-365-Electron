@@ -1288,16 +1288,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"builder-util-runtime@npm:9.2.5":
-  version: 9.2.5
-  resolution: "builder-util-runtime@npm:9.2.5"
-  dependencies:
-    debug: "npm:^4.3.4"
-    sax: "npm:^1.2.4"
-  checksum: 10c0/1791a2543355bf9656b3321d20e2a23b1e61c4a7172a824767379da6321f8e6e8a33347238c64c9ac81168b41ebf5c66ce7a69c3c35b1f5e230072d9fe36c605
-  languageName: node
-  linkType: hard
-
 "builder-util@npm:25.1.7":
   version: 25.1.7
   resolution: "builder-util@npm:25.1.7"
@@ -2001,15 +1991,15 @@ __metadata:
   linkType: hard
 
 "electron@npm:^33.0.0":
-  version: 33.0.0
-  resolution: "electron@npm:33.0.0"
+  version: 33.0.2
+  resolution: "electron@npm:33.0.2"
   dependencies:
     "@electron/get": "npm:^2.0.0"
     "@types/node": "npm:^20.9.0"
     extract-zip: "npm:^2.0.1"
   bin:
     electron: cli.js
-  checksum: 10c0/3158741c4348e27494a0aed1ecd6c1fd55e42cfd051da4f22dc7c9824ae03e88261f0561da71347e84043c3282db3e9ae20e81efba3c69ec9f1d83f69b98225e
+  checksum: 10c0/a7f8b810412e1cc5430edca1b07eeebe75d91d82405adb7ca83d585caf9d72893db7eba0eb88ddc2a0e7e013add1d464a2663afdc3542693d62e1aac5cbfa626
   languageName: node
   linkType: hard
 

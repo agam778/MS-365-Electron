@@ -1976,13 +1976,13 @@ __metadata:
   linkType: hard
 
 "electron-context-menu@npm:^4.0.0":
-  version: 4.0.4
-  resolution: "electron-context-menu@npm:4.0.4"
+  version: 4.0.5
+  resolution: "electron-context-menu@npm:4.0.5"
   dependencies:
     cli-truncate: "npm:^4.0.0"
     electron-dl: "npm:^4.0.0"
     electron-is-dev: "npm:^3.0.1"
-  checksum: 10c0/b67b67b23916615723828324d3b97fe3b70cea04beef74c2ddc1d06399c799ab25fcbd8b192881668eec9cbbe600953af1040a144c481666bab99da53b8c5365
+  checksum: 10c0/4d1a7dfbfa1d18d5c286874c17386c22f9b7a5ded9b0f292d24641921fbc594bdb05a76ec75aac2de36c83074ac417ecfaf3920586a864c64cf7826067a84539
   languageName: node
   linkType: hard
 

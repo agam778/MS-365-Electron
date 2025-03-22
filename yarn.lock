@@ -1994,12 +1994,12 @@ __metadata:
   linkType: hard
 
 "electron-store@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "electron-store@npm:10.0.0"
+  version: 10.0.1
+  resolution: "electron-store@npm:10.0.1"
   dependencies:
     conf: "npm:^13.0.0"
     type-fest: "npm:^4.20.0"
-  checksum: 10c0/c2bd998db5ecb6861e3ffd237fd300f2b11f26497a43203c275c64fae947a929476ffa20626efc8bfddb436caf5a3f118de438449ceb14d5b96cc09742cf8e3c
+  checksum: 10c0/a66f82ce269bac9636f0c94cbfbe360c2d6aa63931075dc1247bebb4a0c11479793ae1ae155bbf12f48efa32fe0ffc0e6a6227a6de95c8812c7bc9cd3dc9cf6c
   languageName: node
   linkType: hard
 

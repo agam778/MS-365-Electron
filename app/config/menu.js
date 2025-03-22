@@ -676,7 +676,9 @@ const menulayout = [
       {
         label: "Home",
         click: () => {
-          BrowserWindow.getFocusedWindow().loadURL(`${getValue("enterprise-or-normal")}`);
+          BrowserWindow.getFocusedWindow().loadURL(
+            `https://microsoft365.com/${getValue("custompage")}/${getValue("enterpriseOrNormal")}`
+          );
         },
       },
     ],

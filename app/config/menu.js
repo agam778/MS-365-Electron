@@ -327,35 +327,6 @@ const commonPreferencesSubmenu = [
     checked: getValue("discordrpcstatus") === "true",
   },
   {
-    label: "Enable Aptabase Tracking",
-    type: "checkbox",
-    click: () => {
-      if (getValue("aptabaseTracking") === true) {
-        setValue("aptabaseTracking", false);
-        dialog.showMessageBoxSync({
-          type: "info",
-          title: "Aptabase Tracking",
-          message: "Aptabase Tracking has been disabled.",
-          buttons: ["OK"],
-        });
-        return;
-      } else if (
-        getValue("aptabaseTracking") === false ||
-        getValue("aptabaseTracking") === undefined
-      ) {
-        setValue("aptabaseTracking", true);
-        dialog.showMessageBoxSync({
-          type: "info",
-          title: "Aptabase Tracking",
-          message: "Aptabase Tracking has been enabled.",
-          buttons: ["OK"],
-        });
-        return;
-      }
-    },
-    checked: getValue("aptabaseTracking") === true,
-  },
-  {
     label: "Enable Auto Updates",
     type: "checkbox",
     click: () => {

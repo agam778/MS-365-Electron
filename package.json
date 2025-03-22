@@ -74,7 +74,6 @@
     "prettier-eslint": "^16.1.2"
   },
   "dependencies": {
-    "@aptabase/electron": "^0.3.1",
     "@cliqz/adblocker-electron": "^1.26.6",
     "@xhayper/discord-rpc": "^1.0.21",
     "axios": "^1.4.0",

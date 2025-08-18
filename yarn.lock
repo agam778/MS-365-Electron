@@ -1966,9 +1966,9 @@ __metadata:
   linkType: hard
 
 "electron-log@npm:^5.0.0-beta.25":
-  version: 5.3.2
-  resolution: "electron-log@npm:5.3.2"
-  checksum: 10c0/8cfcd6eb6ab2dff010941f9a39793a411646dc0462991632d2427fc9a45f22b00ec758996629f8c203612d99cb01713c08c72d2b0454603d13386f433f5b755b
+  version: 5.4.3
+  resolution: "electron-log@npm:5.4.3"
+  checksum: 10c0/84d398d2a53cd73fdd1118f7b376b08d74938c79cb4aa3454aa176b61ebf1522f5cc92179355e69e0053301df7a19fbe6cf302319e5fbe5fc6a1600f282a2646
   languageName: node
   linkType: hard
 

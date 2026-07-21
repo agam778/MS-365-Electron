@@ -990,15 +990,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.16.0":
-  version: 8.16.0
-  resolution: "ajv@npm:8.16.0"
+"ajv@npm:^8.17.1":
+  version: 8.20.0
+  resolution: "ajv@npm:8.20.0"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
+    fast-uri: "npm:^3.0.1"
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.4.1"
-  checksum: 10c0/6fc38aa8fd4fbfaa7096ac049e48c0cb440db36b76fef2d7d5b7d92b102735670d055d412d19176c08c9d48eaa9d06661b67e59f04943dc71ab1551e0484f88c
+  checksum: 10c0/5df9a1c8f83863cde1bd3a9ddb426f599718f88e3dc9153616c79fb28e0be455335830d7f21d745576519f057b371352daa31047b6a33d7036fe08777d60cf2a
   languageName: node
   linkType: hard
 
@@ -1598,20 +1598,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conf@npm:^13.0.0":
-  version: 13.0.0
-  resolution: "conf@npm:13.0.0"
+"conf@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "conf@npm:14.0.0"
   dependencies:
-    ajv: "npm:^8.16.0"
+    ajv: "npm:^8.17.1"
     ajv-formats: "npm:^3.0.1"
     atomically: "npm:^2.0.3"
     debounce-fn: "npm:^6.0.0"
     dot-prop: "npm:^9.0.0"
     env-paths: "npm:^3.0.0"
     json-schema-typed: "npm:^8.0.1"
-    semver: "npm:^7.6.2"
-    uint8array-extras: "npm:^1.1.0"
-  checksum: 10c0/4add48d08775701c2e45b7ebdae67f76db7dd4bab1d81e8667f4fb39dac8fdeb644f9e6726b613ff7420274ca68d594299aef2e8095029430d5a2c84db79fc3e
+    semver: "npm:^7.7.2"
+    uint8array-extras: "npm:^1.4.0"
+  checksum: 10c0/d1472ea24dad78d0d33dee47a795dfefe92fcdf2633763a8b35563989f22b2658e768c9d338de8e8e5f9163525d22df9e5f8733094d822a8329f4571dedce208
   languageName: node
   linkType: hard
 
@@ -1995,12 +1995,12 @@ __metadata:
   linkType: hard
 
 "electron-store@npm:^10.0.0":
-  version: 10.0.1
-  resolution: "electron-store@npm:10.0.1"
+  version: 10.1.0
+  resolution: "electron-store@npm:10.1.0"
   dependencies:
-    conf: "npm:^13.0.0"
-    type-fest: "npm:^4.20.0"
-  checksum: 10c0/a66f82ce269bac9636f0c94cbfbe360c2d6aa63931075dc1247bebb4a0c11479793ae1ae155bbf12f48efa32fe0ffc0e6a6227a6de95c8812c7bc9cd3dc9cf6c
+    conf: "npm:^14.0.0"
+    type-fest: "npm:^4.41.0"
+  checksum: 10c0/a527a1957b09decbbb36828e299bb06c239ed9a7d406ceda07abe84d2a9dfd1920120c63859e42c9c7a0922b95b840c4f4e5d8db90256814445f22a8a48de07e
   languageName: node
   linkType: hard
 
@@ -2436,6 +2436,13 @@ __metadata:
   version: 2.0.6
   resolution: "fast-levenshtein@npm:2.0.6"
   checksum: 10c0/111972b37338bcb88f7d9e2c5907862c280ebf4234433b95bc611e518d192ccb2d38119c4ac86e26b668d75f7f3894f4ff5c4982899afced7ca78633b08287c4
+  languageName: node
+  linkType: hard
+
+"fast-uri@npm:^3.0.1":
+  version: 3.1.4
+  resolution: "fast-uri@npm:3.1.4"
+  checksum: 10c0/f90948821ceb49980f64f89b8216ba498f5957f26035be813526a55b6145d26cbd63ef5618d5205a3292b31edc9c08589749350cd72bd86c7095eb434dceb757
   languageName: node
   linkType: hard
 
@@ -4523,12 +4530,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.6.2":
-  version: 7.6.2
-  resolution: "semver@npm:7.6.2"
+"semver@npm:^7.7.2":
+  version: 7.8.5
+  resolution: "semver@npm:7.8.5"
   bin:
     semver: bin/semver.js
-  checksum: 10c0/97d3441e97ace8be4b1976433d1c32658f6afaff09f143e52c593bae7eef33de19e3e369c88bd985ce1042c6f441c80c6803078d1de2a9988080b66684cbb30c
+  checksum: 10c0/b1f3127a5be8125a94f37188b361c212466c292c6910adce3ec106cff5dc211ccaedc4739c11bb70fda59d6fc1f040a9bca289f4e093451521a2372e5231fe0c
   languageName: node
   linkType: hard
 
@@ -4977,10 +4984,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.18.2, type-fest@npm:^4.20.0":
+"type-fest@npm:^4.18.2":
   version: 4.20.0
   resolution: "type-fest@npm:4.20.0"
   checksum: 10c0/d0b35152f7f0b34b3048fb14d93d8d6dfe6288d443a2ab7b7b8c1dd902278e092aa057ad7cfc30f269f17d42eeb14a19d4d147ecb14dff74a5941c5c82248efa
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^4.41.0":
+  version: 4.41.0
+  resolution: "type-fest@npm:4.41.0"
+  checksum: 10c0/f5ca697797ed5e88d33ac8f1fec21921839871f808dc59345c9cf67345bfb958ce41bd821165dbf3ae591cedec2bf6fe8882098dfdd8dc54320b859711a2c1e4
   languageName: node
   linkType: hard
 
@@ -5024,10 +5038,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uint8array-extras@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "uint8array-extras@npm:1.1.0"
-  checksum: 10c0/ecdab91ffcb2ee2c93d98dc17f2686711191cce603fd1bf61bdecde1e87237d954df69f8afd3ed501b2b60a0380d76d4f42b80ccbf728bd9edda1103645f9745
+"uint8array-extras@npm:^1.4.0":
+  version: 1.5.0
+  resolution: "uint8array-extras@npm:1.5.0"
+  checksum: 10c0/0e74641ac7dadb02eadefc1ccdadba6010e007757bda824960de3c72bbe2b04e6d3af75648441f412148c4103261d54fcb60be45a2863beb76643a55fddba3bd
   languageName: node
   linkType: hard
 
